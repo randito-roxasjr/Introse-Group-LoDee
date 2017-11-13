@@ -2,39 +2,53 @@
 <html>
 
 <head>
-  <script src="/js/registration.js"></script>
+  <style>
+    nav {
+      background-color: #087830;
+    }
+
+    #brand:hover {
+      text-shadow: 2px 2px #000000;	  
+    }
+
+    #login:hover, #home:hover{
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  </style>  
 </head>
 
 <body class="bg-dark">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900i|Roboto:900i" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
-  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+  <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-cloud"></i><b>  Upper Limit Insurance Inc.</b></a>
-      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        <ul class="navbar-nav"> </ul>
-        <a>Already a member?</a>
-        <a class="btn navbar-btn ml-2 text-white btn-secondary" href="login.html"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
+      <a id="brand" class="navbar-brand" href="home.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
+        aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">	  
+        <ul class="navbar-nav">				
+			<a id="home" class="btn navbar-btn ml-2 text-white" href="home.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+			<a id="login" class="btn navbar-btn ml-2 text-white" href="login.html"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
+        </ul>
       </div>
     </div>
   </nav>
-  <div class="py-5 bg-dark">
+  <div class="py-5" style="background-color: #FFFFFF">
     <div class="container">
       <div class="row">
         <div class="col-md-3"> </div>
         <div class="col-md-6">
-          <div class="card text-white p-5 bg-primary">
+          <div class="card text-white p-5" style="background-color: #087830">
             <div class="card-body">
-              <h1 class="mb-4">Registration form</h1>
+              <h2 class="mb-4">Registration form</h2>
               <form action="https://formspree.io/YOUREMAILHERE">
                 <div class="form-group"> <label>Email Address</label>
                   <input type="email" class="form-control" placeholder="Enter Email"> </div>
                 <div class="form-group"> <label>Password</label>
                   <input type="password" class="form-control" placeholder="Enter Password"> </div>
-                <div class="form-group"> <label>Address</label>
-                  <input type="password" class="form-control" placeholder="Enter Address"> </div>
                 <div class="form-group"> <label>Contact Number</label>
                   <input type="password" class="form-control" placeholder="Enter Contact Number"> </div>
                 <div class="form-group"> <label>Select position:</label> <select name="status" id="status">
@@ -43,7 +57,7 @@
                 </select>
                   <br>
                   <br>
-                  <button type="submit" class="btn btn-secondary">Submit</button>
+                  <button type="submit" class="btn btn-primary" style="cursor:pointer">Submit</button>
                 </div>
               </form>
             </div>
