@@ -34,6 +34,70 @@
 		border-radius:1em;
 		margin:0 0.25em;	
 	}	
+	
+	/* The Modal (background) */	
+
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */   
+	  z-index: 1;
+      /* Sit on top */
+      padding-top: 10px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+    /* Modal Content */
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;	  
+    }
+    /* The Close Button */
+
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,.close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+	
+	#modal-body {
+		font-color: black;		
+	}
+	
+	.form-group {
+		color: white;
+	}
+	
+	.form-group2 {
+		color: black;
+	}		
+	
+	dropdown-item{
+		cursor: pointer;
+	}
   </style>
   <script>
 	// When the user scrolls down 20px from the top of the document, show the button
@@ -58,12 +122,12 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:600i|Roboto:900i" rel="stylesheet">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Concert+One|Lobster" rel="stylesheet">
   <link rel="stylesheet" href="bootstrap-notifications.css" type="text/css">
   <link rel="stylesheet" href="bootstrap-notifications.min.css" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
 </head>
 
 <body>
@@ -82,9 +146,9 @@
 					Notifications 
 			  </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Notif #1</a>
+				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>                
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Notif #2</a>
+                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>                
                 <div class="dropdown-divider"></div>
                 <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
@@ -102,29 +166,90 @@
       <div class="row">
         <div class="col-md-3"> </div>
         <div class="col-md-6">
-          <div class="card p-5 text-white" style="background-color: #087830">
+          <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
-              <h2 class="mb-4">Input Client Info</h2>
-              <form action="https://formspree.io/YOUREMAILHERE">
+              <h2 style="color: white;" class="mb-4">Input Client Info</h2>			  
+              <form>			  
                 <div class="form-group"> <label>Name</label>
-                  <input type="email" class="form-control" placeholder="Enter client's name"> </div>
+                  <input type="text" class="form-control" placeholder="Enter client's name" required> </div>
                 <div class="form-group"> <label>Address</label>
-                  <input type="email" class="form-control" placeholder="Enter client's address"> </div>
+                  <input type="text" class="form-control" placeholder="Enter client's address" required> </div>
                 <div class="form-group"> <label>Car Make</label>
-                  <input type="email" class="form-control" placeholder="Enter car make"> </div>
+                  <input type="text" class="form-control" placeholder="Enter car make" required> </div>
                 <div class="form-group"> <label>Car Model</label>
-                  <input type="email" class="form-control" placeholder="Enter car model"> </div>
+                  <input type="text" class="form-control" placeholder="Enter car model" required> </div>
                 <div class="form-group"> <label>Car Name</label>
-                  <input type="email" class="form-control" placeholder="Enter car name"> </div>
+                  <input type="text" class="form-control" placeholder="Enter car name" required> </div>
                 <div class="form-group"> <label>Car Value</label>
-                  <input type="email" class="form-control" placeholder="Enter car value"> </div>
+                  <input type="number" min="1" step="any" class="form-control" placeholder="Enter car value" required> </div>
                 <div class="form-group"> <label>Email</label>
-                  <input type="email" class="form-control" placeholder="Enter client's email"> </div>
+                  <input type="email" class="form-control" placeholder="Enter client's email" required> </div>
                 <div class="form-group"> <label>Phone Number</label>
-                  <input type="number" class="form-control" placeholder="Enter client's mobile/landline number"> </div>
+                  <input type="tel" class="form-control" placeholder="Enter client's mobile/landline number" required> </div>
                 <div class="form-group"> <label>Payments</label>
-                  <input type="email" class="form-control" placeholder="Enter payments"> </div>
-                <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
+                  <input type="number" min="1" step="any" id="abc" onkeyup="s()" class="form-control" placeholder="Enter payments" required> </div>								
+				<button class="btn btn-primary" id="abc2" data-toggle="modal" data-target="#exampleModalLong1" disabled >Set Transaction Details</button>
+				<script type="text/javascript">
+					function s(){
+					var i=document.getElementById("abc");
+						if(i.value==""){
+							document.getElementById("abc2").disabled=true;
+							document.getElementById("abc2").style="cursor:";
+						}
+						else{
+							document.getElementById("abc2").disabled=false;
+							document.getElementById("abc2").style="cursor:pointer";
+						}
+					}
+				</script>
+				<br>						                
+				<!-- Modal -->
+				  <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					  <div class="modal-content">
+						<div class="modal-header">
+						  <h5 class="modal-title" id="exampleModalLongTitle">New transaction</h5>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+						<div style="font-color: black" class="modal-body"> 
+							<form>
+							  <small class="timestamp" id="para1"></small>
+							  <br>
+							  <br>
+							  <script>
+								document.getElementById("para1").innerHTML = formatAMPM();
+
+								function formatAMPM() {
+								var d = new Date(),
+									minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
+									hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours()-12,
+									ampm = d.getHours() >= 12 ? 'pm' : 'am',
+									months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+									days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+								return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
+								}
+							  </script>
+							  <div class="form-group2">
+								<label for="recipient-name" class="form-control-label">Recipient:</label>
+								<input type="text" class="form-control" id="recipient-name">
+							  </div>
+							  <div class="form-group2">
+								<label for="recipient-name" class="form-control-label">Subject:</label>
+								<input type="text" class="form-control" id="subject">
+							  </div>							  
+							  <div class="form-group2">
+								<label for="message-text" class="form-control-label">Details:</label>
+								<textarea class="form-control" id="message-text"></textarea>
+							  </div>
+							</form>
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer">Cancel</button>
+						  <button type="button" class="btn btn-primary" style="cursor: pointer">Submit</button>						  
+						</div>
+					  </div>
+					</div>
+				  </div>	
               </form>
             </div>
           </div>
