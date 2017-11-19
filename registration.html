@@ -44,16 +44,23 @@
           <div class="card text-white p-5" style="background-color: #087830">
             <div class="card-body">
               <h2 class="mb-4">Registration form</h2>
-              <form action="https://formspree.io/YOUREMAILHERE">
+
+
+              <form action="registration_connectsql.php" method = "post">
+
                 <div class="form-group"> <label>Email Address</label>
-                  <input type="email" class="form-control" placeholder="Enter Email" required> </div>
+                  <input type="email" class="form-control" name="user_email" placeholder="Enter Email" required> </div>
+              
                 <div class="form-group"> <label>Password</label>
-                  <input type="password" class="form-control" placeholder="Enter Password" required> </div>
+                  <input type="password" class="form-control" name="password" placeholder="Enter Password" required> </div>
+              
                 <div class="form-group"> <label>Contact Number</label>
-                  <input type="tel" class="form-control" placeholder="Enter Contact Number" required> </div>                                   
-                  <button type="submit" class="btn btn-primary" style="cursor:pointer">Submit</button>
-                </div>
+                  <input type="tel" class="form-control" name="contact_num" placeholder="Enter Contact Number" required> </div>                                   
+                  <button type="submit" class="btn btn-primary" name ="send_info" style="cursor:pointer">Submit</button>
+               
               </form>
+              
+
             </div>
           </div>
         </div>
