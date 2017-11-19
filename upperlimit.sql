@@ -56,7 +56,8 @@ DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
   `clientId` int(11) NOT NULL AUTO_INCREMENT,
   `employeeId` int(11) NOT NULL,
-  `name` varchar(700) NOT NULL,
+  `firstName` varchar(700) NOT NULL,
+  `lastName` varchar(700) NOT NULL,
   `picture` longblob,
   `addressLine1` varchar(45) NOT NULL,
   `addressLine2` varchar(45) DEFAULT NULL,
@@ -149,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-19 22:49:44
+-- Dump completed on 2017-11-19 22:55:21
