@@ -110,6 +110,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-19 22:55:21
+-- Dump completed on 2017-11-20 22:01:01
