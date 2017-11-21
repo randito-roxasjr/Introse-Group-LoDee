@@ -65,7 +65,7 @@
 
 	$servername = "localhost";
 	$username = "root";
-	$password = "1234";
+	$password = "";
 
 	#connect
 	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
@@ -141,7 +141,7 @@
 
 		if(empty($empty_data)){
 
-			$query = "INSERT INTO Employee (employeeId, firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES (10005, '$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
+			$query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
 
 			$result = mysqli_query($dbc, $query);
 
