@@ -18,6 +18,8 @@
 --
 -- Table structure for table `carinfo`
 --
+CREATE SCHEMA IF NOT EXISTS `upperLimit` DEFAULT CHARACTER SET utf8 ;
+USE `upperLimit` ;
 
 DROP TABLE IF EXISTS `carinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -89,7 +91,7 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
-  `employeeId` int(11) NOT NULL,
+  `employeeId` int(11) NOT NULL auto_increment,
   `firstName` varchar(700) NOT NULL,
   `lastName` varchar(700) NOT NULL,
   `addressLine1` varchar(45) NOT NULL,
