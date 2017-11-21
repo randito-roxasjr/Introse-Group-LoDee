@@ -119,7 +119,7 @@
 		if(empty($data_missing)){
 			
 			#connects mysql to php
-			require_once('mysqli_connect.php');
+			require_once('home_Agent_mysqli_connect.php');
 			
 			#inserts the client to the table
 			$query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,province,city,postalCode,phonenumber1) VALUES(10001,?,?,?,?,?,?,?)";
