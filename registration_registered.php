@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<style>
@@ -47,7 +48,7 @@
 				<p class="text-center">You've successfully registered!</p>
 				<br>
 					<center>
-						<a id="login" class="btn text-white" href="login.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
+						<a id="login" class="btn text-white" href="login.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
 					</center>
 			  </div>
             </div>
@@ -65,7 +66,7 @@
 
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "1234";
 
 	#connect
 	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
@@ -119,12 +120,12 @@
 		}
 		else{
 			if($_POST['password1'] == $_POST['password2']){
-				echo 'Passwords match';
+				echo 'Passwords match<br />';
 				#Remove white space and store
 				$user_password = trim($_POST['password1']);
 			}
 			else{
-				echo 'Passwords do not match';
+				echo 'Passwords do not match<br />';
 				$empty_data[] = 'password1';
 				$empty_data[] = 'password2';
 			}
@@ -140,13 +141,20 @@
 		}
 
 		if(empty($empty_data)){
+			$query2 = "SELECT email_address FROM employee WHERE email_address='$email_address' limit 1";
+			$result2 = mysqli_query($dbc, $query2);
+			$data = mysqli_fetch_assoc($result2);
 
 			$query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
-
 			$result = mysqli_query($dbc, $query);
 
-			if($result){
-				echo "Employee Registered";
+			if($data["email_address"] == $email_address){
+				echo "Not registered. Email address already exists<br />";
+				mysqli_close($dbc);
+			}
+
+			else if($result){
+				echo "Employee Registered<br />";
 				#mysqli_stmt_close($result);
 				mysqli_close($dbc);
 			}
@@ -160,8 +168,7 @@
 
 		}
 		else{
-			echo "Enter required Data";
-
+			echo "Enter required Data<br />";
 			foreach($empty_data as $missing){
 					echo $missing;
 				}
