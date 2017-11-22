@@ -6,20 +6,17 @@
     nav {
 		background-color: #087830;
     }
-
     #brand:hover {
 		text-shadow: 2px 2px #000000;
     }
-
     #login:hover, #home:hover{
 		background-color: rgba(0, 0, 0, 0.3);
     }
-	
+
 	#eye{
 		cursor:pointer;
-		
 	}
-	
+
   </style>
 </head>
 
@@ -51,8 +48,8 @@
             <div class="card-body">
               <h2 class="mb-4">Registration form</h2>
 
-
-              <form action="registration_registered.php" method = "post">
+              <!-- FORM -->
+              <form method = "post">
 
                 <div class="form-group"> <label>First Name</label>
                   <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" required> </div>
@@ -80,14 +77,11 @@
 						var p = document.getElementById('pwd');
 						p.setAttribute('type', 'text');
 					}
-
 					function hide() {
 						var p = document.getElementById('pwd');
 						p.setAttribute('type', 'password');
 					}
-
 					var pwShown = 0;
-
 					document.getElementById("eye").addEventListener("click", function () {
 						if (pwShown == 0) {
 							pwShown = 1;
@@ -105,8 +99,45 @@
 
                 <div class="form-group"> <label>Contact Number</label>
                   <input type="tel" class="form-control" name="contact_num" placeholder="Enter Contact Number" required> </div>
-                  <button type="submit" class="btn btn-primary" name ="send_info" style="cursor:pointer">Submit</button>
+                  <button type="submit" name="send_info" class="btn btn-primary" name ="send_info" style="cursor:pointer">Submit</button>
 
+				<!-- Modals -->
+
+				<!-- Email already taken -->
+				<div class="modal fade" id="takenEM" tabindex="-1" role="dialog" aria-labelledby="takenEM" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<h5 class="modal-title" id="takenEM" style="color: black">Oops!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+					  </div>
+					  <div class="modal-body" style="color: black">
+						<p>
+						  The email you entered is
+						  <span style="color: #ff0000">already taken</span>
+						</p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+				<!-- Passwords don't match -->
+				<div class="modal fade" id="wrongPW" tabindex="-1" role="dialog" aria-labelledby="wrongPW" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<h5 class="modal-title" id="wrongPW" style="color: black">Oops!</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+					  </div>
+					  <div class="modal-body" style="color: black">
+						<p>
+						  The passwords you entered
+						  <span style="color: #ff0000">don't match</span>
+						</p>
+					  </div>
+					</div>
+				  </div>
+				</div>
               </form>
 
 
@@ -119,6 +150,124 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   </div>
+
+
+  <!--PHP SECTION-->
+  <?php
+  	$servername = "localhost";
+  	$username = "root";
+  	$password = "1234";
+
+  	#connect
+  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
+  	#### Inserting Data
+    $wrong_email = false;
+    $wrong_pass = false;
+  	if (isset($_POST['send_info'])){
+  		$empty_data = array();
+  		#Get first name
+  		if(empty($_POST['first_name'])){
+  			$empty_data[] = 'first name';
+  		}
+  		else{
+  			#Remove white space and store
+  			$first_name = trim($_POST['first_name']);
+  		}
+  		#Get last name
+  		if(empty($_POST['last_name'])){
+  			$empty_data[] = 'last name';
+  		}
+  		else{
+  			#Remove white space and store
+  			$last_name = trim($_POST['last_name']);
+  		}
+  		#Get complete address
+  		if(empty($_POST['address'])){
+  			$empty_data[] = 'address';
+  		}
+  		else{
+  			#Remove white space and store
+  			$address = trim($_POST['address']);
+  		}
+  		#Get EMAIL
+  		if(empty($_POST['user_email'])){
+  			$empty_data[] = 'email';
+  		}
+  		else{
+  			#Remove white space and store
+  			$email_address = trim($_POST['user_email']);
+  		}
+  		#GET PASSWORD
+  		if(empty($_POST['password1'])){
+  			$empty_data[] = 'password1';
+  			$empty_data[] = 'password2';
+
+  		}
+  		else{
+  			if($_POST['password1'] == $_POST['password2']){
+  				echo 'Passwords match<br />';
+  				#Remove white space and store
+  				$user_password = trim($_POST['password1']);
+  			}
+  			else{
+  				echo 'Passwords do not match<br />';
+          $wrong_pass = true;
+  				$empty_data[] = 'password1';
+  				$empty_data[] = 'password2';
+  			}
+  		}
+  		#GET CONTACT DETAILS
+  		if(empty($_POST['contact_num'])){
+  			$empty_data[] = 'contact number';
+  		}
+  		else{
+  			#Remove white space and store
+  			$contact_num = trim($_POST['contact_num']);
+  		}
+  		if(empty($empty_data)){
+  			$query2 = "SELECT email_address FROM employee WHERE email_address='$email_address' limit 1";
+  			$result2 = mysqli_query($dbc, $query2);
+  			$data = mysqli_fetch_assoc($result2);
+
+  			$query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
+  			$result = mysqli_query($dbc, $query);
+
+  			if($data["email_address"] == $email_address){
+  				$wrong_email = true;
+  				mysqli_close($dbc);
+  			}
+  			else if($result){
+  				echo "Employee Registered<br />";
+  				#mysqli_stmt_close($result);
+  				mysqli_close($dbc);
+  			}
+  			else{
+  				echo "Error, not registered <br />";
+  				echo mysqli_error($dbc);
+  				#mysqli_stmt_close($result);
+  				mysqli_close($dbc);
+  			}
+  		}
+  		else{
+  			echo "Enter required Data<br />";
+  			foreach($empty_data as $missing){
+  					echo $missing;
+  				}
+  		}
+  	}
+  ?>
+
+  <!--Show modals-->
+  <?php if($wrong_pass) : ?>
+    <script>
+      $("#wrongPW").modal()
+    </script>
+  <?php elseif($wrong_email) : ?>
+    <script>
+      $("#takenEM").modal()
+    </script>
+  <?php endif; sleep(5);?>
+
 </body>
 
 </html>
