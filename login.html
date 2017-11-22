@@ -104,23 +104,37 @@
                   <input type="email" class="form-control" placeholder="Enter email" required> 
 				</div>
                 <div class="form-group"> <label>Password</label>
-                  <input type="password" min="1" step="any" id="abc" onkeyup="s()" class="form-control" placeholder="Password" required> 
+                  <div class="input-group">
+					   <input type="password" class="form-control" id="pwd" name="password1" placeholder="Enter Password" required>
+					   <span class="input-group-btn">
+							<button class="btn btn-default" type="button" id="eye" title="Show password">
+								<img src="https://cdn0.iconfinder.com/data/icons/feather/96/eye-16.png" alt="eye" />
+							</button>
+					   </span>
+					</div>
+				  <script>
+					function show() {
+						var p = document.getElementById('pwd');
+						p.setAttribute('type', 'text');
+					}
+					function hide() {
+						var p = document.getElementById('pwd');
+						p.setAttribute('type', 'password');
+					}
+					var pwShown = 0;
+					document.getElementById("eye").addEventListener("click", function () {
+						if (pwShown == 0) {
+							pwShown = 1;
+							show();
+						} else {
+							pwShown = 0;
+							hide();
+						}
+					}, false);
+				  </script>
 				</div>
                 <div class="form-group">                  				
-				<input type="submit" id="abc2" name="submit" value="Login" class="btn btn-primary" data-toggle="modal" data-target="#wrongPW" disabled />											 
-								<script type="text/javascript">
-									function s(){
-									var i=document.getElementById("abc");
-										if(i.value==""){
-											document.getElementById("abc2").disabled=true;
-											document.getElementById("abc2").style="cursor:";
-										}
-										else{
-											document.getElementById("abc2").disabled=false;
-											document.getElementById("abc2").style="cursor: pointer";
-										}
-									}
-								</script>
+				<input type="submit" id="abc2" name="submit" value="Login" class="btn btn-primary" style="cursor: pointer" />
 				<!-- Modal -->
 				<div class="modal fade" id="wrongEM" tabindex="-1" role="dialog" aria-labelledby="wrongEM" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
