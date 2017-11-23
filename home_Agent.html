@@ -186,9 +186,9 @@
 							document.getElementById("para1").innerHTML = formatAMPM();
 							function formatAMPM() {
 							var d = new Date(),
-								minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-								hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours()-12,
-								ampm = d.getHours() >= 12 ? 'pm' : 'am',
+								minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),								
+								hours = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
+								ampm = d.getHours() >= 12 ? ' PM' : ' AM',
 								months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
 								days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 							return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
@@ -198,7 +198,7 @@
 					<center>
 						<br>
 						<a id="addClient" class="btn text-white" href="addClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-o"></i> Add Client</a>					
-						<a id="editClient" class="btn text-white" href="editClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
+						<a id="editClient" class="btn text-white" href="pickClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
 					</center>
 				</div>
 			  </div>
