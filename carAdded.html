@@ -3,18 +3,22 @@
 
 <head>
   <style>
-    nav {
+    nav, #container, button{
       background-color: #087830;
     }
-
+	
     #brand:hover {
-      text-shadow: 2px 2px #000000;	  
+      text-shadow: 2px 2px #000000;
     }
-
-    #login:hover, #home:hover{
+	
+	#inbox:hover, #notifications:hover, #logout:hover, #myBtn:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }	
+	
+	#addCar:hover, #home:hover{
       background-color: rgba(0, 0, 0, 0.3);
     }
-  </style> 
+  </style>  
 </head>
 
 <body>
@@ -26,16 +30,34 @@
   <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a id="brand" class="navbar-brand" href="home.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <a id="brand" class="navbar-brand" href="home_Agent.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">	  
-        <ul class="navbar-nav">				
-			<a id="home" class="btn navbar-btn ml-2 text-white" href="home.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>		
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+        <ul class="navbar-nav">
+		  <li class="nav-item">
+            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <div class="btn-group">
+              <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
+				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
+				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
+					Notifications 
+			  </button>
+              <div class="dropdown-menu">
+				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>                
+                <div class="dropdown-divider"></div>
+                <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+              </div>
+            </div>
         </ul>
+		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>
       </div>
     </div>
-  </nav>
+	</nav>
   <div class="py-5" style="background-color: #FFFFFF">
   <div class="w3-animate-opacity">
     <div class="container">
@@ -44,12 +66,11 @@
         <div class="col-md-6">
           <div class="card text-white p-5" style="background-color: #087830">
             <div class="card-body">			
-              <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Congratulations!</h2>
+              <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Car Successfully Added!</h2>
               <div class="form-group"> 
-				<p class="text-center">You've successfully registered!</p>
 				<br>
 					<center>
-						<a id="login" class="btn text-white" href="login.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
+						<a id="addCar" class="btn text-white" href="addCar.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-car"></i> Add another car?</a>
 					</center>
 			  </div>
             </div>

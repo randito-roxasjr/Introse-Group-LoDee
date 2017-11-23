@@ -180,19 +180,24 @@
 						Welcome, (first_name)
 					</h1>
 					<center>
-						<p class="timestamp" id="para1"></p>
+						<p class="timestamp" id="lblTime"></p>
 					</center>
-						<script>
-							document.getElementById("para1").innerHTML = formatAMPM();
-							function formatAMPM() {
-							var d = new Date(),
-								minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),								
-								hours = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
-								ampm = d.getHours() >= 12 ? ' PM' : ' AM',
+						<script type="text/javascript">
+							window.onload = function () {
+								DisplayCurrentTime();
+							};
+							function DisplayCurrentTime() {
+								var date = new Date();
+								var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+								var am_pm = date.getHours() >= 12 ? "PM" : "AM";
+								hours = hours < 10 ? "0" + hours : hours;
+								var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+								time = hours + ":" + minutes + " " + am_pm;
 								months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
 								days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-							return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
-							}
+								var lblTime = document.getElementById("lblTime");
+								lblTime.innerHTML = 'Today is '+days[date.getDay()]+', '+months[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear()+', '+time;
+							};
 						</script>
 				  <hr class="w3-border-grey" style="margin:auto;width:60%">
 					<center>
