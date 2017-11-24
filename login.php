@@ -248,14 +248,14 @@ session_start();
   				mysqli_close($dbc);
   			}
   			else if(($input_pass == $password) && ($input_email != $email)){
-          $wrong_email = true;
-  				$email_error = true;
+          		$wrong_email = true;
 
   				echo mysqli_error($dbc);
   				mysqli_close($dbc);
   			}
   			else{
-          $wrong_pass = true;
+         
+          		$wrong_email = true;
   				echo mysqli_error($dbc);
   				mysqli_close($dbc);
   			}

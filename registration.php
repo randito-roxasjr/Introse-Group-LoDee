@@ -252,6 +252,7 @@
   			echo "Enter required Data<br />";
   			foreach($empty_data as $missing){
   					echo $missing;
+            
   				}
   		}
   	}
