@@ -225,7 +225,7 @@ $enable_header=false;
   		}
 
   		if(empty($empty_data)){
-  			$query = "SELECT email_address, password, firstName, lastName FROM employee WHERE email_address='$email' or password='$password' limit 1";
+  			$query = "SELECT email_address, password, firstName, lastName, employeeId FROM employee WHERE email_address='$email' or password='$password' limit 1";
   			$result = mysqli_query($dbc, $query);
   			#parse data to strings
   			$data = mysqli_fetch_assoc($result);
@@ -242,19 +242,17 @@ $enable_header=false;
   			}
   			else if(($input_pass != $password) && ($input_email == $email)){
           $wrong_pass = true;
-  				$password_error = true;
   				echo mysqli_error($dbc);
 
   				mysqli_close($dbc);
   			}
   			else if(($input_pass == $password) && ($input_email != $email)){
           $wrong_email = true;
-  				$email_error = true;
-
   				echo mysqli_error($dbc);
   				mysqli_close($dbc);
   			}
   			else{
+          echo 'here';
           $wrong_email = true;
   				echo mysqli_error($dbc);
   				mysqli_close($dbc);
@@ -275,13 +273,13 @@ $enable_header=false;
     <script>
       $("#wrongEM").modal()
     </script>
-  <?php endif; sleep(5);?>
+  <?php endif;?>
 
   <?php if($enable_header) : ?>
       <script>
-        window.location = "home_Agent.php";
+       window.location = "home_Agent.php";
       </script>
-  <?php endif; sleep(5);?>
+  <?php endif;?>
 </body>
 
 </html>

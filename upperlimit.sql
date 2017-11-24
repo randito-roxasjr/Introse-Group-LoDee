@@ -18,8 +18,6 @@
 --
 -- Table structure for table `carinfo`
 --
-CREATE SCHEMA IF NOT EXISTS `upperLimit` DEFAULT CHARACTER SET utf8 ;
-USE `upperLimit` ;
 
 DROP TABLE IF EXISTS `carinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -91,7 +89,7 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
-  `employeeId` int(11) NOT NULL auto_increment,
+  `employeeId` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(700) NOT NULL,
   `lastName` varchar(700) NOT NULL,
   `addressLine1` varchar(45) NOT NULL,
@@ -103,7 +101,7 @@ CREATE TABLE `employee` (
   `password` varchar(15) NOT NULL,
   `isManager` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`employeeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10013 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-20 22:01:01
+-- Dump completed on 2017-11-24 23:14:26
