@@ -98,6 +98,8 @@ session_start();
 	
 	<?php
 	if(isset($_POST['submit'])){
+
+
 		$data_missing = array();
 		$employee_login = $_SESSION["employeeId"];
 		
@@ -218,7 +220,12 @@ session_start();
 		if(empty($data_missing)){
 			
 			#connects mysql to php
-			require_once('mysqli_connect.php');
+			$servername = "localhost";
+  			$username = "root";
+  			$password = "1234";
+
+		  	#connect
+		  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
 			
 			#inserts the client to the table
 			$query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,province,city,postalCode,phonenumber1) VALUES(?,?,?,?,?,?,?,?)";
