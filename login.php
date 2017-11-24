@@ -1,5 +1,6 @@
 <?php
 session_start();
+$enable_header=false;
 ?>
 <!DOCTYPE html>
 <html>
@@ -235,10 +236,9 @@ session_start();
   			if(($data["password"] == $password) && ($input_email == $email)){
   				#Session Variables
   				$_SESSION["logged_user"] = $data["firstName"] . ' ' . $data["lastName"];
+          $_SESSION["employeeId"] = $data["employeeId"];
+          $enable_header = true;
   				mysqli_close($dbc);
-
-  				#DATA MATCHED
-  				#REDIRECT TO HOME_AGENT.php
   			}
   			else if(($input_pass != $password) && ($input_email == $email)){
           $wrong_pass = true;
@@ -248,21 +248,21 @@ session_start();
   				mysqli_close($dbc);
   			}
   			else if(($input_pass == $password) && ($input_email != $email)){
-          		$wrong_email = true;
+          $wrong_email = true;
+  				$email_error = true;
 
   				echo mysqli_error($dbc);
   				mysqli_close($dbc);
   			}
   			else{
-         
-          		$wrong_email = true;
+          $wrong_email = true;
   				echo mysqli_error($dbc);
   				mysqli_close($dbc);
   			}
   		}
   	}
   	else{
-  		echo 'button sucks';
+  		#echo 'button sucks';
   	}
   ?>
 
@@ -277,6 +277,11 @@ session_start();
     </script>
   <?php endif; sleep(5);?>
 
+  <?php if($enable_header) : ?>
+      <script>
+        window.location = "home_Agent.php";
+      </script>
+  <?php endif; sleep(5);?>
 </body>
 
 </html>

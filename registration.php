@@ -1,3 +1,7 @@
+<?php
+  $enable_header = false;
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -205,7 +209,7 @@
   		}
   		else{
   			if($_POST['password1'] == $_POST['password2']){
-  				echo 'Passwords match<br />';
+  				#echo 'Passwords match<br />';
   				#Remove white space and store
   				$user_password = trim($_POST['password1']);
   			}
@@ -237,7 +241,7 @@
   				mysqli_close($dbc);
   			}
   			else if($result){
-  				echo "Employee Registered<br />";
+          $enable_header = true;
   				#mysqli_stmt_close($result);
   				mysqli_close($dbc);
   			}
@@ -252,7 +256,6 @@
   			echo "Enter required Data<br />";
   			foreach($empty_data as $missing){
   					echo $missing;
-            
   				}
   		}
   	}
@@ -269,6 +272,11 @@
     </script>
   <?php endif; sleep(5);?>
 
+  <?php if($enable_header) : ?>
+      <script>
+        window.location = "registration_registered.php";
+      </script>
+  <?php endif; sleep(5);?>
 </body>
 
 </html>
