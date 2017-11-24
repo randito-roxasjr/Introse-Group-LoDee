@@ -228,7 +228,7 @@ session_start();
 		  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
 
 			#inserts the client to the table
-      $query1 = "INSERT INTO client(clientId, employeeId,firstName,lastName,addressline1,province,city,postalCode,phonenumber1) VALUES(DEFAULT,'$employee_login','$first_name','$last_name', '$house_address','$client_province','$client_city','$client_postalcode','$phone_number1')";
+      $query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,province,city,postalCode,phonenumber1) VALUES('$employee_login','$first_name','$last_name', '$house_address','$client_province','$client_city','$client_postalcode','$phone_number1')";
       #inserts carinfo along with the client
 			$query2 = "INSERT INTO carinfo(clientId,manufacturer,modelYear,model,value) VALUES(?,?,?,?,?)";
 			#searches for the clientId to put with the carinfo
@@ -252,8 +252,6 @@ session_start();
 		#if both inserts went through
 		if($affected_rows2 == 1){
 			echo 'Client Added';
-
-			mysqli_stmt_close($stmt1);
 
 			mysqli_stmt_close($stmt2);
 			mysqli_close($dbc);

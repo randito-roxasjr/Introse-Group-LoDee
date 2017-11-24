@@ -234,14 +234,15 @@
   			$result2 = mysqli_query($dbc, $query2);
   			$data = mysqli_fetch_assoc($result2);
 
-        $query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
-        $result = mysqli_query($dbc, $query);
-
-  			if($data["email_address"] == $email_address){
+        if($data["email_address"] == $email_address){
   				$wrong_email = true;
   				mysqli_close($dbc);
   			}
-        else if($result){
+
+        $query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
+        $result = mysqli_query($dbc, $query);
+
+        if($result){
           $enable_header = true;
           echo 'Employee registered';
   				#mysqli_stmt_close($result);
