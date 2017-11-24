@@ -1,3 +1,6 @@
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -169,7 +172,7 @@
           <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
               <h2 style="color: white;" class="mb-4">Add Car</h2>			  
-              <form action = "http://localhost:8080/upperlimit/clientadded.php" method = "post">	  
+              <form method = "post">	  
                 <div class="form-group"> <label>Car Model</label>
                   <input type="text" name="carmodel" class="form-control" placeholder="Enter car model" required> </div>
                 <div class="form-group"> <label>Car Name</label>
@@ -207,6 +210,105 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
+
+
+<?php
+  if(isset($_POST['submit'])){
+
+
+    $data_missing = array();
+    $employee_login = $_SESSION["employeeId"];
+
+    #optional variables
+    $house_address2 = NULL;
+    $phone_number2 = NULL;
+
+    #each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
+    if(empty($_POST['carmodel'])){
+
+      $data_missing[] = "Car Model";
+    }else{
+
+      $car_model = trim($_POST['carmodel']);
+    }
+
+    if(empty($_POST['carname'])){
+
+      $data_missing[] = "Car Name";
+    }else{
+
+      $car_name = trim($_POST['carname']);
+    }
+
+    if(empty($_POST['carmanufacturer'])){
+
+      $data_missing[] = "Car Manufacturer";
+    }else{
+
+      $car_manufacturer = trim($_POST['carmanufacturer']);
+    }
+
+    if(empty($_POST['carvalue'])){
+
+      $data_missing[] = "Car Value";
+    }else{
+
+      $car_value = trim($_POST['carvalue']);
+    }
+
+
+    #if there is no data missing, execute code
+    if(empty($data_missing)){
+      $employee_login = $_SESSION["employeeId"];
+      #connects mysql to php
+      $servername = "localhost";
+        $username = "root";
+        $password = "1234";
+        $clientId = $_GET['id'];
+        #connect
+        $dbc = @mysqli_connect("localhost", "root", "1234", 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
+
+      #inserts the car to the table
+      $query1 = "INSERT INTO carInfo(clientId,manufacturer,modelYear,model,value) VALUES('$clientId', '$car_manufacturer', '$car_model', '$car_name', '$car_value')";
+      mysqli_query($dbc,$query1);
+
+    // if(mysqli_query($dbc, $query1)){
+    //   echo "Added Car";
+    // }
+    // else{
+    //   echo "Error: " . mysqli_error($dbc);
+    // }
+
+
+
+    }else{
+      echo 'You need to enter the following information <br />';
+
+      foreach($data_missing as $missing){
+        echo "$missing <br />";
+      }
+    }
+
+
+
+
+
+
+  }
+
+
+?>
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

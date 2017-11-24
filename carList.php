@@ -282,7 +282,7 @@
 
 	<center>			
 			<br>
-			<input onclick="location.href='pickClient.html';" style="width: 40%" type="button" class="btn btn-success" value="Back to Client List"/>
+			<input onclick="location.href='pickClient.php';" style="width: 40%" type="button" class="btn btn-success" value="Back to Client List"/>
 			<input onclick="location.href='addCar.php?id=<?php echo $clientId?>';" style="width: 40%" type="button" class="btn btn-success" value="Add Car"/>					
 			<br>
 			<br>
