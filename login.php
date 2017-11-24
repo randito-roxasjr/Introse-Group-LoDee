@@ -236,6 +236,9 @@ session_start();
   				#Session Variables
   				$_SESSION["logged_user"] = $data["firstName"] . ' ' . $data["lastName"];
   				mysqli_close($dbc);
+
+  				#DATA MATCHED
+  				#REDIRECT TO HOME_AGENT.php
   			}
   			else if(($input_pass != $password) && ($input_email == $email)){
           $wrong_pass = true;
