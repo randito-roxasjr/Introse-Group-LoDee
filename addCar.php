@@ -98,14 +98,6 @@
 	dropdown-item{
 		cursor: pointer;
 	}
-	
-	label {
-		/* Other styling.. */
-		text-align: right;
-		clear: both;
-		float:left;
-		margin-right:15px;
-	}
   </style>
   <script>
 	// When the user scrolls down 20px from the top of the document, show the button
@@ -176,88 +168,20 @@
         <div class="col-md-6">
           <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
-              <h2 style="color: white;" class="mb-4">Edit Client Info</h2>			  
+              <h2 style="color: white;" class="mb-4">Add Car</h2>			  
               <form action = "http://localhost:8080/upperlimit/clientadded.php" method = "post">	  
-                <div class="form-group"> <label>First Name: Morty</label>
-                  <input type="text" name="firstname" class="form-control" placeholder="Enter client's first name" required> </div>
-				<div class="form-group"> <label>Last Name: Sanchez</label>
-                  <input type="text" name="lastname" class="form-control" placeholder="Enter client's last name" required> </div>
-                <div class="form-group"> <label>Address Line 1: (insert address L1)</label>
-                  <input type="text" name="address1" class="form-control" placeholder="Enter client's 1st address" required> </div>
-				<div class="form-group"> <label>Address Line 2: (insert address L1)</label>
-                  <input type="text" name="address2" class="form-control" placeholder="Enter client's 2nd address"> </div>
-				<div class="form-group"> <label>Province: Laguna</label>
-                  <input type="text" name="province" class="form-control" placeholder="Enter province" required> </div>
-				<div class="form-group"> <label>City: Sta. Rosa</label>
-                  <input type="text" name="city" class="form-control" placeholder="Enter city" required> </div>
-				<div class="form-group"> <label>Postal Code: 4001</label>
-                  <input type="number" name="postalcode" min="1" step="any" class="form-control" placeholder="Enter postal code" required> </div>
-                <div class="form-group"> <label>Email: morty_sanchez@wubbalubbadubdub.com</label>
-                  <input type="email" name="emailaddress" class="form-control" placeholder="Enter client's email" required> </div>
-                <div class="form-group"> <label>Phone Number 1: (insert phone #1)</label>
-                  <input type="tel" name="phonenumber1" class="form-control" placeholder="Enter client's 1st mobile/landline number" required> </div>
-				<div class="form-group"> <label>Phone Number 2: (insert phone #2)</label>
-                  <input type="tel" name="phonenumber2" class="form-control" placeholder="Enter client's 2nd mobile/landline number"> </div>
-                <div class="form-group"> <label>Payments: (insert payments)</label>
-                  <input type="number" class="form-control" placeholder="Enter payments" required> </div>								
-				<!--<button class="btn btn-primary" id="abc2" data-toggle="modal" data-target="#exampleModalLong1" disabled >Set Transaction Details</button>
-				<script type="text/javascript">
-					function s(){
-					var i=document.getElementById("abc");
-						if(i.value==""){
-							document.getElementById("abc2").disabled=true;
-							document.getElementById("abc2").style="cursor:";
-						}
-						else{
-							document.getElementById("abc2").disabled=false;
-							document.getElementById("abc2").style="cursor:pointer";
-						}
-					}
-				</script>
-				<br>						                
-				<!-- Modal --
-				  <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalLongTitle">New transaction</h5>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-						</div>
-						<div style="font-color: black" class="modal-body"> 
-							  <small class="timestamp" id="para1"></small>
-							  <br>
-							  <br>
-							  <script>
-								document.getElementById("para1").innerHTML = formatAMPM();
-
-								function formatAMPM() {
-								var d = new Date(),
-									minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-									hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours()-12,
-									ampm = d.getHours() >= 12 ? 'pm' : 'am',
-									months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-									days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-								return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
-								}
-							  </script> 
-							  -->
-							  <br>
-							  <hr>
-							  <h2 style="color: white;" class="form-group">Input Transaction Details</h2>	
-							  <div class="form-group">
-								<label for="recipient-name" class="form-control-label">Recipient:</label>
-								<input type="text" class="form-control" id="recipient-name" placeholder="Enter Manager name" required>
-							  </div>
-							  <div class="form-group">
-								<label for="recipient-name" class="form-control-label">Subject:</label>
-								<input type="text" class="form-control" id="subject" placeholder="Enter subject" required>
-							  </div>							  
-							  <div class="form-group">
-								<label for="message-text" class="form-control-label">Details:</label>
-								<textarea min="1" step="any" id="abc" onkeyup="s()" class="form-control" id="message-text" placeholder="Enter transaction details" required></textarea>
+                <div class="form-group"> <label>Car Model</label>
+                  <input type="text" name="carmodel" class="form-control" placeholder="Enter car model" required> </div>
+                <div class="form-group"> <label>Car Name</label>
+                  <input type="text" name="carname" class="form-control" placeholder="Enter car name" required> </div>
+				<div class="form-group"> <label>Car Manufacturer</label>
+                  <input type="text" name="carmanufacturer" class="form-control" placeholder="Enter car manufacturer" required> </div>
+                <div class="form-group"> <label>Car Value</label>
+                  <input type="number" min="1" step="any" id="abc" onkeyup="s()" name="carvalue" min="1" step="any" class="form-control" placeholder="Enter car value" required> </div>  
+				<div class="form-group">
 								<center>
 								<br>
-								<input onclick="Sent()" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />											 
+								<input type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />											 
 								<script type="text/javascript">
 									function s(){
 									var i=document.getElementById("abc");
@@ -271,27 +195,14 @@
 										}
 									}
 								</script>
-								<script>
-								function Sent() {
-									alert("Successfully Sent!");
-								}
-								</script>
 							</center>
 							  </div>
-
-						<!--<div class="modal-footer">
-						  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer">Cancel</button>-->						  							
-						</form>
-						</div>
-					  </div>
-					</div>
-				  </div>
-            </div>
-          </div>
-        </div>
-      </div>
+				</form>
+			</div>
+		  </div>
+		</div>
+	  </div>
     </div>
-	<button onclick="topFunction()" id="myBtn" title="Go to top" class="fa" style="font-size:35px">&#xf0aa;</button>
   </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

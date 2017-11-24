@@ -1,5 +1,5 @@
 <?php
-session_start();
+  session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,6 +20,13 @@ session_start();
     #logout:hover {
       background-color: rgba(0, 0, 0, 0.3);
     }
+	
+	body
+	{
+		position: fixed; 
+		overflow-y: scroll;
+		width: 100%;
+	}
 	
 	button {
 	  cursor: pointer;
@@ -150,7 +157,7 @@ session_start();
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_Agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
           </li>
 		  <ul class="navbar-nav">
           <li class="nav-item">
@@ -177,18 +184,20 @@ session_start();
   </nav>
   <br>
   <div class="bgimg w3-display-container w3-animate-bottom">
-  <div class="container">
-	<h2>Your Clients</h2>
+  <div class="container">	
+		<h2>(Client's_first_name and last_name)'s Cars</h2>		
 	<div class="ScrollStyle">
 	<div class="card-body">		
 		<div class="list-group">
+
       <?php
 
         $employeeId = $_SESSION["employeeId"];
         $servername = "localhost";
+        $clientId = $_GET['id'];
         $username = "root";
         $password = "1234";
-        $query1 = "SELECT * FROM client WHERE employeeId = '$employeeId' ";
+        $query1 = "SELECT * FROM carInfo WHERE clientId = $clientId ";
         #connect
         $dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
 
@@ -203,122 +212,84 @@ session_start();
         // Fetch one and one row
         while ($row=mysqli_fetch_row($result))
           {
-          //printf ("%s (%s)\n",$row[0],$row[1]);
-              echo "<a href=\"#\" class=\"list-group-item list-group-item-action\" data-toggle=\"modal\" data-target=\"#exampleModalLong".$row[0]."\" >" ;
-              echo $row[0] ." ". $row[2]. " " . $row[3] . "</a>";
-
-              echo "<div class=\"modal fade\" id=\"exampleModalLong".$row[0]."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\">";
-              echo "<div class=\"modal-dialog\" role=\"document\">";
-              echo    "<div class=\"modal-content\">";
-              echo      "<div class=\"modal-header\">";
-              echo        "<h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Client #".$row[0]."</h5>";
-              echo        "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"> <span aria-hidden=\"true\">×</span> </button>";
-              echo      "</div>";
-              echo      "<div class=\"modal-body\"> <label for=\"recipient-name\" class=\"col-form-label\">Client Name: ".$row[2]." ".$row[3]."</label>";               
-              echo        "<hr>";
-              echo        "<li>First name: ". $row[2] ."</li>";
-            echo "<li>Last name: ". $row[3] ."</li>";
-            echo "<li>Address Line 1: ". $row[5] . "</li>";
-            //echo "<li>Address Line 2: ".$row[6]."</li>";
-            echo "<li>Province: ". $row[7]. " </li>";
-            echo "<li>City: ". $row[8]. "</li>";
-            echo "<li>Postal Code: ".$row[9] ." </li>";
-            echo "<li>Email: ". $row[10]. " </li>";
-            echo "<li>Phone Number 1: ". $row[11].  " </li>";
-           // echo "<li>Phone Number 2: ". $row[12]. "</li>";
-            //<li>Payments:</li>
-            echo        "</div>";          
-            echo " <center> ";             
-            echo "<hr>";
-            echo  "<input onclick=\"location.href='editClient.php';\" type=\"button\" class=\"btn btn-success\" value=\"Edit Info\"/>" ;      
-            echo  "<input onclick=\"location.href='carList.php?id=". $row[0]."';\" type=\"button\" class=\"btn btn-warning\" value=\"Modify Car\"/>";       
-            echo  "<input type=\"button\" class=\"btn btn-danger\" value=\"Delete Client\" data-dismiss=\"modal\"/>"     ;   
-            echo "</center>";
-            echo "        </div>";
-            echo "      </div>";
-            echo "    </div>";
-            echo "  </div>";
-  echo  " </div>";
-  echo "</div>";
-  echo "</div>";
-  echo "</div>";
-  echo "</div>";  
+              echo "<a href=\"#\" class=\"list-group-item list-group-item-action\" data-toggle=\"modal\" data-target=\"#exampleModalLong1\" >".$row[2]." ".$row[3]." ".$row[4]."</a>";
           }
-        // Free result set
-        mysqli_free_result($result);
+           mysqli_free_result($result);
       }
 
-      mysqli_close($dbc);
-        // foreach ($result->fetch_assoc() as $row) {
-        //   # code...
-
-        // }
-
      ?>
-    <!--
-			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >Morty Sanchez</a>
-			<a href="#" class="list-group-item list-group-item-action">Niel Sullivan</a>
-			<a href="#" class="list-group-item list-group-item-action">Minami Nakamura</a>
-			<a href="#" class="list-group-item list-group-item-action">Gabe Johnson</a>
-			<a href="#" class="list-group-item list-group-item-action">Tyson Williams</a>
-			<a href="#" class="list-group-item list-group-item-action">Julie Baker</a>
-			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >Morty Sanchez</a>
-			<a href="#" class="list-group-item list-group-item-action">Niel Sullivan</a>
-			<a href="#" class="list-group-item list-group-item-action">Minami Nakamura</a>
-			<a href="#" class="list-group-item list-group-item-action">Gabe Johnson</a>
-			<a href="#" class="list-group-item list-group-item-action">Tyson Williams</a>
-			<a href="#" class="list-group-item list-group-item-action">Julie Baker</a>
-			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >Morty Sanchez</a>
-			<a href="#" class="list-group-item list-group-item-action">Niel Sullivan</a>
-			<a href="#" class="list-group-item list-group-item-action">Minami Nakamura</a>
-			<a href="#" class="list-group-item list-group-item-action">Gabe Johnson</a>
-			<a href="#" class="list-group-item list-group-item-action">Tyson Williams</a>
-			<a href="#" class="list-group-item list-group-item-action">Julie Baker</a>
-			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >Morty Sanchez</a>
-			<a href="#" class="list-group-item list-group-item-action">Niel Sullivan</a>
-			<a href="#" class="list-group-item list-group-item-action">Minami Nakamura</a>
-			<a href="#" class="list-group-item list-group-item-action">Gabe Johnson</a>
-			<a href="#" class="list-group-item list-group-item-action">Tyson Williams</a>
-			<a href="#" class="list-group-item list-group-item-action">Julie Baker</a>
-      -->
+			<!-- <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >R34 GTR</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Sprinter Trueno</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Levin</a>
+			<a href="#" class="list-group-item list-group-item-action">Lancer Evo VII</a>
+			<a href="#" class="list-group-item list-group-item-action">WRX STi</a>
+			<a href="#" class="list-group-item list-group-item-action">E30</a>
+			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >R34 GTR</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Sprinter Trueno</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Levin</a>
+			<a href="#" class="list-group-item list-group-item-action">Lancer Evo VII</a>
+			<a href="#" class="list-group-item list-group-item-action">WRX STi</a>
+			<a href="#" class="list-group-item list-group-item-action">E30</a>
+			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >R34 GTR</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Sprinter Trueno</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Levin</a>
+			<a href="#" class="list-group-item list-group-item-action">Lancer Evo VII</a>
+			<a href="#" class="list-group-item list-group-item-action">WRX STi</a>
+			<a href="#" class="list-group-item list-group-item-action">E30</a>
+			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >R34 GTR</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Sprinter Trueno</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Levin</a>
+			<a href="#" class="list-group-item list-group-item-action">Lancer Evo VII</a>
+			<a href="#" class="list-group-item list-group-item-action">WRX STi</a>
+			<a href="#" class="list-group-item list-group-item-action">E30</a>
+			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >R34 GTR</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Sprinter Trueno</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Levin</a>
+			<a href="#" class="list-group-item list-group-item-action">Lancer Evo VII</a>
+			<a href="#" class="list-group-item list-group-item-action">WRX STi</a>
+			<a href="#" class="list-group-item list-group-item-action">E30</a>
+			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >R34 GTR</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Sprinter Trueno</a>
+			<a href="#" class="list-group-item list-group-item-action">AE86 Levin</a>
+			<a href="#" class="list-group-item list-group-item-action">Lancer Evo VII</a>
+			<a href="#" class="list-group-item list-group-item-action">WRX STi</a>
+			<a href="#" class="list-group-item list-group-item-action">E30</a> -->
 			<!-- Modal -->
               <!-- <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Client #1</h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Car #1</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                     </div>
-                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">Client Name: Morty Sanchez</label>                      
+                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">Car Name: R34 GTR</label>                      
                       <hr>
-                      <li>First name:</li>
-					  <li>Last name:</li>
-					  <li>Address Line 1:</li>
-					  <li>Address Line 2:</li>
-					  <li>Address Line 2:</li>
-					  <li>Province:</li>
-					  <li>City:</li>
-					  <li>Postal Code:</li>
-					  <li>Email:</li>
-					  <li>Phone Number 1:</li>
-					  <li>Phone Number 2:</li>
-					  <li>Payments:</li>
+                      <li>Car Model: GTR</li>
+					  <li>Car Manufacturer: Nissan</li>
+					  <li>Car Value: Php 2,784,870.00</li>
                     </div>					
 						<center>							
 							<hr>
-							<input onclick="location.href='editClient.html';" type="button" class="btn btn-success" value="Edit Info"/>			  
-							<input onclick="location.href='carList.html';" type="button" class="btn btn-warning" value="Modify Car"/>			  
-							<input type="button" class="btn btn-danger" value="Delete Client" data-dismiss="modal"/>			  
+							<input onclick="location.href='editCar.html';" type="button" class="btn btn-success" value="Edit Info"/>			  
+							<input type="button" class="btn btn-danger" value="Delete Car" data-dismiss="modal"/>			  
 						</center>
                     </div>
                   </div>
                 </div>
               </div>
 		</div>
+	</div> -->
+
+	<center>			
+			<br>
+			<input onclick="location.href='pickClient.html';" style="width: 40%" type="button" class="btn btn-success" value="Back to Client List"/>
+			<input onclick="location.href='addCar.php?id=<?php echo $clientId?>';" style="width: 40%" type="button" class="btn btn-success" value="Add Car"/>					
+			<br>
+			<br>
+		</center>
 	</div>
 	</div>
-	</div>
-  </div> -->
+  </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
