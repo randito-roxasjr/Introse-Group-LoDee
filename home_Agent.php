@@ -179,7 +179,7 @@
 			  <div class="card text-white p-5" style="background-color: #087830">
 				<div class="card-body">
 					<h1 style="text-align:center; font-family: 'Roboto', sans-serif">
-						Welcome, (first_name)
+						Welcome, <?php echo $_SESSION["logged_user"];?>
 					</h1>
 					<center>
 						<p class="timestamp" id="lblTime"></p>
