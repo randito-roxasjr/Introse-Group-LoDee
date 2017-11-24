@@ -9,7 +9,7 @@
     #brand:hover {
 		text-shadow: 2px 2px #000000;
     }
-    #login:hover, #home:hover{
+    #login:hover, #home:hover, #myBtn:hover {
 		background-color: rgba(0, 0, 0, 0.3);
     }
 	
@@ -17,7 +17,40 @@
 		cursor:pointer;		
 	}
 	
+	#myBtn {
+		display: none;
+		position: fixed; 
+		bottom: 20px; 
+		right: 30px; 
+		z-index: 99; 
+		border: none; 
+		outline: none; 
+		background-color: #087830; 
+		color: white; 
+		cursor: pointer; 
+		padding: 15px; 
+		border-radius: 10px; 
+	}
+	
   </style>
+  <script>
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("myBtn").style.display = "block";
+		} else {
+			document.getElementById("myBtn").style.display = "none";
+		}
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+		document.documentElement.scrollTop = 0; // For IE and Firefox
+	}
+  </script>
 </head>
 
 <body>
@@ -146,6 +179,7 @@
         </div>
       </div>
     </div>
+	<button onclick="topFunction()" id="myBtn" title="Go to top" class="fa" style="font-size:35px">&#xf0aa;</button>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
