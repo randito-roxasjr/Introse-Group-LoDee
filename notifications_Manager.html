@@ -77,7 +77,7 @@
       margin: auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%;
+      width: 90%;
     }
     /* The Close Button */
 
@@ -160,23 +160,46 @@
                     <div class="notification-meta"> <small class="timestamp">27. 11. 2015, 15:00</small>
                       <br>
                       <br> </div>
-                  </div>
+                  </div>	
                 </div>
               </button>
+			</li>  
               <!-- Modal -->
               <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Transaction #1</h5>
+                      <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Dave Lister</label>
-                      <br> <small class="timestamp">27. 11. 2015, 15:00</small>
+                      <br>
                       <hr>
-                      <p> Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
+					  <h4>Client Info</h4>
+					  <br>
+					  <li>First name:</li>
+					  <li>Last name:</li>
+					  <li>Address Line 1:</li>
+					  <li>Address Line 2:</li>
+					  <li>Address Line 2:</li>
+					  <li>Province:</li>
+					  <li>City:</li>
+					  <li>Postal Code:</li>
+					  <li>Email:</li>
+					  <li>Phone Number 1:</li>
+					  <li>Phone Number 2:</li>
+					  <li>Payments:</li>
+					  <hr>
+					  <h4>Transaction Details</h4>
+					  <br>
+					  <h5>Subject:</h5>
+						<p>(Sample)</p>
+					  <br>
+					  <h5>Details:</h5>
+					  <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
                         et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-                        nulla non metus auctor fringilla. </p>
+                        nulla non metus auctor fringilla. 
+					  </p>					                  
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
@@ -184,8 +207,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>          
+              </div>                   
 			<br>
 			<li class="notification">
 			  <button class="notifs" data-toggle="modal" data-target="#exampleModalLong2" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
@@ -202,104 +224,43 @@
 				  </div>
 				</div>
 			  </button>
+			  </li>     
 			  <!-- Modal -->
-			  <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-				  <div class="modal-content">
-					<div class="modal-header">
-					  <h5 class="modal-title" id="exampleModalLongTitle">Transaction #2</h5>
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-					</div>
-					<div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Evil Morty</label>
-					  <br> <small class="timestamp">21. 6. 2015, 15:00</small>
-					  <hr>
-					  <p>
-						The division I see is between the Ricks and Mortys that like the Citadel divided, and the rest of us. 
-						I see it everywhere I go. I see it in our schools, where they teach Mortys we're all the same because they're threatened 
-						by what makes us unique. I see it in our streets, where they give guns to Mortys so we're too busy fighting each other to 
-						fight real injustice. I see it in our factories, where Ricks work for a fraction of their boss's salary even though they're 
-						identical and have the same IQ. The Citadel's problem isn't homeless Mortys or outraged Ricks, the Citadel's problem is the 
-						Ricks and Mortys feeding on the Citadel's death. But I've got a message for them, from the Ricks and Mortys keeping it alive. 
-						A message from the Ricks and Mortys that believe in this Citadel to the Ricks and Mortys that don't: You're outnumbered!
-					  </p>
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-					  <button type="button" class="btn btn-success">Confirm</button>
-					</div>
-				  </div>
-				</div>
-			  </div>
-			</li>      
-		  <br>
-		  <li class="notification">
-			<button class="notifs" data-toggle="modal" data-target="#exampleModalLong3" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
-			  <div class="media">
-				<div class="media-left">
-				  <div class="media-object">
-					<img class="user one" hspace="20"> </div>
-				</div>
-				<div class="media-body"> <strong class="notification-title"><a href="#">Rick Sanchez</a> submitted <a href="#">Client Details</a> to Client DB</strong>
-				  <p class="notification-desc" placeholder="Additional details"></p>
-				  <div class="notification-meta"> <small class="timestamp">15. 1. 2015, 16:00</small>
-					<br>
-					<br> </div>
-				</div>
-			  </div>
-			</button>
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-				<div class="modal-content">
-				  <div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Transaction #3</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-				  </div>
-				  <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Rick Sanchez</label>
-					<br> <small class="timestamp">15. 1. 2015, 16:00</small>
-					<hr>
-					<p> You guys, we gotta hurry! I just got back from Wal-Mart, they're selling Nintendo 3DS systems for one forty-nine ninety nine on sale! Plus, every time you buy one you get a fifty dollar gift card, brings the total price down to a hundred
-					  and ten dollars after tax! Now listen! We can flip those sons of bitches for two hundred and thirty bucks a piece easy! They're all limited edition Zelda ones! Hurry! Hurry, come with me! We can be rich and we also all get to keep one
-					  and we can play... Nintendo games! Nintendo, give me free stuff! </p>
-				  </div>
-				  <div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-					<button type="button" class="btn btn-success">Confirm</button>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </li>
-		  <br>
-		  <li class="notification">
-              <button class="notifs" data-toggle="modal" data-target="#exampleModalLong1" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
-                <div class="media">
-                  <div class="media-left">
-                    <div class="media-object">
-                      <img class="user one" hspace="20"> </div>
-                  </div>
-                  <div class="media-body"> <strong class="notification-title"><a href="#">Dave Lister</a> submitted <a href="#">Client Details</a> to Client DB</strong>
-                    <p class="notification-desc" placeholder="Additional details"></p>
-                    <div class="notification-meta"> <small class="timestamp">27. 11. 2015, 15:00</small>
-                      <br>
-                      <br> </div>
-                  </div>
-                </div>
-              </button>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Transaction #1</h5>
+                      <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                     </div>
-                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Dave Lister</label>
-                      <br> <small class="timestamp">27. 11. 2015, 15:00</small>
+                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Evil Morty</label>
+                      <br>
                       <hr>
-                      <p> Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
+					  <h4>Client Info</h4>
+					  <br>
+					  <li>First name:</li>
+					  <li>Last name:</li>
+					  <li>Address Line 1:</li>
+					  <li>Address Line 2:</li>
+					  <li>Address Line 2:</li>
+					  <li>Province:</li>
+					  <li>City:</li>
+					  <li>Postal Code:</li>
+					  <li>Email:</li>
+					  <li>Phone Number 1:</li>
+					  <li>Phone Number 2:</li>
+					  <li>Payments:</li>
+					  <hr>
+					  <h4>Transaction Details</h4>
+					  <br>
+					  <h5>Subject:</h5>
+						<p>(Sample)</p>
+					  <br>
+					  <h5>Details:</h5>
+					  <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
                         et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-                        nulla non metus auctor fringilla. </p>
+                        nulla non metus auctor fringilla. 
+					  </p>					                  
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
@@ -307,92 +268,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>          
-			<br>
-			<li class="notification">
-			  <button class="notifs" data-toggle="modal" data-target="#exampleModalLong2" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
-				<div class="media">
-				  <div class="media-left">
-					<div class="media-object">
-					  <img class="user one" hspace="20"> </div>
-				  </div>
-				  <div class="media-body"> <strong class="notification-title"><a href="#">Bob Brown</a> submitted <a href="#">Client Details</a> to Client DB</strong>
-					<p class="notification-desc" placeholder="Additional details"></p>
-					<div class="notification-meta"> <small class="timestamp">21. 6. 2015, 15:00</small>
-					  <br>
-					  <br> </div>
-				  </div>
-				</div>
-			  </button>
-			  <!-- Modal -->
-			  <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-				  <div class="modal-content">
-					<div class="modal-header">
-					  <h5 class="modal-title" id="exampleModalLongTitle">Transaction #2</h5>
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-					</div>
-					<div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Bob Brown</label>
-					  <br> <small class="timestamp">21. 6. 2015, 15:00</small>
-					  <hr>
-					  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat luctus ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec gravida dapibus mattis. In quam libero, tristique
-						et eros eget, imperdiet tempor eros. Etiam ac risus et velit volutpat dignissim vitae in urna. Sed pulvinar diam ac tellus dictum, nec consectetur turpis consectetur. Mauris vitae aliquam tortor. Aliquam accumsan eros ac tellus viverra
-						finibus. Integer malesuada posuere ipsum, vitae ultricies tortor posuere sit amet. Vivamus placerat velit porta lobortis euismod. Quisque at neque justo. Cras leo mauris, vehicula sed elementum consequat, sodales nec felis. </p>
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-					  <button type="button" class="btn btn-success">Confirm</button>
-					</div>
-				  </div>
-				</div>
-			  </div>
-			</li>      
+              </div>  			
 		  <br>
-		  <li class="notification">
-			<button class="notifs" data-toggle="modal" data-target="#exampleModalLong3" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
-			  <div class="media">
-				<div class="media-left">
-				  <div class="media-object">
-					<img class="user one" hspace="20"> </div>
-				</div>
-				<div class="media-body"> <strong class="notification-title"><a href="#">Rick Sanchez</a> submitted <a href="#">Client Details</a> to Client DB</strong>
-				  <p class="notification-desc" placeholder="Additional details"></p>
-				  <div class="notification-meta"> <small class="timestamp">15. 1. 2015, 16:00</small>
-					<br>
-					<br> </div>
-				</div>
-			  </div>
-			</button>
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-				<div class="modal-content">
-				  <div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Transaction #3</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-				  </div>
-				  <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Rick Sanchez</label>
-					<br> <small class="timestamp">15. 1. 2015, 16:00</small>
-					<hr>
-					<p> You guys, we gotta hurry! I just got back from Wal-Mart, they're selling Nintendo 3DS systems for one forty-nine ninety nine on sale! Plus, every time you buy one you get a fifty dollar gift card, brings the total price down to a hundred
-					  and ten dollars after tax! Now listen! We can flip those sons of bitches for two hundred and thirty bucks a piece easy! They're all limited edition Zelda ones! Hurry! Hurry, come with me! We can be rich and we also all get to keep one
-					  and we can play... Nintendo games! Nintendo, give me free stuff! </p>
-				  </div>
-				  <div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-					<button type="button" class="btn btn-success">Confirm</button>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </li>
-		  <br>
-		</ul>
-		</div>
-		</div>
-    <br> </div>
-  <div> </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
