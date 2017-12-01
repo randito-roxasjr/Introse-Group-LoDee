@@ -171,7 +171,7 @@
   	if (isset($_POST['send_info'])){
   		$empty_data = array();
   		#Get first name
-  		if(empty($_POST['first_name'])){
+  		if(empty($_POST['first_name']) or !ctype_alpha(($_POST['first_name']))){ 
   			$empty_data[] = 'first name';
   		}
   		else{
@@ -179,7 +179,7 @@
   			$first_name = trim($_POST['first_name']);
   		}
   		#Get last name
-  		if(empty($_POST['last_name'])){
+  		if(empty($_POST['last_name'] or !ctype_alpha(($_POST['last_name'])))){
   			$empty_data[] = 'last name';
   		}
   		else{
@@ -187,7 +187,7 @@
   			$last_name = trim($_POST['last_name']);
   		}
   		#Get complete address
-  		if(empty($_POST['address'])){
+  		if(empty($_POST['address']) or !ctype_alnum($_POST['address'])){
   			$empty_data[] = 'address';
   		}
   		else{
@@ -222,7 +222,7 @@
   			}
   		}
   		#GET CONTACT DETAILS
-  		if(empty($_POST['contact_num'])){
+  		if(empty($_POST['contact_num']) or !ctype_digit($_POST['contact_num'])){
   			$empty_data[] = 'contact number';
   		}
   		else{
