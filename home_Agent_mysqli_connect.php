@@ -1,7 +1,7 @@
 <?php
 
-DEFINE ('DB_USER', 'employeeweb');
-DEFINE ('DB_PASSWORD', 'password');
+DEFINE ('DB_USER', 'root');
+DEFINE ('DB_PASSWORD', '1234');
 DEFINE ('DB_HOST','localhost');
 DEFINE('DB_NAME','upperlimit');
 
