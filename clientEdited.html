@@ -3,19 +3,27 @@
 
 <head>
   <style>
-    nav, #container, button{
+    nav {
       background-color: #087830;
     }
-	
+
     #brand:hover {
-      text-shadow: 2px 2px #000000;
+      text-shadow: 2px 2px #000000;	  
+    }
+
+    #login:hover, #home:hover{
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+	
+	nav, #container, button{
+      background-color: #087830;
     }
 	
 	#inbox:hover, #notifications:hover, #logout:hover, #myBtn:hover {
       background-color: rgba(0, 0, 0, 0.3);
-    }	
+    }
 	
-	#addCar:hover, #clientList:hover, #home:hover{
+	a:hover {
       background-color: rgba(0, 0, 0, 0.3);
     }
   </style>  
@@ -28,7 +36,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
-  <nav class="navbar navbar-expand-md navbar-dark">
+	<nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
       <a id="brand" class="navbar-brand" href="home_Agent.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
@@ -66,12 +74,13 @@
         <div class="col-md-6">
           <div class="card text-white p-5" style="background-color: #087830">
             <div class="card-body">			
-              <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Car Successfully Added!</h2>
-              <div class="form-group"> 				
+              <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Client Details successfully edited</h2>
+              <div class="form-group"> 	
+				<br>
 					<center>
-						<a id="addCar" class="btn text-white" href="carList.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-car"></i> Add another car?</a>						
-						<a id="clientList" class="btn text-white" href="pickClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Back to Client List</a>
-					</center>		
+						<br>				
+						<a id="editClient" class="btn text-white" href="pickClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit another Client</a>
+					</center>
 			  </div>
             </div>
           </div>

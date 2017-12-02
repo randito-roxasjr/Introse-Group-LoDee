@@ -114,10 +114,6 @@
     li {
       list-style: none;
     }
-
-    body {
-      overflow-y: hidden;
-    }
 	
 	.ScrollStyle {
       max-height: 480px;
@@ -213,24 +209,23 @@
                     </div>
                     <div class="modal-body"> <label for="recipient-name" class="col-form-label">Client Name: Morty Sanchez</label>                      
                       <hr>
-                      <li>First name:</li>
-					  <li>Last name:</li>
-					  <li>Address Line 1:</li>
-					  <li>Address Line 2:</li>
-					  <li>Address Line 2:</li>
-					  <li>Province:</li>
-					  <li>City:</li>
-					  <li>Postal Code:</li>
-					  <li>Email:</li>
-					  <li>Phone Number 1:</li>
-					  <li>Phone Number 2:</li>
-					  <li>Payments:</li>
+                      <li>First name: <input style="width: 100%; display:inline" contenteditable="true" value="Morty" /></li>
+					  <li>Last name: <input style="width: 100%; display:inline" contenteditable="true" value="Sanchez" /></li>
+					  <li>Address Line 1: <input style="width: 100%; display:inline" contenteditable="true" value="108, Wallabee Avenue, Brgy. 79, Rosario City, Laguna" /></li>
+					  <li>Address Line 2: <input style="width: 100%; display:inline" contenteditable="true" value="" /></li>					  
+					  <li>Province: <input style="width: 100%; display:inline" contenteditable="true" value="Laguna" /></li>
+					  <li>City: <input style="width: 100%; display:inline" contenteditable="true" value="Rosario" /></li>
+					  <li>Postal Code: <input style="width: 100%; display:inline" contenteditable="true" value="4657" /></li>
+					  <li>Email: <input style="width: 100%; display:inline" contenteditable="true" value="wubba_lubba@dubdub.com" /></li>
+					  <li>Phone Number 1: <input style="width: 100%; display:inline" contenteditable="true" value="09173561809" /></li>
+					  <li>Phone Number 2: <input style="width: 100%; display:inline" contenteditable="true" value="" /></li>
+					  <li>Payments: <input style="width: 100%; display:inline" contenteditable="true" value="" /></li>
                     </div>					
 						<center>							
-							<hr>
-							<input onclick="location.href='editClient.html';" type="button" class="btn btn-success" value="Edit Info"/>			  
-							<input onclick="location.href='carList.html';" type="button" class="btn btn-warning" value="Modify Car"/>			  
-							<input type="button" class="btn btn-danger" value="Delete Client" data-dismiss="modal"/>			  
+							<hr>	  							
+							<input type="button" class="btn btn-success" value="Save Changes"/>
+							<input onclick="location.href='carList.html';" type="button" class="btn btn-warning" value="Client's Car/s"/>			  
+							<input type="button" class="btn btn-danger" value="Delete Client" data-dismiss="modal"/>							
 						</center>
                     </div>
                   </div>
