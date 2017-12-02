@@ -133,7 +133,7 @@ session_start();
 		}
 
 		#optional
-		if(!empty($_POST['address2']) or !ctype_alnum($_POST['address2'])){
+		if(!empty($_POST['address2']) and ctype_alnum($_POST['address2'])){
 
 			$house_address2[] = trim($_POST['address2']);
 		}
@@ -211,7 +211,7 @@ session_start();
 		}
 
 		#optional
-		if(!empty($_POST['phonenumber2']) or !ctype_digit($_POST['phonenumber2'])){
+		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])){
 
 			$phone_number2 = trim($_POST['phonenumber2']);
 		}
