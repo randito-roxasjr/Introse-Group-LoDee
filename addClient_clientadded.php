@@ -82,7 +82,7 @@ session_start();
 					<center>
 						<br>
 						<a id="addClient" class="btn text-white" href="addClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-o"></i> Add Client</a>
-						<a id="editClient" class="btn text-white" href="pickClient.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
+						<a id="editClient" class="btn text-white" href="editClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
 					</center>
 			  </div>
             </div>
@@ -108,7 +108,7 @@ session_start();
 		$phone_number2 = NULL;
 
 		#each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-		if(empty($_POST['firstname'])){
+		if(empty($_POST['firstname'] or !ctype_alpha($_POST['firstname']))){
 
 			$data_missing[] = "First Name";
 		}else{
@@ -116,7 +116,7 @@ session_start();
 			$first_name = trim($_POST['firstname']);
 		}
 
-		if(empty($_POST['lastname'])){
+		if(empty($_POST['lastname']) or !ctype_alpha($_POST['lastname'])){
 
 			$data_missing[] = "Last Name";
 		}else{
@@ -124,7 +124,7 @@ session_start();
 			$last_name = trim($_POST['lastname']);
 		}
 
-		if(empty($_POST['address1'])){
+		if(empty($_POST['address1']) or !ctype_alnum($_POST['address1'])){
 
 			$data_missing[] = "Address 1";
 		}else{
@@ -133,12 +133,12 @@ session_start();
 		}
 
 		#optional
-		if(!empty($_POST['address2'])){
+		if(!empty($_POST['address2']) and ctype_alnum($_POST['address2'])){
 
 			$house_address2[] = trim($_POST['address2']);
 		}
 
-		if(empty($_POST['province'])){
+		if(empty($_POST['province']) or !ctype_alpha($_POST['province'])){
 
 			$data_missing[] = "Province";
 		}else{
@@ -146,7 +146,7 @@ session_start();
 			$client_province = trim($_POST['province']);
 		}
 
-		if(empty($_POST['city'])){
+		if(empty($_POST['city']) or !ctype_alpha($_POST['city'])){
 
 			$data_missing[] = "City";
 		}else{
@@ -154,7 +154,7 @@ session_start();
 			$client_city = trim($_POST['city']);
 		}
 
-		if(empty($_POST['postalcode'])){
+		if(empty($_POST['postalcode']) or !ctype_digit($_POST['postalcode'])){
 
 			$data_missing[] = "Postal Code";
 		}else{
@@ -202,7 +202,7 @@ session_start();
 			$email_add = trim($_POST['emailaddress']);
 		}
 
-		if(empty($_POST['phonenumber1'])){
+		if(empty($_POST['phonenumber1']) or !ctype_digit($_POST['phonenumber1'])){
 
 			$data_missing[] = "Phone Number 1";
 		}else{
@@ -211,7 +211,7 @@ session_start();
 		}
 
 		#optional
-		if(!empty($_POST['phonenumber2'])){
+		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])){
 
 			$phone_number2 = trim($_POST['phonenumber2']);
 		}
