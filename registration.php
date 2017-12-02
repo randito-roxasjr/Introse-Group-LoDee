@@ -221,6 +221,8 @@
   				$empty_data[] = 'password2';
   			}
   		}
+
+
   		#GET CONTACT DETAILS
   		if(empty($_POST['contact_num'])){
   			$empty_data[] = 'contact number';
@@ -247,6 +249,9 @@
           echo 'Employee registered';
   				#mysqli_stmt_close($result);
   				mysqli_close($dbc);
+          $msg = "Please confirm your account";
+          mail($email_address, "Account Confirmation", $msg);
+          echo $email_address;  
   			}
   			else{
   				echo "Error, not registered <br />";
@@ -254,6 +259,14 @@
   				#mysqli_stmt_close($result);
   				mysqli_close($dbc);
   			}
+
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
   		}
   		else{
   			echo "Enter required Data<br />";

@@ -144,7 +144,7 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a id="brand" class="navbar-brand" href="home_agent.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <a id="brand" class="navbar-brand" href="home_agent.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
@@ -230,9 +230,9 @@ session_start();
             echo        "</div>";          
             echo " <center> ";             
             echo "<hr>";
-            echo  "<input onclick=\"location.href='editClient.php';\" type=\"button\" class=\"btn btn-success\" value=\"Edit Info\"/>" ;      
-            echo  "<input onclick=\"location.href='carList.php?id=". $row[0]."';\" type=\"button\" class=\"btn btn-warning\" value=\"Modify Car\"/>";       
-            echo  "<input type=\"button\" class=\"btn btn-danger\" value=\"Delete Client\" data-dismiss=\"modal\"/>"     ;   
+        //   echo  "<input onclick=\"location.href='editClient.php';\" type=\"button\" class=\"btn btn-success\" value=\"Edit Info\"/>" ;      
+            echo  "<input onclick=\"location.href='carList.php?id=". $row[0]."';\" type=\"button\" class=\"btn btn-warning\" value=\"View/Edit Client's Cars\"/>";       
+          //  echo  "<input type=\"button\" class=\"btn btn-danger\" value=\"Delete Client\" data-dismiss=\"modal\"/>"     ;   
             echo "</center>";
             echo "        </div>";
             echo "      </div>";

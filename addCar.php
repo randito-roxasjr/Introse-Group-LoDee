@@ -136,13 +136,13 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a id="brand" class="navbar-brand" href="home_Agent.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <a id="brand" class="navbar-brand" href="home_Agent.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
 		  <li class="nav-item">
-            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
           </li>
           <li class="nav-item">
             <div class="btn-group">

@@ -151,13 +151,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a id="brand" class="navbar-brand" href="home_agent.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <a id="brand" class="navbar-brand" href="home_agent.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
           </li>
 		  <ul class="navbar-nav">
           <li class="nav-item">
@@ -185,10 +185,7 @@
   <br>
   <div class="bgimg w3-display-container w3-animate-bottom">
   <div class="container">	
-		<h2>(Client's_first_name and last_name)'s Cars</h2>		
-	<div class="ScrollStyle">
-	<div class="card-body">		
-		<div class="list-group">
+
 
       <?php
 
@@ -196,9 +193,10 @@
         $servername = "localhost";
         $clientId = $_GET['id'];
         $username = "root";
-        $password = "1234";
+        $password = "1234"; 
         $query1 = "SELECT * FROM carInfo WHERE clientId = $clientId ";
-        #connect
+        $easyQuery = "SELECT * FROM client WHERE clientId = $clientId";
+                #connect
         $dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
 
         if (mysqli_connect_errno())
@@ -206,6 +204,14 @@
           echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
+      if($result=mysqli_query($dbc,$easyQuery)){
+            $row = mysqli_fetch_row($result);
+
+            echo "<h2>".$row[2]."'s Cars</h2>";   
+            echo "<div class=\"ScrollStyle\">";
+            echo "<div class=\"card-body\">";   
+            echo  "<div class=\"list-group\">";
+      }
 
       if ($result=mysqli_query($dbc,$query1))
         {
