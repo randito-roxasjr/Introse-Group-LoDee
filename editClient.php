@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+	?>
 
 <!DOCTYPE html>
 <html>
@@ -7,42 +10,42 @@
     nav, #container, button{
       background-color: #087830;
     }
-
+	
     #brand:hover {
       text-shadow: 2px 2px #000000;
     }
-
+	
 	#inbox:hover, #notifications:hover, #logout:hover, #myBtn:hover {
       background-color: rgba(0, 0, 0, 0.3);
-    }
+    }	
 
 	#myBtn {
 		display: none;
-		position: fixed;
-		bottom: 20px;
-		right: 30px;
-		z-index: 99;
-		border: none;
-		outline: none;
-		background-color: #087830;
-		color: white;
-		cursor: pointer;
-		padding: 15px;
-		border-radius: 10px;
+		position: fixed; 
+		bottom: 20px; 
+		right: 30px; 
+		z-index: 99; 
+		border: none; 
+		outline: none; 
+		background-color: #087830; 
+		color: white; 
+		cursor: pointer; 
+		padding: 15px; 
+		border-radius: 10px; 
 	}
-
-	.badge {
+	
+	.badge {	
 		border-radius:1em;
-		margin:0 0.25em;
-	}
-
-	/* The Modal (background) */
+		margin:0 0.25em;	
+	}	
+	
+	/* The Modal (background) */	
 
     .modal {
       display: none;
       /* Hidden by default */
       position: fixed;
-      /* Stay in place */
+      /* Stay in place */   
 	  z-index: 1;
       /* Sit on top */
       padding-top: 10px;
@@ -67,7 +70,7 @@
       margin: auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%;
+      width: 80%;	  
     }
     /* The Close Button */
 
@@ -83,21 +86,29 @@
       text-decoration: none;
       cursor: pointer;
     }
-
+	
 	#modal-body {
-		font-color: black;
+		font-color: black;		
 	}
-
+	
 	.form-group {
 		color: white;
 	}
-
+	
 	.form-group2 {
 		color: black;
-	}
-
+	}		
+	
 	dropdown-item{
 		cursor: pointer;
+	}
+	
+	label {
+		/* Other styling.. */
+		text-align: right;
+		clear: both;
+		float:left;
+		margin-right:15px;
 	}
   </style>
   <script>
@@ -114,7 +125,7 @@
 
 	// When the user clicks on the button, scroll to the top of the document
 	function topFunction() {
-		document.body.scrollTop = 0; // For Chrome, Safari and Opera
+		document.body.scrollTop = 0; // For Chrome, Safari and Opera 
 		document.documentElement.scrollTop = 0; // For IE and Firefox
 	}
   </script>
@@ -128,31 +139,31 @@
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Concert+One|Lobster" rel="stylesheet">
   <link rel="stylesheet" href="bootstrap-notifications.css" type="text/css">
   <link rel="stylesheet" href="bootstrap-notifications.min.css" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a id="brand" class="navbar-brand" href="home_Agent.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <a id="brand" class="navbar-brand" href="home_Agent.html"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
 		  <li class="nav-item">
-            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_Agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
           </li>
           <li class="nav-item">
             <div class="btn-group">
               <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
 				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
 				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications
+					Notifications 
 			  </button>
               <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>
+				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>                
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>
+                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>                
                 <div class="dropdown-divider"></div>
                 <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
@@ -162,45 +173,37 @@
       </div>
     </div>
 	</nav>
-  <div class="py-5" style="background-color: #FFFFFF">
+  <div class="py-5" style="background-color: #FFFFFF">    
     <div class="container">
       <div class="row">
         <div class="col-md-3"> </div>
         <div class="col-md-6">
           <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
-              <h2 style="color: white;" class="mb-4">Input Client Info</h2>
-              <form action = "addClient_clientadded.php" method = "post">	  
-                <div class="form-group"> <label>First Name</label>
+              <h2 style="color: white;" class="mb-4">Edit Client Info</h2>			  
+              <form action = "http://localhost:8080/upperlimit/clientadded.php" method = "post">	  
+                <div class="form-group"> <label>First Name: Morty</label>
                   <input type="text" name="firstname" class="form-control" placeholder="Enter client's first name" required> </div>
-				<div class="form-group"> <label>Last Name</label>
+				<div class="form-group"> <label>Last Name: Sanchez</label>
                   <input type="text" name="lastname" class="form-control" placeholder="Enter client's last name" required> </div>
-                <div class="form-group"> <label>Address Line 1</label>
+                <div class="form-group"> <label>Address Line 1: (insert address L1)</label>
                   <input type="text" name="address1" class="form-control" placeholder="Enter client's 1st address" required> </div>
-				<div class="form-group"> <label>Address Line 2</label>
+				<div class="form-group"> <label>Address Line 2: (insert address L1)</label>
                   <input type="text" name="address2" class="form-control" placeholder="Enter client's 2nd address"> </div>
-				<div class="form-group"> <label>Province</label>
+				<div class="form-group"> <label>Province: Laguna</label>
                   <input type="text" name="province" class="form-control" placeholder="Enter province" required> </div>
-				<div class="form-group"> <label>City</label>
+				<div class="form-group"> <label>City: Sta. Rosa</label>
                   <input type="text" name="city" class="form-control" placeholder="Enter city" required> </div>
-				<div class="form-group"> <label>Postal Code</label>
+				<div class="form-group"> <label>Postal Code: 4001</label>
                   <input type="number" name="postalcode" min="1" step="any" class="form-control" placeholder="Enter postal code" required> </div>
-                <div class="form-group"> <label>Car Model</label>
-                  <input type="text" name="carmodel" class="form-control" placeholder="Enter car model" required> </div>
-                <div class="form-group"> <label>Car Name</label>
-                  <input type="text" name="carname" class="form-control" placeholder="Enter car name" required> </div>
-				<div class="form-group"> <label>Car Manufacturer</label>
-                  <input type="text" name="carmanufacturer" class="form-control" placeholder="Enter car manufacturer" required> </div>
-                <div class="form-group"> <label>Car Value</label>
-                  <input type="number" name="carvalue" min="1" step="any" class="form-control" placeholder="Enter car value" required> </div>
-                <div class="form-group"> <label>Email</label>
+                <div class="form-group"> <label>Email: morty_sanchez@wubbalubbadubdub.com</label>
                   <input type="email" name="emailaddress" class="form-control" placeholder="Enter client's email" required> </div>
-                <div class="form-group"> <label>Phone Number 1</label>
+                <div class="form-group"> <label>Phone Number 1: (insert phone #1)</label>
                   <input type="tel" name="phonenumber1" class="form-control" placeholder="Enter client's 1st mobile/landline number" required> </div>
-				<div class="form-group"> <label>Phone Number 2</label>
+				<div class="form-group"> <label>Phone Number 2: (insert phone #2)</label>
                   <input type="tel" name="phonenumber2" class="form-control" placeholder="Enter client's 2nd mobile/landline number"> </div>
-                <div class="form-group"> <label>Payments</label>
-                  <input type="number" class="form-control" placeholder="Enter payments" required> </div>
+                <div class="form-group"> <label>Payments: (insert payments)</label>
+                  <input type="number" class="form-control" placeholder="Enter payments" required> </div>								
 				<!--<button class="btn btn-primary" id="abc2" data-toggle="modal" data-target="#exampleModalLong1" disabled >Set Transaction Details</button>
 				<script type="text/javascript">
 					function s(){
@@ -215,7 +218,7 @@
 						}
 					}
 				</script>
-				<br>
+				<br>						                
 				<!-- Modal --
 				  <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -224,7 +227,7 @@
 						  <h5 class="modal-title" id="exampleModalLongTitle">New transaction</h5>
 						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
 						</div>
-						<div style="font-color: black" class="modal-body">
+						<div style="font-color: black" class="modal-body"> 
 							  <small class="timestamp" id="para1"></small>
 							  <br>
 							  <br>
@@ -240,12 +243,11 @@
 									days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 								return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
 								}
-							  </script>
+							  </script> 
 							  -->
 							  <br>
-							  <hr class="w3-border-grey">
-							  <br>
-							  <h2 style="color: white;" class="form-group">Input Transaction Details</h2>
+							  <hr>
+							  <h2 style="color: white;" class="form-group">Input Transaction Details</h2>	
 							  <div class="form-group">
 								<label for="recipient-name" class="form-control-label">Recipient:</label>
 								<input type="text" class="form-control" id="recipient-name" placeholder="Enter Manager name" required>
@@ -253,13 +255,13 @@
 							  <div class="form-group">
 								<label for="recipient-name" class="form-control-label">Subject:</label>
 								<input type="text" class="form-control" id="subject" placeholder="Enter subject" required>
-							  </div>
+							  </div>							  
 							  <div class="form-group">
 								<label for="message-text" class="form-control-label">Details:</label>
 								<textarea min="1" step="any" id="abc" onkeyup="s()" class="form-control" id="message-text" placeholder="Enter transaction details" required></textarea>
 								<center>
 								<br>
-								<input type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />
+								<input onclick="Sent()" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />											 
 								<script type="text/javascript">
 									function s(){
 									var i=document.getElementById("abc");
@@ -273,11 +275,16 @@
 										}
 									}
 								</script>
+								<script>
+								function Sent() {
+									alert("Successfully Sent!");
+								}
+								</script>
 							</center>
 							  </div>
 
 						<!--<div class="modal-footer">
-						  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer">Cancel</button>-->
+						  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="cursor: pointer">Cancel</button>-->						  							
 						</form>
 						</div>
 					  </div>

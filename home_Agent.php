@@ -205,7 +205,7 @@
 					<center>
 						<br>
 						<a id="addClient" class="btn text-white" href="addClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-o"></i> Add Client</a>
-						<a id="editClient" class="btn text-white" href="pickClient.html" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
+						<a id="editClient" class="btn text-white" href="pickClient.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
 					</center>
 				</div>
 			  </div>
