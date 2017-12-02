@@ -135,7 +135,7 @@ session_start();
 		#optional
 		if(!empty($_POST['address2']) and ctype_alnum($_POST['address2'])){
 
-			$house_address2[] = trim($_POST['address2']);
+			$house_address2 = trim($_POST['address2']);
 		}
 
 		if(empty($_POST['province']) or !ctype_alpha($_POST['province'])){
@@ -228,7 +228,7 @@ session_start();
 		  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
 
 			#inserts the client to the table
-      $query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,province,city,postalCode,phonenumber1) VALUES('$employee_login','$first_name','$last_name', '$house_address','$client_province','$client_city','$client_postalcode','$phone_number1')";
+      $query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,addressLine2,province,city,postalCode,phonenumber1,phonenumber2) VALUES('$employee_login','$first_name','$last_name', '$house_address','$house_address2','$client_province','$client_city','$client_postalcode','$phone_number1','$phone_number2')";
       #inserts carinfo along with the client
 			$query2 = "INSERT INTO carinfo(clientId,manufacturer,modelYear,model,value) VALUES(?,?,?,?,?)";
 			#searches for the clientId to put with the carinfo
