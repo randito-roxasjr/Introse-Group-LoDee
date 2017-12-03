@@ -201,20 +201,7 @@
                   <input type="tel" name="phonenumber2" class="form-control" placeholder="Enter client's 2nd mobile/landline number"> </div>
                 <div class="form-group"> <label>Payments</label>
                   <input type="number" class="form-control" placeholder="Enter payments" required> </div>								
-				<button class="btn btn-primary" id="abc2" data-toggle="modal" data-target="#exampleModalLong1" enabled >Set Transaction Details</button>
-				<script type="text/javascript">
-					function s(){
-					var i=document.getElementById("abc");
-						if(i.value==""){
-							document.getElementById("abc2").disabled=true;
-							document.getElementById("abc2").style="cursor:";
-						}
-						else{
-							document.getElementById("abc2").disabled=false;
-							document.getElementById("abc2").style="cursor:pointer";
-						}
-					}
-				</script>
+				
 				<br>						                
 				<!-- Modal 
 				  <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -259,7 +246,7 @@
 								<textarea min="1" step="any" id="abc" onkeyup="s()" class="form-control" id="message-text" placeholder="Enter transaction details" required></textarea>
 								<center>
 								<br>
-								<input type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />											 
+								<input type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" enabled />											 
 								<script type="text/javascript">
 									function s(){
 									var i=document.getElementById("abc");
