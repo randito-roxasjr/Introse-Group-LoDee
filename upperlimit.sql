@@ -34,7 +34,7 @@ CREATE TABLE `carinfo` (
   PRIMARY KEY (`carId`),
   KEY `fk_CarInfo_Client1_idx` (`clientId`),
   CONSTRAINT `fk_CarInfo_Client1` FOREIGN KEY (`clientId`) REFERENCES `client` (`clientId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `carinfo` (
 
 LOCK TABLES `carinfo` WRITE;
 /*!40000 ALTER TABLE `carinfo` DISABLE KEYS */;
+INSERT INTO `carinfo` VALUES (1,1,'test','test','test',1444.00000,NULL,NULL),(2,1,'test','test','test',1444.00000,NULL,NULL);
 /*!40000 ALTER TABLE `carinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,10 +67,11 @@ CREATE TABLE `client` (
   `postalCode` varchar(20) DEFAULT NULL,
   `phoneNumber1` varchar(15) NOT NULL,
   `phoneNumber2` varchar(15) DEFAULT NULL,
+  `email_address` varchar(45) NOT NULL,
   PRIMARY KEY (`clientId`),
   KEY `fk_Client_Agent_idx` (`employeeId`),
   CONSTRAINT `fk_Client_Agent` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,6 +80,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES (8,10001,'Amanda','Cerny',NULL,'Jazz Residences',NULL,'Manila','Makati',NULL,'09175925863',NULL,''),(9,10001,'Megan','Fox',NULL,'Manila Residences',NULL,'Manila','Malate',NULL,'09175925863',NULL,'');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +104,7 @@ CREATE TABLE `employee` (
   `password` varchar(15) NOT NULL,
   `isManager` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`employeeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10013 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10015 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +113,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0);
+INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0),(10014,'Edward','Tighe','EGI Taft Tower',NULL,NULL,'09175925863',NULL,'ed@gmail.com','0409',1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-24 23:14:26
+-- Dump completed on 2017-12-03 17:19:32
