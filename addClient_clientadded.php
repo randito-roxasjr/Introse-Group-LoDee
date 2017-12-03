@@ -186,7 +186,7 @@ session_start();
 			$car_manufacturer = trim($_POST['carmanufacturer']);
 		}
 
-		if(empty($_POST['carvalue']) and ($_POST['carvalue'] > 0) ){
+		if(empty($_POST['carvalue']) or ($_POST['carvalue'] < 0) ){
 
 			$data_missing[] = "Car Value";
 		}else{
