@@ -1,6 +1,7 @@
 <?php
 session_start();
 $enable_header=false;
+$enable_manager=false
 ?>
 <!DOCTYPE html>
 <html>
@@ -225,7 +226,7 @@ $enable_header=false;
   		}
 
   		if(empty($empty_data)){
-  			$query = "SELECT email_address, password, firstName, lastName, employeeId FROM employee WHERE email_address='$email' or password='$password' limit 1";
+  			$query = "SELECT email_address, password, firstName, lastName, employeeId, isManager FROM employee WHERE email_address='$email' or password='$password' limit 1";
   			$result = mysqli_query($dbc, $query);
   			#parse data to strings
   			$data = mysqli_fetch_assoc($result);
@@ -237,8 +238,16 @@ $enable_header=false;
   				#Session Variables
   				$_SESSION["logged_user"] = $data["firstName"] . ' ' . $data["lastName"];
           $_SESSION["employeeId"] = $data["employeeId"];
-          $enable_header = true;
-  				mysqli_close($dbc);
+
+          # Agent or Manager
+          if ($data["isManager"] == 1){
+            $enable_manager = true;
+    				mysqli_close($dbc);
+          }
+          else{
+            $enable_header = true;
+    				mysqli_close($dbc);
+          }
   			}
   			else if(($input_pass != $password) && ($input_email == $email)){
           $wrong_pass = true;
@@ -278,6 +287,10 @@ $enable_header=false;
   <?php if($enable_header) : ?>
       <script>
        window.location = "home_Agent.php";
+      </script>
+  <?php elseif($enable_manager) : ?>
+      <script>
+       window.location = "home_Manager.php";
       </script>
   <?php endif;?>
 </body>

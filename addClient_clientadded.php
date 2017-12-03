@@ -108,7 +108,7 @@ session_start();
 		$phone_number2 = NULL;
 
 		#each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-		if(empty($_POST['firstname'] or !ctype_alpha($_POST['firstname']))){
+		if(empty($_POST['firstname']) or !ctype_alpha($_POST['firstname'])){
 
 			$data_missing[] = "First Name";
 		}else{
@@ -215,6 +215,14 @@ session_start();
 
 			$phone_number2 = trim($_POST['phonenumber2']);
 		}
+		
+		if(empty($_POST['emailaddress']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬-]/', $_POST['emailaddress'])){
+
+			$data_missing[] = "Client Email Address";
+		}else{
+
+			$client_email_address = trim($_POST['emailaddress']);
+		}
 
 		#if there is no data missing, execute code
 		if(empty($data_missing)){
@@ -228,7 +236,7 @@ session_start();
 		  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
 
 			#inserts the client to the table
-      $query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,addressLine2,province,city,postalCode,phonenumber1,phonenumber2) VALUES('$employee_login','$first_name','$last_name', '$house_address','$house_address2','$client_province','$client_city','$client_postalcode','$phone_number1','$phone_number2')";
+      $query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,addressLine2,province,city,postalCode,phonenumber1,phonenumber2,email_address) VALUES('$employee_login','$first_name','$last_name', '$house_address','$house_address2','$client_province','$client_city','$client_postalcode','$phone_number1','$phone_number2','$client_email_address')";
       #inserts carinfo along with the client
 			$query2 = "INSERT INTO carinfo(clientId,manufacturer,modelYear,model,value) VALUES(?,?,?,?,?)";
 			#searches for the clientId to put with the carinfo
@@ -268,7 +276,7 @@ session_start();
 
 
 		}else{
-			echo 'You need to enter the following information <br />';
+			echo 'You entered invalid information for the following fields: <br />';
 
 			foreach($data_missing as $missing){
 				echo "$missing <br />";
