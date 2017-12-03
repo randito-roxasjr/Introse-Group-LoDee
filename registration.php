@@ -39,7 +39,7 @@
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
 			<a id="home" class="btn navbar-btn ml-2 text-white" href="home.html"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
-			<a id="login" class="btn navbar-btn ml-2 text-white" href="login.html"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
+			<a id="login" class="btn navbar-btn ml-2 text-white" href="login.php"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Log in</a>
         </ul>
       </div>
     </div>
