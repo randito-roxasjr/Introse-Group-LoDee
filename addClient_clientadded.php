@@ -108,7 +108,7 @@ session_start();
 		$phone_number2 = NULL;
 
 		#each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-		if(empty($_POST['firstname']) or !ctype_alpha($_POST['firstname'])){
+		if(empty($_POST['firstname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])){
 
 			$data_missing[] = "First Name";
 		}else{
@@ -116,7 +116,7 @@ session_start();
 			$first_name = trim($_POST['firstname']);
 		}
 
-		if(empty($_POST['lastname']) or !ctype_alpha($_POST['lastname'])){
+		if(empty($_POST['lastname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['lastname'])){
 
 			$data_missing[] = "Last Name";
 		}else{
@@ -124,7 +124,7 @@ session_start();
 			$last_name = trim($_POST['lastname']);
 		}
 
-		if(empty($_POST['address1']) or !ctype_alnum($_POST['address1'])){
+		if(empty($_POST['address1']) or ctype_space($_POST['address1'])){
 
 			$data_missing[] = "Address 1";
 		}else{
@@ -133,12 +133,12 @@ session_start();
 		}
 
 		#optional
-		if(!empty($_POST['address2']) and ctype_alnum($_POST['address2'])){
+		if(!empty($_POST['address2']) and ctype_space($_POST['address2'])){
 
 			$house_address2 = trim($_POST['address2']);
 		}
 
-		if(empty($_POST['province']) or !ctype_alpha($_POST['province'])){
+		if(empty($_POST['province']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])){
 
 			$data_missing[] = "Province";
 		}else{
@@ -146,7 +146,7 @@ session_start();
 			$client_province = trim($_POST['province']);
 		}
 
-		if(empty($_POST['city']) or !ctype_alpha($_POST['city'])){
+		if(empty($_POST['city']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['city'])){
 
 			$data_missing[] = "City";
 		}else{
@@ -162,7 +162,7 @@ session_start();
 			$client_postalcode = trim($_POST['postalcode']);
 		}
 
-		if(empty($_POST['carmodel'])){
+		if(empty($_POST['carmodel'] or ctype_space($_POST['carmodel']))){
 
 			$data_missing[] = "Car Model";
 		}else{
@@ -170,7 +170,7 @@ session_start();
 			$car_model = trim($_POST['carmodel']);
 		}
 
-		if(empty($_POST['carname'])){
+		if(empty($_POST['carname']) or ctype_space($_POST['carname'])){
 
 			$data_missing[] = "Car Name";
 		}else{
@@ -178,7 +178,7 @@ session_start();
 			$car_name = trim($_POST['carname']);
 		}
 
-		if(empty($_POST['carmanufacturer'])){
+		if(empty($_POST['carmanufacturer']) or ctype_space($_POST['address1'])){
 
 			$data_missing[] = "Car Manufacturer";
 		}else{
@@ -186,20 +186,12 @@ session_start();
 			$car_manufacturer = trim($_POST['carmanufacturer']);
 		}
 
-		if(empty($_POST['carvalue'])){
+		if(empty($_POST['carvalue']) and ($_POST['carvalue'] > 0) ){
 
 			$data_missing[] = "Car Value";
 		}else{
 
 			$car_value = trim($_POST['carvalue']);
-		}
-
-		if(empty($_POST['emailaddress'])){
-
-			$data_missing[] = "Email Address";
-		}else{
-
-			$email_add = trim($_POST['emailaddress']);
 		}
 
 		if(empty($_POST['phonenumber1']) or !ctype_digit($_POST['phonenumber1'])){
@@ -216,7 +208,7 @@ session_start();
 			$phone_number2 = trim($_POST['phonenumber2']);
 		}
 		
-		if(empty($_POST['emailaddress']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬-]/', $_POST['emailaddress'])){
+		if(empty($_POST['emailaddress'])){
 
 			$data_missing[] = "Client Email Address";
 		}else{
