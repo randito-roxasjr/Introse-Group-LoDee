@@ -237,7 +237,7 @@
   	if (isset($_POST['send_info'])){
   		$empty_data = array();
   		#Get first name
-  		if(empty($_POST['first_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['first_name'])){ 
+  		if(empty($_POST['first_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['first_name'] or ctype_space($_POST['first_name']))){ 
   			$empty_data[] = 'First Name';
 			$invalid_name = true;
   		}
@@ -246,7 +246,7 @@
   			$first_name = trim($_POST['first_name']);
   		}
   		#Get last name
-  		if(empty($_POST['last_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['last_name'])){
+  		if(empty($_POST['last_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['last_name'] or ctype_space($_POST['last_name']))){
   			$empty_data[] = 'Last Name';
 			$invalid_name = true;
   		}
