@@ -7,6 +7,7 @@ $modal3 = false;
 $modal4 = false;
 $change_page = false;
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -538,7 +539,7 @@ $change_page = false;
 		}
 	}
 
-
+		}
 
 
 
@@ -576,13 +577,14 @@ $change_page = false;
     <script>
       $("#invalidFN").modal()
     </script>
-  <?php endif;?>
+  <?php endif; ?>
   
   <?php if($change_page) : ?>
       <script>
        window.location = "addClient_clientadded.php";
       </script>
-  <?php endif;?>
+  <?php endif; ?>
+  
   </body>
 
 </html>

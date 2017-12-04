@@ -246,7 +246,7 @@
   			$first_name = trim($_POST['first_name']);
   		}
   		#Get last name
-  		if(empty($_POST['last_name'] or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['last_name']))){
+  		if(empty($_POST['last_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['last_name'])){
   			$empty_data[] = 'Last Name';
 			$invalid_name = true;
   		}
@@ -255,7 +255,7 @@
   			$last_name = trim($_POST['last_name']);
   		}
   		#Get complete address
-  		if(empty($_POST['address']) or !ctype_space($_POST['address'])){
+  		if(empty($_POST['address']) or ctype_space($_POST['address'])){
   			$empty_data[] = 'Address';
   		}
   		else{
