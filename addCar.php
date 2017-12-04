@@ -226,7 +226,7 @@
     $phone_number2 = NULL;
 
     #each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-    if(empty($_POST['carmodel'])){
+    if(empty($_POST['carmodel']) or ctype_space($_POST['carmodel'])){
 
       $data_missing[] = "Car Model";
     }else{
@@ -234,7 +234,7 @@
       $car_model = trim($_POST['carmodel']);
     }
 
-    if(empty($_POST['carname'])){
+    if(empty($_POST['carname']) or ctype_space($_POST['carname'])){
 
       $data_missing[] = "Car Name";
     }else{
@@ -242,7 +242,7 @@
       $car_name = trim($_POST['carname']);
     }
 
-    if(empty($_POST['carmanufacturer'])){
+    if(empty($_POST['carmanufacturer']) or ctype_space($_POST['carmanufacturer'])){
 
       $data_missing[] = "Car Manufacturer";
     }else{
@@ -250,7 +250,7 @@
       $car_manufacturer = trim($_POST['carmanufacturer']);
     }
 
-    if(empty($_POST['carvalue'])){
+    if(empty($_POST['carvalue']) or ($_POST['carmodel'] < 0)){
 
       $data_missing[] = "Car Value";
     }else{
