@@ -284,32 +284,6 @@ $change_page = false;
 							</center>
 							  </div>
 
-						<!-- Modals -->
-						
-						<!-- invalid input for first_name -->
-						<div class="modal fade" id="invalidFN" tabindex="-1" role="dialog" aria-labelledby="invalidFN" aria-hidden="true">
-						  <div class="modal-dialog" role="document">
-							<div class="modal-content">
-							  <div class="modal-header">
-								<h5 class="modal-title" id="takenEM" style="color: black">Oops!</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-							  </div>
-							  <div class="modal-body" style="color: black">
-								<p>
-								 <? php
-								 
-										 echo 'You entered invalid information for the following fields: <br />';
-
-										 foreach($data_missing as $missing){
-										 echo "$missing <br />";
-										 }
-								 ?>
-								  <span style="color: #ff0000">numbers in it</span>.								  
-								</p>
-							  </div>
-							</div>
-						  </div>
-						</div>  
 						
 						<!-- invalid input for last_name -->
 						<div class="modal fade" id="invalidLN" tabindex="-1" role="dialog" aria-labelledby="invalidLN" aria-hidden="true">
@@ -421,7 +395,7 @@ $change_page = false;
 		}
 
 		#optional
-		if(!empty($_POST['address2']) and ctype_space($_POST['address2'])){
+		if(!empty($_POST['address2']) and !ctype_space($_POST['address2'])){
 
 			$house_address2 = trim($_POST['address2']);
 		}
@@ -549,6 +523,7 @@ $change_page = false;
 		#if both inserts went through
 		if($affected_rows2 == 1){
 			echo 'Client Added';
+			$change_page = true;
 
 			mysqli_stmt_close($stmt2);
 			mysqli_close($dbc);
@@ -585,22 +560,37 @@ $change_page = false;
 
 ?>
 
+<!-- Modals -->
+						
+						<!-- invalid input for first_name -->
+						<div class="modal fade" id="invalidFN" tabindex="-1" role="dialog" aria-labelledby="invalidFN" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="takenEM" style="color: black">Oops!</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+							  </div>
+							  <div class="modal-body" style="color: black">
+								<p>
+								 <?php
+								 
+										 echo 'You entered invalid information for the following fields: <br />';
+
+										 foreach($data_missing as $missing){
+										 echo "$missing <br />";
+										 }
+								 ?>							  
+								</p>
+							  </div>
+							</div>
+						  </div>
+						</div>  
+						
+
 <!--Show modals-->
   <?php if($modal1) : ?>
     <script>
       $("#invalidFN").modal()
-    </script>
-  <?php elseif($modal2) : ?>
-    <script>
-      $("#invalidLN").modal()
-    </script>
-  <?php elseif($modal3) : ?>
-    <script>
-      $("#invalidCN").modal()
-    </script>
-  <?php elseif($modal4) : ?>
-    <script>
-      $("#invalidAD").modal()
     </script>
   <?php endif;?>
   
