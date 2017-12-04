@@ -536,22 +536,6 @@ $change_page = false;
 
 			mysqli_close($dbc);
 		}
-
-
-
-		}else{
-			echo 'You entered invalid information for the following fields: <br />';
-
-			foreach($data_missing as $missing){
-				echo "$missing <br />";
-			}
-		}
-
-
-
-
-
-
 	}
 
 
