@@ -540,6 +540,18 @@ $change_page = false;
 		}
 	}
 
+		}else{
+			$data_missing = array();
+			$data_missing[] = "First Name";
+			$data_missing[] = "Last Name";
+			$data_missing[] = "Address Line 1";
+			$data_missing[] = "Province";
+			$data_missing[] = "City";
+			$data_missing[] = "Car Model";
+			$data_missing[] = "Car Name";
+			$data_missing[] = "Car Manufacturer";
+			$data_missing[] = "Email";
+			$data_missing[] = "Phone Number 1";
 		}
 
 
@@ -562,7 +574,7 @@ $change_page = false;
 								 
 										 echo 'You entered invalid information for the following fields: <br />';
 										global $data_missing;
-										 foreach($data_missing as $missing){
+										 foreach((array)$data_missing as $missing){
 											echo "$missing <br />";
 										 }
 								 ?>							  
