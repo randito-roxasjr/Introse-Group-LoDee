@@ -6,6 +6,7 @@ $modal2 = false;
 $modal3 = false;
 $modal4 = false;
 $change_page = false;
+$data_missing = array();
 ?>
 
 <!DOCTYPE html>
@@ -179,7 +180,7 @@ $change_page = false;
           <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
               <h2 style="color: white;" class="mb-4">Input Client Info</h2>			  
-              <form method = "post">	  
+              <form method = "post" action ="">	  
                 <div class="form-group"> <label>First Name</label>
                   <input type="text" name="firstname" class="form-control" placeholder="Enter client's first name" required> </div>
 				<div class="form-group"> <label>Last Name</label>
@@ -210,47 +211,7 @@ $change_page = false;
                   <input type="tel" name="phonenumber2" class="form-control" placeholder="Enter client's 2nd mobile/landline number"> </div>
                 <div class="form-group"> <label>Payments</label>
                   <input type="number" class="form-control" placeholder="Enter payments" required> </div>								
-				<!--<button class="btn btn-primary" id="abc2" data-toggle="modal" data-target="#exampleModalLong1" disabled >Set Transaction Details</button>
-				<script type="text/javascript">
-					function s(){
-					var i=document.getElementById("abc");
-						if(i.value==""){
-							document.getElementById("abc2").disabled=true;
-							document.getElementById("abc2").style="cursor:";
-						}
-						else{
-							document.getElementById("abc2").disabled=false;
-							document.getElementById("abc2").style="cursor:pointer";
-						}
-					}
-				</script>
-				<br>						                
-				<!-- Modal --
-				  <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalLongTitle">New transaction</h5>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-						</div>
-						<div style="font-color: black" class="modal-body"> 
-							  <small class="timestamp" id="para1"></small>
-							  <br>
-							  <br>
-							  <script>
-								document.getElementById("para1").innerHTML = formatAMPM();
-
-								function formatAMPM() {
-								var d = new Date(),
-									minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-									hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours()-12,
-									ampm = d.getHours() >= 12 ? 'pm' : 'am',
-									months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-									days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-								return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
-								}
-							  </script> 
-							  -->
+				
 							  <br>
 							  <hr class="w3-border-grey">
 							  <br>
@@ -360,15 +321,13 @@ $change_page = false;
   
 	if(isset($_POST['submit'])){
 
-
-		$data_missing = array();
 		$employee_login = $_SESSION["employeeId"];
 
 		#optional variables
 		$house_address2 = NULL;
 		$phone_number2 = NULL;
 
-		#each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
+		#each one of these looks for a value from the html form, if it is not there or if it is invalid, it gets added to data_missing
 		if(empty($_POST['firstname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])  or ctype_space($_POST['firstname'])){
 
 			$data_missing[] = "First Name";
@@ -541,7 +500,7 @@ $change_page = false;
 	}
 
 		}else{
-			$data_missing = array();
+			//$data_missing = array();
 			$data_missing[] = "First Name";
 			$data_missing[] = "Last Name";
 			$data_missing[] = "Address Line 1";
@@ -573,7 +532,6 @@ $change_page = false;
 								 <?php
 								 
 										 echo 'You entered invalid information for the following fields: <br />';
-										global $data_missing;
 										 foreach((array)$data_missing as $missing){
 											echo "$missing <br />";
 										 }
