@@ -7,6 +7,7 @@ $modal3 = false;
 $modal4 = false;
 $change_page = false;
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -356,6 +357,7 @@ $change_page = false;
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
   <?php
+  
 	if(isset($_POST['submit'])){
 
 
@@ -367,7 +369,7 @@ $change_page = false;
 		$phone_number2 = NULL;
 
 		#each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-		if(empty($_POST['firstname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])){
+		if(empty($_POST['firstname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])  or ctype_space($_POST['firstname'])){
 
 			$data_missing[] = "First Name";
 			$modal1 = true;
@@ -376,7 +378,7 @@ $change_page = false;
 			$first_name = trim($_POST['firstname']);
 		}
 
-		if(empty($_POST['lastname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['lastname'])){
+		if(empty($_POST['lastname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['lastname'])  or ctype_space($_POST['lastname'])){
 
 			$data_missing[] = "Last Name";
 			$modal1 = true;
@@ -400,7 +402,7 @@ $change_page = false;
 			$house_address2 = trim($_POST['address2']);
 		}
 
-		if(empty($_POST['province']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])){
+		if(empty($_POST['province']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])  or ctype_space($_POST['province'])){
 
 			$data_missing[] = "Province";
 			$modal1 = true;
@@ -409,7 +411,7 @@ $change_page = false;
 			$client_province = trim($_POST['province']);
 		}
 
-		if(empty($_POST['city']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['city'])){
+		if(empty($_POST['city']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['city'])  or ctype_space($_POST['city'])){
 
 			$data_missing[] = "City";
 			$modal1 = true;
@@ -463,7 +465,7 @@ $change_page = false;
 			$car_value = trim($_POST['carvalue']);
 		}
 
-		if(empty($_POST['phonenumber1']) or !ctype_digit($_POST['phonenumber1'])){
+		if(empty($_POST['phonenumber1']) or !ctype_digit($_POST['phonenumber1'])  or ctype_space($_POST['phonenumber1'])){
 
 			$data_missing[] = "Phone Number 1";
 			$modal1 = true;
@@ -473,12 +475,12 @@ $change_page = false;
 		}
 
 		#optional
-		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])){
+		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])  and !ctype_space($_POST['phonenumber2'])){
 
 			$phone_number2 = trim($_POST['phonenumber2']);
 		}
 		
-		if(empty($_POST['emailaddress'])){
+		if(empty($_POST['emailaddress']  or ctype_space($_POST['emailaddress']))){
 
 			$data_missing[] = "Client Email Address";
 			$modal1 = true;
@@ -536,25 +538,9 @@ $change_page = false;
 
 			mysqli_close($dbc);
 		}
-
-
-
-		}else{
-			echo 'You entered invalid information for the following fields: <br />';
-
-			foreach($data_missing as $missing){
-				echo "$missing <br />";
-			}
-		}
-
-
-
-
-
-
 	}
 
-
+		}
 
 
 
@@ -575,9 +561,9 @@ $change_page = false;
 								 <?php
 								 
 										 echo 'You entered invalid information for the following fields: <br />';
-
+										global $data_missing;
 										 foreach($data_missing as $missing){
-										 echo "$missing <br />";
+											echo "$missing <br />";
 										 }
 								 ?>							  
 								</p>
@@ -592,13 +578,14 @@ $change_page = false;
     <script>
       $("#invalidFN").modal()
     </script>
-  <?php endif;?>
+  <?php endif; ?>
   
   <?php if($change_page) : ?>
       <script>
        window.location = "addClient_clientadded.php";
       </script>
-  <?php endif;?>
+  <?php endif; ?>
+  
   </body>
 
 </html>
