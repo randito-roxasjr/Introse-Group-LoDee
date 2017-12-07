@@ -476,6 +476,8 @@ $data_missing = array();
 		$time_now = date("Y-m-d H:i:s");
 		#if there is no data missing, execute code
 		if(empty($data_missing)){
+			
+			
       $employee_login = $_SESSION["employeeId"];
 			#connects mysql to php
 			require_once('home_Agent_mysqli_connect.php');
@@ -505,7 +507,7 @@ $data_missing = array();
 			mysqli_stmt_execute($stmt2);
 			
 			
-
+	
 			$affected_rows2 = mysqli_stmt_affected_rows($stmt2);
 
 			#if both inserts went through
@@ -538,6 +540,8 @@ $data_missing = array();
 			$data_missing[] = "Car Manufacturer";
 			$data_missing[] = "Email";
 			$data_missing[] = "Phone Number 1";
+			$data_missing[] = "Subject";
+			$data_missing[] = "Message";
 		}
 
 
