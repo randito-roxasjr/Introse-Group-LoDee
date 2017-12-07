@@ -1,3 +1,6 @@
+<!-- This page allows an agent/employee to submit a client's 
+	details to the database -->
+
 <?php 
 
 session_start();
@@ -6,6 +9,7 @@ $modal2 = false;
 $modal3 = false;
 $modal4 = false;
 $change_page = false;
+$data_missing = array();
 ?>
 
 <!DOCTYPE html>
@@ -179,7 +183,7 @@ $change_page = false;
           <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
               <h2 style="color: white;" class="mb-4">Input Client Info</h2>			  
-              <form method = "post">	  
+              <form method = "post" action ="">	  
                 <div class="form-group"> <label>First Name</label>
                   <input type="text" name="firstname" class="form-control" placeholder="Enter client's first name" required> </div>
 				<div class="form-group"> <label>Last Name</label>
@@ -210,62 +214,22 @@ $change_page = false;
                   <input type="tel" name="phonenumber2" class="form-control" placeholder="Enter client's 2nd mobile/landline number"> </div>
                 <div class="form-group"> <label>Payments</label>
                   <input type="number" class="form-control" placeholder="Enter payments" required> </div>								
-				<!--<button class="btn btn-primary" id="abc2" data-toggle="modal" data-target="#exampleModalLong1" disabled >Set Transaction Details</button>
-				<script type="text/javascript">
-					function s(){
-					var i=document.getElementById("abc");
-						if(i.value==""){
-							document.getElementById("abc2").disabled=true;
-							document.getElementById("abc2").style="cursor:";
-						}
-						else{
-							document.getElementById("abc2").disabled=false;
-							document.getElementById("abc2").style="cursor:pointer";
-						}
-					}
-				</script>
-				<br>						                
-				<!-- Modal --
-				  <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalLongTitle">New transaction</h5>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-						</div>
-						<div style="font-color: black" class="modal-body"> 
-							  <small class="timestamp" id="para1"></small>
-							  <br>
-							  <br>
-							  <script>
-								document.getElementById("para1").innerHTML = formatAMPM();
-
-								function formatAMPM() {
-								var d = new Date(),
-									minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-									hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours()-12,
-									ampm = d.getHours() >= 12 ? 'pm' : 'am',
-									months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-									days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-								return 'Today is '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' -  '+hours+':'+minutes+ampm;
-								}
-							  </script> 
-							  -->
+				
 							  <br>
 							  <hr class="w3-border-grey">
 							  <br>
 							  <h2 style="color: white;" class="form-group">Input Transaction Details</h2>	
-							  <div class="form-group">
-								<label for="recipient-name" class="form-control-label">Recipient:</label>
+							  <!--<div class="form-group">
+								<label for="recipient-name" n class="form-control-label">Recipient:</label>
 								<input type="text" class="form-control" id="recipient-name" placeholder="Enter Manager name" required>
-							  </div>
+							  </div> -->
 							  <div class="form-group">
 								<label for="recipient-name" class="form-control-label">Subject:</label>
-								<input type="text" class="form-control" id="subject" placeholder="Enter subject" required>
+								<input type="text" class="form-control" name="subject" placeholder="Enter subject" required>
 							  </div>							  
 							  <div class="form-group">
-								<label for="message-text" class="form-control-label">Details:</label>
-								<textarea min="1" step="any" id="abc" onkeyup="s()" class="form-control" id="message-text" placeholder="Enter transaction details" required></textarea>
+								<label for="message-text" class="form-control-label"> Details:</label>
+								<textarea min="1" step="any" name="message" onkeyup="s()" class="form-control" id="abc" placeholder="Enter transaction details" required></textarea>
 								<center>
 								<br>
 								<input data-toggle="modal" data-target="#invalidFN" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />											 
@@ -360,15 +324,13 @@ $change_page = false;
   
 	if(isset($_POST['submit'])){
 
-
-		$data_missing = array();
 		$employee_login = $_SESSION["employeeId"];
 
 		#optional variables
 		$house_address2 = NULL;
 		$phone_number2 = NULL;
 
-		#each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
+		#each one of these looks for a value from the html form, if it is not there or if it is invalid, it gets added to data_missing
 		if(empty($_POST['firstname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])  or ctype_space($_POST['firstname'])){
 
 			$data_missing[] = "First Name";
@@ -488,58 +450,94 @@ $change_page = false;
 
 			$client_email_address = trim($_POST['emailaddress']);
 		}
+		
+		if(empty($_POST['subject']) or ctype_space($_POST['subject'])){
+			
+			$data_missing[] = "Subject";
+			$modal1 = true;
+		}else{
+			
+			$subject = trim($_POST['subject']);
+		}
+		
+		if(empty($_POST['message']) or ctype_space($_POST['message'])){
+			
+			$data_missing[] = "Message";
+			$modal1 = true;
+		}else{
+			
+			$message = trim($_POST['message']);
+		}
+		
+		if(!empty($message) and !empty($subject)){
+			$notifmessage = $subject . " " . $message;
+		}
 
+		$time_now = date("Y-m-d H:i:s");
 		#if there is no data missing, execute code
 		if(empty($data_missing)){
       $employee_login = $_SESSION["employeeId"];
 			#connects mysql to php
-			$servername = "localhost";
-  			$username = "root";
-  			$password = "1234";
-
-		  	#connect
-		  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
-
+			require_once('home_Agent_mysqli_connect.php');
 			#inserts the client to the table
-      $query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,addressLine2,province,city,postalCode,phonenumber1,phonenumber2,email_address) VALUES('$employee_login','$first_name','$last_name', '$house_address','$house_address2','$client_province','$client_city','$client_postalcode','$phone_number1','$phone_number2','$client_email_address')";
-      #inserts carinfo along with the client
+			$query1 = "INSERT INTO client(employeeId,firstName,lastName,addressline1,addressLine2,province,city,postalCode,phonenumber1,phonenumber2,email_address) VALUES('$employee_login','$first_name','$last_name', '$house_address','$house_address2','$client_province','$client_city','$client_postalcode','$phone_number1','$phone_number2','$client_email_address')";
+			#inserts carinfo along with the client
 			$query2 = "INSERT INTO carinfo(clientId,manufacturer,modelYear,model,value) VALUES(?,?,?,?,?)";
 			#searches for the clientId to put with the carinfo
 			$query3 = "SELECT clientId from client WHERE lastName='$last_name' limit 1";
+			
+			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated) VALUES('$employee_login','$notifmessage','0','$time_now')";
 
-		$stmt1 = mysqli_query($dbc,$query1);
+			$stmt1 = mysqli_query($dbc,$query1);
 
-		$stmt2 = mysqli_prepare($dbc,$query2);
+			$stmt2 = mysqli_prepare($dbc,$query2);
 
-		$stmt3 = mysqli_prepare($dbc,$query3);
+			$stmt3 = mysqli_prepare($dbc,$query3);
 
-		$result = mysqli_query($dbc,$query3);
+			$stmt4 = mysqli_query($dbc,$query4);
+		
+			
+			$result = mysqli_query($dbc,$query3);
 
-		$value = mysqli_fetch_object($result);
+			$value = mysqli_fetch_object($result);
 
-    mysqli_stmt_bind_param($stmt2,"issss", $value->clientId, $car_manufacturer, $car_name,$car_model,$car_value);
-		mysqli_stmt_execute($stmt2);
+			mysqli_stmt_bind_param($stmt2,"issss", $value->clientId, $car_manufacturer, $car_name,$car_model,$car_value);
+			mysqli_stmt_execute($stmt2);
+			
+			
 
-		$affected_rows2 = mysqli_stmt_affected_rows($stmt2);
+			$affected_rows2 = mysqli_stmt_affected_rows($stmt2);
 
-		#if both inserts went through
-		if($affected_rows2 == 1){
-			echo 'Client Added';
-			$change_page = true;
+			#if both inserts went through
+			if($affected_rows2 == 1){
+				echo 'Client Added';
+				$change_page = true;
 
-			mysqli_stmt_close($stmt2);
-			mysqli_close($dbc);
-		} else{
-			echo 'error occurred <br />';
-			echo mysqli_error($dbc);
+				mysqli_stmt_close($stmt2);
+				mysqli_close($dbc);
+			} else{
+				echo 'error occurred <br />';
+				echo mysqli_error($dbc);
 
 
-			mysqli_stmt_close($stmt2);
+				mysqli_stmt_close($stmt2);
 
-			mysqli_close($dbc);
-		}
+				mysqli_close($dbc);
+			}
 	}
 
+		}else{
+			//$data_missing = array();
+			$data_missing[] = "First Name";
+			$data_missing[] = "Last Name";
+			$data_missing[] = "Address Line 1";
+			$data_missing[] = "Province";
+			$data_missing[] = "City";
+			$data_missing[] = "Car Model";
+			$data_missing[] = "Car Name";
+			$data_missing[] = "Car Manufacturer";
+			$data_missing[] = "Email";
+			$data_missing[] = "Phone Number 1";
 		}
 
 
@@ -561,8 +559,7 @@ $change_page = false;
 								 <?php
 								 
 										 echo 'You entered invalid information for the following fields: <br />';
-										global $data_missing;
-										 foreach($data_missing as $missing){
+										 foreach((array)$data_missing as $missing){
 											echo "$missing <br />";
 										 }
 								 ?>							  
