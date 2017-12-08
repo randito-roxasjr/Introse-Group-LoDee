@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -182,20 +185,25 @@
       <?php
       require_once('home_Agent_mysqli_connect.php');
 
-      $query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1, isManager FROM employee WHERE isManager = 0";
+      $query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1, isManager FROM employee WHERE managedBy = $_SESSION[employeeId]";
       $result = mysqli_query($dbc, $query);
       $agents = array();
+
       $curr = 0;
-          #parse data to strings
+          #INCREMENT ID LOOP
           while($data = mysqli_fetch_assoc($result)){
-            echo '<a href="#" class="list-group-item list-group-item-action" method="post" data-toggle="modal" data-target="#ModalLong1" name="' . $curr . '">' . $data['firstName'] . ' ' . $data['lastName'] . '</a>';
+            echo '<a href="#" class="list-group-item list-group-item-action" method="post" data-toggle="modal" data-target="#ModalLong'.$curr.'">' . $data['firstName'] . ' ' . $data['lastName'] . '</a>';
             array_push($agents, $data);
             $curr++;
           }
+          $curr=0;
       ?>
 
 			   <!-- Modal -->
-              <div class="modal fade" id="ModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+         <?php #INCREMENT MODAL ID LOOP 
+          foreach ($agents as $v):
+         ?>
+              <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <!-- Modal CONTENT-->
                   <div class="modal-content">
@@ -204,13 +212,14 @@
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                           </div>
 
-                          <div class="modal-body"> <label for="recipient-name" class="col-form-label">Agent Name: <?php echo $agents[$curr-1]['firstName']. ' '. $agents[$curr-1]['lastName']?></label>
+                          <div class="modal-body"> <label for="recipient-name" class="col-form-label">Agent Name: <?php echo $v['firstName']. ' '. $v['lastName']?></label>
                             <hr>
-                              <li>First name: <?php echo $agents[$curr-1]['firstName']?></li>
-        					                 <li>Last name: <?php echo $agents[$curr-1]['lastName']?></li>
-        					                      <li>Complete Address: <?php echo $agents[$curr-1]['addressLine1']?></li>
-        					                           <li>Email Address: <?php echo $agents[$curr-1]['email_address']?></li>
-        					                                <li>Contact Number: <?php echo $agents[$curr-1]['phoneNumber1']?></li>
+
+                              <li>First name: <?php echo $v['firstName']?></li>
+        					                 <li>Last name: <?php echo $v['lastName']?></li>
+        					                      <li>Complete Address: <?php echo $v['addressLine1']?></li>
+        					                           <li>Email Address: <?php echo $v['email_address']?></li>
+        					                                <li>Contact Number: <?php echo $v['phoneNumber1']?></li>
                               <!-- LIST OF CLIENTS -->
                               <?php
                                   require_once('home_Agent_mysqli_connect.php');
@@ -221,17 +230,18 @@
                                 <li>Client/s: <?php
                                               while($data = mysqli_fetch_assoc($clients)){
                                                     echo '<br>'.$data['firstName']. ' ' . $data['lastName'];
-                                              }?>
+                                              }
+                                              $curr++;
+                                              ?>
                                 </li>
                           </div>
                   						<hr>
                   						<input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
                     </div>  <!-- Modal CONTENT-->
-
-
                   </div>
-                </div>
+                </div> <!-- MODAL -->
 
+        <?php endforeach; ?>
 
               </div>
 		</div>

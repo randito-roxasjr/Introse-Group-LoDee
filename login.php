@@ -1,6 +1,3 @@
-<!-- This page allows an agent/employee to login into the website
-	by using valid login credentials(username and password) -->
-
 <?php
 session_start();
 $enable_header=false;
@@ -240,7 +237,7 @@ $enable_manager=false
   			if(($data["password"] == $password) && ($input_email == $email)){
   				#Session Variables
   				$_SESSION["logged_user"] = $data["firstName"] . ' ' . $data["lastName"];
-          $_SESSION["employeeId"] = $data["employeeId"];
+          $_SESSION['employeeId'] = $data["employeeId"];
 
           # Agent or Manager
           if ($data["isManager"] == 1){
