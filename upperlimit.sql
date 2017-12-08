@@ -103,6 +103,7 @@ CREATE TABLE `employee` (
   `email_address` varchar(45) NOT NULL,
   `password` varchar(15) NOT NULL,
   `isManager` tinyint(4) DEFAULT NULL,
+  `managedBy` int(11) DEFAULT NULL,
   PRIMARY KEY (`employeeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10015 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -113,7 +114,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0),(10014,'Edward','Tighe','EGI Taft Tower',NULL,NULL,'09175925863',NULL,'ed@gmail.com','0409',1);
+INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0,10014),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0,10014),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0,10014),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0,10014),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0,10014),(10014,'Edward','Tighe','EGI Taft Tower',NULL,NULL,'09175925863',NULL,'ed@gmail.com','0409',1,0);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +126,7 @@ DROP TABLE IF EXISTS `notification`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `notification` (
-  `notifId` int(11) NOT NULL,
+  `notifId` int(11) NOT NULL AUTO_INCREMENT,
   `employeeId` int(11) NOT NULL,
   `message` varchar(100) NOT NULL,
   `isRead` tinyint(4) NOT NULL,
@@ -154,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-03 17:19:32
+-- Dump completed on 2017-12-08 13:44:14
