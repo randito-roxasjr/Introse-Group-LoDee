@@ -1,5 +1,11 @@
+<!-- This page allows a client/employee to submit another car for a specific 
+	 client into the database. -->
+
 <?php 
   session_start();
+  $invalid_modal = false;
+  $change_page = false;
+   $data_missing = array();
 ?>
 <!DOCTYPE html>
 <html>
@@ -218,41 +224,40 @@
   if(isset($_POST['submit'])){
 
 
-    $data_missing = array();
     $employee_login = $_SESSION["employeeId"];
 
-    #optional variables
-    $house_address2 = NULL;
-    $phone_number2 = NULL;
-
     #each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-    if(empty($_POST['carmodel'])){
+    if(empty($_POST['carmodel']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carmodel']) or ctype_space($_POST['carmodel'])){
 
       $data_missing[] = "Car Model";
+	  $invalid_modal = true;
     }else{
 
       $car_model = trim($_POST['carmodel']);
     }
 
-    if(empty($_POST['carname'])){
+    if(empty($_POST['carname']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carname']) or ctype_space($_POST['carname'])){
 
       $data_missing[] = "Car Name";
+	  $invalid_modal = true;
     }else{
 
       $car_name = trim($_POST['carname']);
     }
 
-    if(empty($_POST['carmanufacturer'])){
+    if(empty($_POST['carmanufacturer'])  or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/123456789', $_POST['carname']) or ctype_space($_POST['carmanufacturer'])){
 
       $data_missing[] = "Car Manufacturer";
+	  $invalid_modal = true;
     }else{
 
       $car_manufacturer = trim($_POST['carmanufacturer']);
     }
 
-    if(empty($_POST['carvalue'])){
+    if(empty($_POST['carvalue']) or ($_POST['carmodel'] < 0)){
 
       $data_missing[] = "Car Value";
+	  $invalid_modal = true;
     }else{
 
       $car_value = trim($_POST['carvalue']);
@@ -281,16 +286,9 @@
     //   echo "Error: " . mysqli_error($dbc);
     // }
 
+		$change_page = true;
 
-
-    }else{
-      echo 'You need to enter the following information <br />';
-
-      foreach($data_missing as $missing){
-        echo "$missing <br />";
-      }
     }
-
 
 
 
@@ -303,9 +301,41 @@
 
 
 
+<!-- invalid input for first_name -->
+						<div class="modal fade" id="invalidFN" tabindex="-1" role="dialog" aria-labelledby="invalidFN" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="takenEM" style="color: black">Oops!</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+							  </div>
+							  <div class="modal-body" style="color: black">
+								<p>
+								 <?php
+								 
+										 echo 'You entered invalid information for the following fields: <br />';
+										global $data_missing;
+										 foreach((array)$data_missing as $missing){
+											echo "$missing <br />";
+										 }
+								 ?>							  
+								</p>
+							  </div>
+							</div>
+						  </div>
+						</div>  
 
-
-
+ <?php if($invalid_modal) : ?>
+    <script>
+      $("#invalidFN").modal()
+    </script>	
+ <?php endif; ?>
+ 
+  <?php if($change_page) : ?>
+      <script>
+       window.location = "carAdded.php";
+      </script>
+  <?php endif; ?>
 
 
 

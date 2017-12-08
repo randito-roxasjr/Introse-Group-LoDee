@@ -1,6 +1,7 @@
 <?php
   session_start();
   $enable_header = false;
+  $invalid_name = false;
 ?>
 
 <!DOCTYPE html>
@@ -14,12 +15,75 @@
     #brand:hover {
 		text-shadow: 2px 2px #000000;
     }
-    #login:hover, #home:hover{
+    #login:hover, #home:hover, #myBtn:hover {
 		background-color: rgba(0, 0, 0, 0.3);
     }
 
 	#eye{
 		cursor:pointer;
+	}
+
+	#myBtn {
+		display: none;
+		position: fixed;
+		bottom: 20px;
+		right: 30px;
+		z-index: 99;
+		border: none;
+		outline: none;
+		background-color: #087830;
+		color: white;
+		cursor: pointer;
+		padding: 15px;
+		border-radius: 10px;
+	}
+
+	/* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+	  z-index: 1;
+      /* Sit on top */
+      padding-top: 10px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,.close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+	#modal-body {
+		font-color: black;
 	}
 
   </style>
@@ -63,7 +127,7 @@
                   <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required> </div>
 
                 <div class="form-group"> <label>Complete Address</label>
-                    <input type="text" class="form-control" name="address" size="50" placeholder="Enter Email" required> </div>
+                    <input type="text" class="form-control" name="address" size="50" placeholder="Enter Address" required> </div>
 
                 <div class="form-group"> <label>Email Address</label>
                   <input type="email" class="form-control" name="user_email" placeholder="Enter Email" required> </div>
@@ -109,7 +173,7 @@
 				<!-- Modals -->
 
 				<!-- Email already taken -->
-				<div class="modal fade" id="takenEM" tabindex="-1" role="dialog" aria-labelledby="takenEM" aria-hidden="true">
+				<div class="modal" id="takenEM" tabindex="-1" role="dialog" aria-labelledby="takenEM" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
@@ -127,7 +191,7 @@
 				</div>
 
 				<!-- Passwords don't match -->
-				<div class="modal fade" id="wrongPW" tabindex="-1" role="dialog" aria-labelledby="wrongPW" aria-hidden="true">
+				<div class="modal" id="wrongPW" tabindex="-1" role="dialog" aria-labelledby="wrongPW" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
@@ -143,6 +207,8 @@
 					</div>
 				  </div>
 				</div>
+
+
               </form>
 
 
@@ -159,36 +225,34 @@
 
   <!--PHP SECTION-->
   <?php
-  	$servername = "localhost";
-  	$username = "root";
-  	$password = "1234";
+  	require_once('home_Agent_mysqli_connect.php');
 
-  	#connect
-  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
-  	#### Inserting Data
+    #### Inserting Data
     $wrong_email = false;
     $wrong_pass = false;
   	if (isset($_POST['send_info'])){
   		$empty_data = array();
   		#Get first name
-  		if(empty($_POST['first_name']) or !ctype_alpha(($_POST['first_name']))){ 
-  			$empty_data[] = 'first name';
+  		if(empty($_POST['first_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['first_name']) or ctype_space($_POST['first_name'])){
+  			$empty_data[] = 'First Name';
+			$invalid_name = true;
   		}
   		else{
   			#Remove white space and store
   			$first_name = trim($_POST['first_name']);
   		}
   		#Get last name
-  		if(empty($_POST['last_name'] or !ctype_alpha(($_POST['last_name'])))){
-  			$empty_data[] = 'last name';
+  		if(empty($_POST['last_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['last_name']) or ctype_space($_POST['last_name'])){
+  			$empty_data[] = 'Last Name';
+			$invalid_name = true;
   		}
   		else{
   			#Remove white space and store
   			$last_name = trim($_POST['last_name']);
   		}
   		#Get complete address
-  		if(empty($_POST['address']) or !ctype_alnum($_POST['address'])){
-  			$empty_data[] = 'address';
+  		if(empty($_POST['address']) or ctype_space($_POST['address'])){
+  			$empty_data[] = 'Address';
   		}
   		else{
   			#Remove white space and store
@@ -196,7 +260,7 @@
   		}
   		#Get EMAIL
   		if(empty($_POST['user_email'])){
-  			$empty_data[] = 'email';
+  			$empty_data[] = 'Email Address';
   		}
   		else{
   			#Remove white space and store
@@ -223,7 +287,8 @@
   		}
   		#GET CONTACT DETAILS
   		if(empty($_POST['contact_num']) or !ctype_digit($_POST['contact_num'])){
-  			$empty_data[] = 'contact number';
+  			$empty_data[] = 'Contact number';
+			$invalid_name = true;
   		}
   		else{
   			#Remove white space and store
@@ -239,13 +304,21 @@
   				mysqli_close($dbc);
   			}
 
-        $query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
+        $query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager, managedBy) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0, 10014)";
         $result = mysqli_query($dbc, $query);
 
         if($result){
+          #GET RECENT ID
+          $query = "SELECT employeeId FROM employee WHERE email_address='$email_address' limit 1";
+          $result = mysqli_query($dbc, $query);
+          $data = mysqli_fetch_assoc($result);
+
+          $message = 'Registration by: <br>' . $first_name . ' ' . $last_name;
+          #INSERT INTO NOTIFICATION TABLE
+          $query = "INSERT INTO notification (employeeId, message, isRead, timeCreated, isApproved) VALUES ('$data', '$message', 0, date('h:i:sa'), 0)";
+          $result = mysqli_query($dbc, $query);
+
           $enable_header = true;
-          echo 'Employee registered';
-  				#mysqli_stmt_close($result);
   				mysqli_close($dbc);
   			}
   			else{
@@ -255,14 +328,32 @@
   				mysqli_close($dbc);
   			}
   		}
-  		else{
-  			echo "Enter required Data<br />";
-  			foreach($empty_data as $missing){
-  					echo $missing;
-  				}
-  		}
   	}
   ?>
+
+  <!-- invalid input for first_name -->
+						<div class="modal" id="invalidFN" tabindex="-1" role="dialog" aria-labelledby="invalidFN" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="takenEM" style="color: black">Oops!</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+							  </div>
+							  <div class="modal-body" style="color: black">
+								<p>
+								 <?php
+
+										 echo 'You entered invalid information for the following fields: <br />';
+
+										 foreach($empty_data as $missing){
+										 echo "$missing <br />";
+										 }
+								 ?>
+								</p>
+							  </div>
+							</div>
+						  </div>
+						</div>
 
   <!--Show modals-->
   <?php if($wrong_pass) : ?>
@@ -272,6 +363,10 @@
   <?php elseif($wrong_email) : ?>
     <script>
       $("#takenEM").modal()
+    </script>
+  <?php elseif($invalid_name) : ?>
+    <script>
+      $("#invalidFN").modal()
     </script>
   <?php endif;?>
 
