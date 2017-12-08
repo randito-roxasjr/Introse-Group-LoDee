@@ -227,7 +227,7 @@
     $employee_login = $_SESSION["employeeId"];
 
     #each one of these looks for a value from the html form, if it is not there, it gets added to data_missing
-    if(empty($_POST['carmodel']) or ctype_space($_POST['carmodel'])){
+    if(empty($_POST['carmodel']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carmodel']) or ctype_space($_POST['carmodel'])){
 
       $data_missing[] = "Car Model";
 	  $invalid_modal = true;
@@ -236,7 +236,7 @@
       $car_model = trim($_POST['carmodel']);
     }
 
-    if(empty($_POST['carname']) or ctype_space($_POST['carname'])){
+    if(empty($_POST['carname']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carname']) or ctype_space($_POST['carname'])){
 
       $data_missing[] = "Car Name";
 	  $invalid_modal = true;
@@ -245,7 +245,7 @@
       $car_name = trim($_POST['carname']);
     }
 
-    if(empty($_POST['carmanufacturer']) or ctype_space($_POST['carmanufacturer'])){
+    if(empty($_POST['carmanufacturer'])  or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/123456789', $_POST['carname']) or ctype_space($_POST['carmanufacturer'])){
 
       $data_missing[] = "Car Manufacturer";
 	  $invalid_modal = true;

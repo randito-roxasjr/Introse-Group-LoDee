@@ -331,7 +331,7 @@ $data_missing = array();
 		$phone_number2 = NULL;
 
 		#each one of these looks for a value from the html form, if it is not there or if it is invalid, it gets added to data_missing
-		if(empty($_POST['firstname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])  or ctype_space($_POST['firstname'])){
+		if(empty($_POST['firstname']) or preg_match('/[!\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['firstname'])  or ctype_space($_POST['firstname'])){
 
 			$data_missing[] = "First Name";
 			$modal1 = true;
@@ -340,7 +340,7 @@ $data_missing = array();
 			$first_name = trim($_POST['firstname']);
 		}
 
-		if(empty($_POST['lastname']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['lastname'])  or ctype_space($_POST['lastname'])){
+		if(empty($_POST['lastname']) or preg_match('/[!\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['lastname'])  or ctype_space($_POST['lastname'])){
 
 			$data_missing[] = "Last Name";
 			$modal1 = true;
@@ -362,9 +362,11 @@ $data_missing = array();
 		if(!empty($_POST['address2']) and !ctype_space($_POST['address2'])){
 
 			$house_address2 = trim($_POST['address2']);
+		}else if (ctype_space($_POST['address2'])){
+			$data_missing[] = "Address Line 2";
 		}
 
-		if(empty($_POST['province']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])  or ctype_space($_POST['province'])){
+		if(empty($_POST['province']) or preg_match('/[!\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])  or ctype_space($_POST['province'])){
 
 			$data_missing[] = "Province";
 			$modal1 = true;
@@ -373,7 +375,7 @@ $data_missing = array();
 			$client_province = trim($_POST['province']);
 		}
 
-		if(empty($_POST['city']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['city'])  or ctype_space($_POST['city'])){
+		if(empty($_POST['city']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['city'])  or ctype_space($_POST['city'])){
 
 			$data_missing[] = "City";
 			$modal1 = true;
@@ -391,7 +393,7 @@ $data_missing = array();
 			$client_postalcode = trim($_POST['postalcode']);
 		}
 
-		if(empty($_POST['carmodel'] or ctype_space($_POST['carmodel']))){
+		if(empty($_POST['carmodel'] or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carmodel']) or ctype_space($_POST['carmodel']))){
 
 			$data_missing[] = "Car Model";
 			$modal1 = true;
@@ -400,7 +402,7 @@ $data_missing = array();
 			$car_model = trim($_POST['carmodel']);
 		}
 
-		if(empty($_POST['carname']) or ctype_space($_POST['carname'])){
+		if(empty($_POST['carname']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carname']) or ctype_space($_POST['carname'])){
 
 			$data_missing[] = "Car Name";
 			$modal1 = true;
@@ -409,7 +411,7 @@ $data_missing = array();
 			$car_name = trim($_POST['carname']);
 		}
 
-		if(empty($_POST['carmanufacturer']) or ctype_space($_POST['address1'])){
+		if(empty($_POST['carmanufacturer']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/1234567890', $_POST['carmanufacturer']) or ctype_space($_POST['carmanufacturer'])){
 
 			$data_missing[] = "Car Manufacturer";
 			$modal1 = true;
@@ -440,7 +442,10 @@ $data_missing = array();
 		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])  and !ctype_space($_POST['phonenumber2'])){
 
 			$phone_number2 = trim($_POST['phonenumber2']);
+		}else if(!ctype_digit($_POST['phonenumber2'] or !ctype_space($_POST['phonenumber2']))){
+			$data_missing[] = "Phone Number 2";
 		}
+	
 		
 		if(empty($_POST['emailaddress']  or ctype_space($_POST['emailaddress']))){
 
@@ -488,7 +493,7 @@ $data_missing = array();
 			#searches for the clientId to put with the carinfo
 			$query3 = "SELECT clientId from client WHERE lastName='$last_name' limit 1";
 			
-			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated) VALUES('$employee_login','$notifmessage','0','$time_now')";
+			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated,isApproved) VALUES('$employee_login','$notifmessage','0','$time_now','0')";
 
 			$stmt1 = mysqli_query($dbc,$query1);
 
