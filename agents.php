@@ -185,7 +185,7 @@
       <?php
       require_once('home_Agent_mysqli_connect.php');
 
-      $query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1, isManager FROM employee WHERE managedBy = $_SESSION[employeeId]";
+      $query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1, isManager FROM employee WHERE managedBy = $_SESSION[employeeId] ORDER BY firstName";
       $result = mysqli_query($dbc, $query);
       $agents = array();
 
@@ -200,7 +200,7 @@
       ?>
 
 			   <!-- Modal -->
-         <?php #INCREMENT MODAL ID LOOP 
+         <?php #INCREMENT MODAL ID LOOP
           foreach ($agents as $v):
          ?>
               <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -223,7 +223,7 @@
                               <!-- LIST OF CLIENTS -->
                               <?php
                                   require_once('home_Agent_mysqli_connect.php');
-                                  $query = "SELECT c.firstName, c.lastName, e.employeeId, c.employeeId FROM client c, employee e WHERE (e.employeeId = c.employeeId)";
+                                  $query = "SELECT firstName, lastName, employeeId FROM client WHERE (employeeId = $v[employeeId])";
                                   $clients = mysqli_query($dbc, $query);
                               ?>
                                 <!-- SHOW ALL CLIENTS -->
