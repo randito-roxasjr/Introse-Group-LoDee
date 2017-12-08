@@ -18,32 +18,32 @@
     #login:hover, #home:hover, #myBtn:hover {
 		background-color: rgba(0, 0, 0, 0.3);
     }
-	
+
 	#eye{
-		cursor:pointer;		
+		cursor:pointer;
 	}
-	
+
 	#myBtn {
 		display: none;
-		position: fixed; 
-		bottom: 20px; 
-		right: 30px; 
-		z-index: 99; 
-		border: none; 
-		outline: none; 
-		background-color: #087830; 
-		color: white; 
-		cursor: pointer; 
-		padding: 15px; 
-		border-radius: 10px; 
+		position: fixed;
+		bottom: 20px;
+		right: 30px;
+		z-index: 99;
+		border: none;
+		outline: none;
+		background-color: #087830;
+		color: white;
+		cursor: pointer;
+		padding: 15px;
+		border-radius: 10px;
 	}
-	
-	/* The Modal (background) */	
+
+	/* The Modal (background) */
     .modal {
       display: none;
       /* Hidden by default */
       position: fixed;
-      /* Stay in place */   
+      /* Stay in place */
 	  z-index: 1;
       /* Sit on top */
       padding-top: 10px;
@@ -67,7 +67,7 @@
       margin: auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%;	  
+      width: 80%;
     }
     /* The Close Button */
     .close {
@@ -81,11 +81,11 @@
       text-decoration: none;
       cursor: pointer;
     }
-	
+
 	#modal-body {
-		font-color: black;		
+		font-color: black;
 	}
-	
+
   </style>
 </head>
 
@@ -207,8 +207,8 @@
 					</div>
 				  </div>
 				</div>
-				
-				  
+
+
               </form>
 
 
@@ -225,19 +225,15 @@
 
   <!--PHP SECTION-->
   <?php
-  	$servername = "localhost";
-  	$username = "root";
-  	$password = "1234";
+  	require_once('home_Agent_mysqli_connect.php')
 
-  	#connect
-  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
-  	#### Inserting Data
+    #### Inserting Data
     $wrong_email = false;
     $wrong_pass = false;
   	if (isset($_POST['send_info'])){
   		$empty_data = array();
   		#Get first name
-  		if(empty($_POST['first_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['first_name'] or ctype_space($_POST['first_name']))){ 
+  		if(empty($_POST['first_name']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['first_name'] or ctype_space($_POST['first_name']))){
   			$empty_data[] = 'First Name';
 			$invalid_name = true;
   		}
@@ -308,13 +304,21 @@
   				mysqli_close($dbc);
   			}
 
-        $query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0)";
+        $query = "INSERT INTO Employee (firstName, lastName, addressLine1, phoneNumber1, email_address, password, isManager, managedBy) VALUES ('$first_name', '$last_name', '$address', '$contact_num', '$email_address', '$user_password', 0, 10014)";
         $result = mysqli_query($dbc, $query);
 
         if($result){
+          #GET RECENT ID
+          $query = "SELECT employeeId FROM employee WHERE email_address='$email_address' limit 1";
+          $result = mysqli_query($dbc, $query);
+          $data = mysqli_fetch_assoc($result);
+
+          $message = 'Registration by: <br>' . $first_name . ' ' . $last_name;
+          #INSERT INTO NOTIFICATION TABLE
+          $query = "INSERT INTO notification (employeeId, message, isRead, timeCreated, isApproved) VALUES ('$data', '$message', 0, date('h:i:sa'), 0)";
+          $result = mysqli_query($dbc, $query);
+
           $enable_header = true;
-          echo 'Employee registered';
-  				#mysqli_stmt_close($result);
   				mysqli_close($dbc);
   			}
   			else{
@@ -326,7 +330,7 @@
   		}
   	}
   ?>
-  
+
   <!-- invalid input for first_name -->
 						<div class="modal" id="invalidFN" tabindex="-1" role="dialog" aria-labelledby="invalidFN" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -338,13 +342,13 @@
 							  <div class="modal-body" style="color: black">
 								<p>
 								 <?php
-								 
+
 										 echo 'You entered invalid information for the following fields: <br />';
 
 										 foreach($empty_data as $missing){
 										 echo "$missing <br />";
 										 }
-								 ?>							  
+								 ?>
 								</p>
 							  </div>
 							</div>
