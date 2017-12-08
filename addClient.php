@@ -362,6 +362,8 @@ $data_missing = array();
 		if(!empty($_POST['address2']) and !ctype_space($_POST['address2'])){
 
 			$house_address2 = trim($_POST['address2']);
+		}else if (ctype_space($_POST['address2'])){
+			$data_missing[] = "Address Line 2";
 		}
 
 		if(empty($_POST['province']) or preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])  or ctype_space($_POST['province'])){
@@ -440,7 +442,10 @@ $data_missing = array();
 		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])  and !ctype_space($_POST['phonenumber2'])){
 
 			$phone_number2 = trim($_POST['phonenumber2']);
+		}else if(!ctype_digit($_POST['phonenumber2'] or !ctype_space($_POST['phonenumber2']))){
+			$data_missing[] = "Phone Number 2";
 		}
+	
 		
 		if(empty($_POST['emailaddress']  or ctype_space($_POST['emailaddress']))){
 
