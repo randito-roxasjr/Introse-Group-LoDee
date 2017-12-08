@@ -1,3 +1,6 @@
+<!-- This page allows an agent/employee to login into the website
+	by using valid login credentials(username and password) -->
+
 <?php
 session_start();
 $enable_header=false;

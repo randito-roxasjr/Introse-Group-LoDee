@@ -1,39 +1,24 @@
-<!-- This page lets the agent/employee know if they successfully submitted
-	a client to the database -->
-
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <style>
-    nav {
+    nav, #container, button{
       background-color: #087830;
     }
-
+	
     #brand:hover {
       text-shadow: 2px 2px #000000;
     }
-
-    #login:hover, #home:hover{
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-
-	nav, #container, button{
-      background-color: #087830;
-    }
-
+	
 	#inbox:hover, #notifications:hover, #logout:hover, #myBtn:hover {
       background-color: rgba(0, 0, 0, 0.3);
-    }
-
-	a:hover {
+    }	
+	
+	#addCar:hover, #clientList:hover, #home:hover{
       background-color: rgba(0, 0, 0, 0.3);
     }
-  </style>
+  </style>  
 </head>
 
 <body>
@@ -45,22 +30,25 @@ session_start();
   <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a id="brand" class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
+      <a id="brand" class="navbar-brand" href="home_Agent.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
+		  <li class="nav-item">
+            <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+          </li>
           <li class="nav-item">
             <div class="btn-group">
               <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
 				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
 				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications
+					Notifications 
 			  </button>
               <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>
+				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>                
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>
+                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>                
                 <div class="dropdown-divider"></div>
                 <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
@@ -77,16 +65,13 @@ session_start();
         <div class="col-md-3"> </div>
         <div class="col-md-6">
           <div class="card text-white p-5" style="background-color: #087830">
-            <div class="card-body">
-              <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Good Work!</h2>
-              <div class="form-group">
-				<p class="text-center">Client info and Transaction details successfully sent</p>
-				<br>
+            <div class="card-body">			
+              <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Car Successfully Added!</h2>
+              <div class="form-group"> 				
 					<center>
-						<br>
-						<a id="addClient" class="btn text-white" href="addClient.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-o"></i> Add Client</a>
-						<a id="editClient" class="btn text-white" href="editClient.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-edit"></i> Edit Client</a>
-					</center>
+						<a id="addCar" class="btn text-white" href="carList.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-car"></i> Add another car?</a>						
+						<a id="clientList" class="btn text-white" href="pickClient.php" style="font-size: 20px"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Back to Client List</a>
+					</center>		
 			  </div>
             </div>
           </div>
@@ -94,11 +79,11 @@ session_start();
       </div>
     </div>
   </div>
-  </div>
+  </div>  
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
+	
 	
 </body>
 

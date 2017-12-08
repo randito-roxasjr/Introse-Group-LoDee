@@ -188,6 +188,8 @@
 							window.onload = function () {
 								DisplayCurrentTime();
 							};
+							
+							
 							function DisplayCurrentTime() {
 								var date = new Date();
 								var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
