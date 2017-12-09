@@ -152,6 +152,8 @@
 
 
         <div class="ScrollStyle">
+          <div class="card-body">
+            <ul class="notifications">
                   <!-- QUERY Notifications -->
                   <!--NOTIFICATION CONTENT-->
 
@@ -170,8 +172,8 @@
                   # LOOP PRINTING OF DATA IN NOTIFICATIONS
                   while($data1 = mysqli_fetch_assoc($result1)){
                       #echo '<div class="ScrollStyle">';
-                      echo '<div class="card-body">';
-                      echo '<ul class="notifications">';
+                    #  echo '<div class="card-body">';
+                    #  echo '<ul class="notifications">';
                       echo '<li class="notification">';
                       echo '<button class="notifs" data-toggle="modal" data-target="#ModalLong'.$curr.'" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">';
                       echo '<div class="media">';
@@ -194,14 +196,14 @@
                   #REINITIALIZE ID COUNTER TO ZERO
                   $curr = 0;
                   ?>
-
+            </div>
         </div>
               <?php #INCREMENT MODAL ID LOOP FOR MODAL TARGET
                 foreach ($notifications as $v):
               ?>
 
                         <!-- MODAL ID ASSIGNMENT -->
-                        <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal fade" <?php if($v['notifType'] == 1):?>id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
                           <!-- MODAL ID NEW Clients -->
                           <div class="modal-dialog" role="document">
@@ -247,6 +249,47 @@
                             </div>
                           </div>
                         </div> <!-- MODAL ID ASSIGNMENT -->
+
+
+                        <!-- MODAL FOR NEW AGENT DETAILS -->
+                          <div class="modal fade" <?php elseif($v['notifType'] == 0) : ?>id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+
+
+                              <?php
+                                # QUERY AGENT DETAILS
+                                require_once('home_Agent_mysqli_connect.php');
+
+                                $agent_query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1 FROM employee WHERE $v[employeeId] = employeeId limit 1";
+                                $agent_result = mysqli_query($dbc, $agent_query);
+                                $agent_data = mysqli_fetch_assoc($agent_result);
+
+                              ?>
+
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h3 class="modal-title" id="exampleModalLongTitle">Pending Agent Registration</h3>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                                </div>
+                                <div class="modal-body"> <label for="recipient-name" class="col-form-label">Applicant: <?php echo $agent_data['firstName'] . ' '. $agent_data['lastName']; ?></label>
+                                  <br>
+                                  <hr>
+                                      <h4>Agent Info</h4>
+                                      <br>
+                                      <li>First name: <?php echo $agent_data['firstName']; ?></li>
+                                      <li>Last name: <?php echo $agent_data['lastName']; ?></li>
+                                      <li>Contact Details: <?php echo $agent_data['phoneNumber1']; ?></li>
+                                      <li>Complete Address: <?php echo $agent_data['addressLine1']; ?></li>
+                                      <li>Email: <?php echo $agent_data['email_address']; ?></li>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                                  <input onclick="location.href='insuranceCost.html';" type="button" class="btn btn-success" value="Confirm"/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  		   <!-- MODAL FOR NEW AGENT DETAILS -->
+                          <?php endif;?>
 
             <?php
                   #INCREMENT MODAL ID LOOP FOR MODAL TARGET
