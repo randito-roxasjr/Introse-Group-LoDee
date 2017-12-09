@@ -128,6 +128,7 @@ DROP TABLE IF EXISTS `notification`;
 CREATE TABLE `notification` (
   `notifId` int(11) NOT NULL AUTO_INCREMENT,
   `employeeId` int(11) NOT NULL,
+  `clientId` int(11) unsigned DEFAULT NULL,
   `message` varchar(100) NOT NULL,
   `isRead` tinyint(4) NOT NULL,
   `timeCreated` datetime NOT NULL,
@@ -145,7 +146,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (1,10024,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0,0),(3,10001,'Confirmed Agent Registration by Manager ',0,'2017-12-08 10:05:30',1,2),(4,10001,'Client Michael Faustino paid 50,000 php for Hyundai Starex 2017',0,'2017-12-08 10:25:30',0,1);
+INSERT INTO `notification` VALUES (1,10024,NULL,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,NULL,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0,0),(3,10001,NULL,'Confirmed Agent Registration by Manager ',0,'2017-12-08 10:05:30',1,2),(4,10001,10,'Client Brettman Rock paid 50,000 php for Hyundai Starex 2017',0,'2017-12-08 10:25:30',0,1);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-09 21:40:11
+-- Dump completed on 2017-12-09 23:12:09
