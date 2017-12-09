@@ -161,7 +161,7 @@
               require_once('home_Agent_mysqli_connect.php');
 
               # query
-              $query = "SELECT COUNT(*) as 'NUM' FROM notification";
+              $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType < 2";
               $result = mysqli_query($dbc, $query);
               $data = mysqli_fetch_assoc($result);
 
@@ -177,7 +177,7 @@
               <!-- NOTIFICATION Data -->
               <?php
 
-              $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] ORDER BY n.timeCreated";
+              $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] and notifType < 2 and n.isApproved = 0 ORDER BY n.timeCreated";
               $result1 = mysqli_query($dbc, $query1);
 
                   #INCREMENT ID LOOP

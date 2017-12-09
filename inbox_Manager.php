@@ -148,8 +148,10 @@
     <div class="row">
       <div class="col-md-3"> </div>
       <div class="card text-black p-1" style="background-color:#EBEBEB">
-        <h2>Notifications</h2>
+        <h2 align="center">Notifications</h2>
 
+
+        <div class="ScrollStyle">
                   <!-- QUERY Notifications -->
                   <!--NOTIFICATION CONTENT-->
 
@@ -158,7 +160,7 @@
                   require_once('home_Agent_mysqli_connect.php');
 
                   # query
-                  $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] ORDER BY n.timeCreated";
+                  $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] and notifType < 2 and n.isApproved = 0 ORDER BY n.timeCreated";
                   $result1 = mysqli_query($dbc, $query1);
 
                   $notifications = array();
@@ -167,7 +169,7 @@
 
                   # LOOP PRINTING OF DATA IN NOTIFICATIONS
                   while($data1 = mysqli_fetch_assoc($result1)){
-                      echo '<div class="ScrollStyle">';
+                      #echo '<div class="ScrollStyle">';
                       echo '<div class="card-body">';
                       echo '<ul class="notifications">';
                       echo '<li class="notification">';
@@ -181,7 +183,7 @@
                       echo '<p class="notification-desc" placeholder="Additional details"></p>';
                       echo '<div class="notification-meta"> <small class="timestamp">'.$data1["timeCreated"].'</small><br><br></div>';
                       echo '</div>';
-                      echo '</div>';
+                      #echo '</div>';
                       echo '</button>';
                       echo '</li>';
                       # PUSH TO ARRAY
@@ -193,6 +195,7 @@
                   $curr = 0;
                   ?>
 
+        </div>
               <?php #INCREMENT MODAL ID LOOP FOR MODAL TARGET
                 foreach ($notifications as $v):
               ?>
