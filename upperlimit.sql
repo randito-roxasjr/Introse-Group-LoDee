@@ -71,7 +71,7 @@ CREATE TABLE `client` (
   PRIMARY KEY (`clientId`),
   KEY `fk_Client_Agent_idx` (`employeeId`),
   CONSTRAINT `fk_Client_Agent` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +105,7 @@ CREATE TABLE `employee` (
   `isManager` tinyint(4) DEFAULT NULL,
   `managedBy` int(11) DEFAULT NULL,
   PRIMARY KEY (`employeeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10015 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10025 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +114,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0,10014),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0,10014),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0,10014),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0,10014),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0,10014),(10014,'Edward','Tighe','EGI Taft Tower',NULL,NULL,'09175925863',NULL,'ed@gmail.com','0409',1,0);
+INSERT INTO `employee` VALUES (10001,'Randi','Roxas','Makati',NULL,NULL,'12345',NULL,'randi@gmail.com','randitoroxas',0,10014),(10002,'Kent','Regalado','Batangas',NULL,NULL,'67890',NULL,'kent@gmail.com','kentregs',0,10014),(10003,'Joe','Catarata','Paranaque',NULL,NULL,'11223',NULL,'joe@gmail.com','joesam',0,10014),(10004,'Karl','Cirilos','Manila',NULL,NULL,'44556',NULL,'karl@gmail.com','karlangelo',0,10014),(10005,'Naruto','Uzumaki','Hidden Leaf',NULL,NULL,'77889',NULL,'naruto@gmail.com','narutouzumaki',0,10014),(10014,'Edward','Tighe','EGI Taft Tower',NULL,NULL,'09175925863',NULL,'ed@gmail.com','0409',1,0),(10024,'Rachel','Roxas','Espana',NULL,NULL,'09996731517',NULL,'rachel@gmail.com','randi',0,10014);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,10 +131,11 @@ CREATE TABLE `notification` (
   `message` varchar(100) NOT NULL,
   `isRead` tinyint(4) NOT NULL,
   `timeCreated` datetime NOT NULL,
+  `isApproved` tinyint(1) NOT NULL,
   PRIMARY KEY (`notifId`),
   KEY `employeeId_idx` (`employeeId`),
   CONSTRAINT `employeeId` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,6 +144,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+INSERT INTO `notification` VALUES (1,10024,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0),(2,10001,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -155,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-08 13:44:14
+-- Dump completed on 2017-12-08 18:50:46

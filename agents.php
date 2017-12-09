@@ -154,16 +154,39 @@
 		  <ul class="navbar-nav">
           <li class="nav-item">
             <div class="btn-group">
-              <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
-				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
-				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications
-			  </button>
+
+              <!-- QUERY Notifications -->
+              <?php
+              # Connect to Database
+              require_once('home_Agent_mysqli_connect.php');
+
+              # query
+              $query = "SELECT COUNT(*) as 'NUM' FROM notification";
+              $result = mysqli_query($dbc, $query);
+              $data = mysqli_fetch_assoc($result);
+
+              ?>
+
+              <!-- NOTIFICATION BUTTON -->
+                  <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
+                      <i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
+                          <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red"><?php echo $data['NUM'];?></span>
+                               Notifications
+                  </button>
               <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Jonathan Wilson</a> recently sent <a href="#">Transaction #1</a></center></a></a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Brian Imanuel</a> recently sent <a href="#">Transaction #2</a></center></a></a>
-                <div class="dropdown-divider"></div>
+              <!-- NOTIFICATION Data -->
+              <?php
+
+              $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated FROM employee e, notification n WHERE e.employeeId = n.employeeId ORDER BY n.timeCreated";
+              $result1 = mysqli_query($dbc, $query1);
+
+                  #INCREMENT ID LOOP
+                  while($data1 = mysqli_fetch_assoc($result1)){
+                    echo '<a class="dropdown-item text-center"><center><a href="#">'.$data1["firstName"].' '.$data1["lastName"].'</a>'. ': '. $data1["message"]. '<a href="#"></a></center></a></a>';
+                    echo '<div class="dropdown-divider"></div>';
+                  }
+              ?>
+
                 <a style="color: #087830" href="inbox_manager.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
             </div>

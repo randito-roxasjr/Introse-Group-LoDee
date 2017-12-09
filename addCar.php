@@ -245,7 +245,7 @@
       $car_name = trim($_POST['carname']);
     }
 
-    if(empty($_POST['carmanufacturer'])  or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/123456789', $_POST['carname']) or ctype_space($_POST['carmanufacturer'])){
+    if(empty($_POST['carmanufacturer'])  or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['carmanufacturer']) or ctype_space($_POST['carmanufacturer'])){
 
       $data_missing[] = "Car Manufacturer";
 	  $invalid_modal = true;
