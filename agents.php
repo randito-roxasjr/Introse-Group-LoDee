@@ -177,7 +177,7 @@
               <!-- NOTIFICATION Data -->
               <?php
 
-              $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated FROM employee e, notification n WHERE e.employeeId = n.employeeId ORDER BY n.timeCreated";
+              $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] ORDER BY n.timeCreated";
               $result1 = mysqli_query($dbc, $query1);
 
                   #INCREMENT ID LOOP
@@ -187,7 +187,7 @@
                   }
               ?>
 
-                <a style="color: #087830" href="inbox_manager.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+                <a style="color: #087830" href="inbox_manager.php" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
             </div>
 		  </li>
@@ -223,7 +223,7 @@
       ?>
 
 			   <!-- Modal -->
-         <?php #INCREMENT MODAL ID LOOP
+         <?php #INCREMENT MODAL ID LOOP FOR MODAL TARGET
           foreach ($agents as $v):
          ?>
               <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
