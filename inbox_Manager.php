@@ -202,12 +202,15 @@
 
                         <!-- MODAL ID ASSIGNMENT -->
                         <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+                          <!-- MODAL ID NEW Clients -->
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                               </div>
+
                               <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Jonathan Wilson</label>
                                 <br>
                                 <hr>
@@ -247,6 +250,7 @@
 
             <?php
                   #INCREMENT MODAL ID LOOP FOR MODAL TARGET
+                  $curr++;
                   endforeach;
             ?>
 
