@@ -395,7 +395,7 @@ $data_missing = array();
 			$client_postalcode = trim($_POST['postalcode']);
 		}
 
-		if(empty($_POST['carmodel'] or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carmodel']) or ctype_space($_POST['carmodel']))){
+		if(empty($_POST['carmodel']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/', $_POST['carmodel']) or ctype_space($_POST['carmodel'])){
 
 			$data_missing[] = "Car Model";
 			$modal1 = true;
