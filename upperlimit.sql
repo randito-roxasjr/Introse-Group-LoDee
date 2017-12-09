@@ -80,7 +80,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (8,10001,'Amanda','Cerny',NULL,'Jazz Residences',NULL,'Manila','Makati',NULL,'09175925863',NULL,''),(9,10001,'Megan','Fox',NULL,'Manila Residences',NULL,'Manila','Malate',NULL,'09175925863',NULL,'');
+INSERT INTO `client` VALUES (8,10001,'Amanda','Cerny',NULL,'Jazz Residences',NULL,'Manila','Makati',NULL,'09175925863',NULL,'amanda@gmail.com'),(9,10001,'Megan','Fox',NULL,'Manila Residences',NULL,'Manila','Malate',NULL,'09175925863',NULL,'megan@gmail.com'),(10,10003,'Brettman','Rock',NULL,'Las Pinas',NULL,'Manila','Manila',NULL,'09111111111',NULL,'brett@gmail.com');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,10 +132,11 @@ CREATE TABLE `notification` (
   `isRead` tinyint(4) NOT NULL,
   `timeCreated` datetime NOT NULL,
   `isApproved` tinyint(1) NOT NULL,
+  `notifType` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`notifId`),
   KEY `employeeId_idx` (`employeeId`),
   CONSTRAINT `employeeId` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +145,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (1,10024,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0),(2,10001,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0);
+INSERT INTO `notification` VALUES (1,10024,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',1,0),(3,10014,'Confirmed Agent Registration by Manager ',0,'2017-12-08 10:05:30',1,2);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -157,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-08 18:50:46
+-- Dump completed on 2017-12-09 19:14:14

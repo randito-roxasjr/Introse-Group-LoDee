@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -145,86 +149,104 @@
       <div class="col-md-3"> </div>
       <div class="card text-black p-1" style="background-color:#EBEBEB">
         <h2>Notifications</h2>
-		<div class="ScrollStyle">
-        <div class="card-body">
-          <ul class="notifications">
-            <li class="notification">
-              <button class="notifs" data-toggle="modal" data-target="#exampleModalLong1" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
-                <div class="media">
-                  <div class="media-left">
-                    <div class="media-object">
-                      <img class="user one" hspace="20"> </div>
-                  </div>
-                  <div class="media-body"> <strong class="notification-title"><a href="#">Jonathan Wilson</a> sent <a href="#">Transaction #1</a></strong>
-                    <p class="notification-desc" placeholder="Additional details"></p>
-                    <div class="notification-meta"> <small class="timestamp">27. 11. 2015, 15:00</small>
-                      <br>
-                      <br> </div>
-                  </div>
-                </div>
-              </button>
-			</li>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                    </div>
-                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Jonathan Wilson</label>
-                      <br>
-                      <hr>
-					  <h4>Client Info</h4>
-					  <br>
-					  <li>First name:</li>
-					  <li>Last name:</li>
-					  <li>Address Line 1:</li>
-					  <li>Address Line 2:</li>
-					  <li>Address Line 2:</li>
-					  <li>Province:</li>
-					  <li>City:</li>
-					  <li>Postal Code:</li>
-					  <li>Email:</li>
-					  <li>Phone Number 1:</li>
-					  <li>Phone Number 2:</li>
-					  <li>Payments:</li>
-					  <hr>
-					  <h4>Transaction Details</h4>
-					  <br>
-					  <h5>Subject:</h5>
-						<p>(Sample)</p>
-					  <br>
-					  <h5>Details:</h5>
-					  <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
-                        et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-                        nulla non metus auctor fringilla.
-					  </p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-                      <input onclick="location.href='insuranceCost.html';" type="button" class="btn btn-success" value="Confirm"/>	
-                    </div>
-                  </div>
-                </div>
-              </div>
-			<br>
-			<li class="notification">
-			  <button class="notifs" data-toggle="modal" data-target="#exampleModalLong2" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">
-				<div class="media">
-				  <div class="media-left">
-					<div class="media-object">
-					  <img class="user one" hspace="20"> </div>
-				  </div>
-				  <div class="media-body"> <strong class="notification-title"><a href="#">Brian Imanuel</a> sent <a href="#">Transaction #2</a></strong>
-					<p class="notification-desc" placeholder="Additional details"></p>
-					<div class="notification-meta"> <small class="timestamp">21. 6. 2015, 15:00</small>
-					  <br>
-					  <br> </div>
-				  </div>
-				</div>
-			  </button>
-			  </li>
+
+                  <!-- QUERY Notifications -->
+                  <!--NOTIFICATION CONTENT-->
+
+                  <?php
+                  # Connect to Database
+                  require_once('home_Agent_mysqli_connect.php');
+
+                  # query
+                  $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] ORDER BY n.timeCreated";
+                  $result1 = mysqli_query($dbc, $query1);
+
+                  $notifications = array();
+                  # ID COUNTER
+                  $curr = 0;
+
+                  # LOOP PRINTING OF DATA IN NOTIFICATIONS
+                  while($data1 = mysqli_fetch_assoc($result1)){
+                      echo '<div class="ScrollStyle">';
+                      echo '<div class="card-body">';
+                      echo '<ul class="notifications">';
+                      echo '<li class="notification">';
+                      echo '<button class="notifs" data-toggle="modal" data-target="#ModalLong'.$curr.'" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">';
+                      echo '<div class="media">';
+                      echo '<div class="media-left">';
+                      echo '<div class="media-object">';
+                      echo '<img class="user one" hspace="20"> </div>';
+                      echo '</div>';
+                      echo '<div class="media-body"> <strong class="notification-title"><a href="#">'.$data1["firstName"].' '.$data1["lastName"].'</a> sent <a href="#">'.$data1["message"].'</a></strong>';
+                      echo '<p class="notification-desc" placeholder="Additional details"></p>';
+                      echo '<div class="notification-meta"> <small class="timestamp">'.$data1["timeCreated"].'</small><br><br></div>';
+                      echo '</div>';
+                      echo '</div>';
+                      echo '</button>';
+                      echo '</li>';
+                      # PUSH TO ARRAY
+                      array_push($notifications, $data1);
+                      $curr++;
+                  }
+
+                  #REINITIALIZE ID COUNTER TO ZERO
+                  $curr = 0;
+                  ?>
+
+              <?php #INCREMENT MODAL ID LOOP FOR MODAL TARGET
+                foreach ($notifications as $v):
+              ?>
+
+                        <!-- MODAL ID ASSIGNMENT -->
+                        <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                              </div>
+                              <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Jonathan Wilson</label>
+                                <br>
+                                <hr>
+                          					  <h4>Client Info</h4>
+                          					  <br>
+                          					  <li>First name:</li>
+                          					  <li>Last name:</li>
+                          					  <li>Address Line 1:</li>
+                          					  <li>Address Line 2:</li>
+                          					  <li>Address Line 2:</li>
+                          					  <li>Province:</li>
+                          					  <li>City:</li>
+                          					  <li>Postal Code:</li>
+                          					  <li>Email:</li>
+                          					  <li>Phone Number 1:</li>
+                          					  <li>Phone Number 2:</li>
+                          					  <li>Payments:</li>
+                          					  <hr>
+                          					  <h4>Transaction Details</h4>
+                          					  <br>
+                          					  <h5>Subject:</h5>
+                          						<p>(Sample)</p>
+                          					  <br>
+                          					  <h5>Details:</h5>
+                          					  <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                                                  et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
+                                                  nulla non metus auctor fringilla.
+          					  </p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                                <input onclick="location.href='insuranceCost.php';" type="button" class="btn btn-success" value="Confirm"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div> <!-- MODAL ID ASSIGNMENT -->
+
+            <?php
+                  #INCREMENT MODAL ID LOOP FOR MODAL TARGET
+                  endforeach;
+            ?>
+
 			  <!-- Modal -->
               <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">

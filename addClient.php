@@ -1,7 +1,7 @@
-<!-- This page allows an agent/employee to submit a client's 
+<!-- This page allows an agent/employee to submit a client's
 	details to the database -->
 
-<?php 
+<?php
 
 session_start();
 $modal1 = false;
@@ -20,42 +20,42 @@ $data_missing = array();
     nav, #container, button{
       background-color: #087830;
     }
-	
+
     #brand:hover {
       text-shadow: 2px 2px #000000;
     }
-	
+
 	#inbox:hover, #notifications:hover, #logout:hover, #myBtn:hover {
       background-color: rgba(0, 0, 0, 0.3);
-    }	
+    }
 
 	#myBtn {
 		display: none;
-		position: fixed; 
-		bottom: 20px; 
-		right: 30px; 
-		z-index: 99; 
-		border: none; 
-		outline: none; 
-		background-color: #087830; 
-		color: white; 
-		cursor: pointer; 
-		padding: 15px; 
-		border-radius: 10px; 
+		position: fixed;
+		bottom: 20px;
+		right: 30px;
+		z-index: 99;
+		border: none;
+		outline: none;
+		background-color: #087830;
+		color: white;
+		cursor: pointer;
+		padding: 15px;
+		border-radius: 10px;
 	}
-	
-	.badge {	
+
+	.badge {
 		border-radius:1em;
-		margin:0 0.25em;	
-	}	
-	
-	/* The Modal (background) */	
+		margin:0 0.25em;
+	}
+
+	/* The Modal (background) */
 
     .modal {
       display: none;
       /* Hidden by default */
       position: fixed;
-      /* Stay in place */   
+      /* Stay in place */
 	  z-index: 1;
       /* Sit on top */
       padding-top: 10px;
@@ -80,7 +80,7 @@ $data_missing = array();
       margin: auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%;	  
+      width: 80%;
     }
     /* The Close Button */
 
@@ -96,19 +96,19 @@ $data_missing = array();
       text-decoration: none;
       cursor: pointer;
     }
-	
+
 	#modal-body {
-		font-color: black;		
+		font-color: black;
 	}
-	
+
 	.form-group {
 		color: white;
 	}
-	
+
 	.form-group2 {
 		color: black;
-	}		
-	
+	}
+
 	dropdown-item{
 		cursor: pointer;
 	}
@@ -127,7 +127,7 @@ $data_missing = array();
 
 	// When the user clicks on the button, scroll to the top of the document
 	function topFunction() {
-		document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+		document.body.scrollTop = 0; // For Chrome, Safari and Opera
 		document.documentElement.scrollTop = 0; // For IE and Firefox
 	}
   </script>
@@ -141,7 +141,7 @@ $data_missing = array();
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Concert+One|Lobster" rel="stylesheet">
   <link rel="stylesheet" href="bootstrap-notifications.css" type="text/css">
   <link rel="stylesheet" href="bootstrap-notifications.min.css" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -160,12 +160,12 @@ $data_missing = array();
               <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
 				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
 				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications 
+					Notifications
 			  </button>
               <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>                
+				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>                
+                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>
                 <div class="dropdown-divider"></div>
                 <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
@@ -175,15 +175,15 @@ $data_missing = array();
       </div>
     </div>
 	</nav>
-  <div class="py-5" style="background-color: #FFFFFF">    
+  <div class="py-5" style="background-color: #FFFFFF">
     <div class="container">
       <div class="row">
         <div class="col-md-3"> </div>
         <div class="col-md-6">
           <div class="card p-5" style="background-color: #087830">
             <div class="card-body">
-              <h2 style="color: white;" class="mb-4">Input Client Info</h2>			  
-              <form method = "post" action ="">	  
+              <h2 style="color: white;" class="mb-4">Input Client Info</h2>
+              <form method = "post" action ="">
                 <div class="form-group"> <label>First Name</label>
                   <input type="text" name="firstname" class="form-control" placeholder="Enter client's first name" required> </div>
 				<div class="form-group"> <label>Last Name</label>
@@ -213,12 +213,12 @@ $data_missing = array();
 				<div class="form-group"> <label>Phone Number 2</label>
                   <input type="tel" name="phonenumber2" class="form-control" placeholder="Enter client's 2nd mobile/landline number"> </div>
                 <div class="form-group"> <label>Payments</label>
-                  <input type="number" class="form-control" placeholder="Enter payments" required> </div>								
-				
+                  <input type="number" class="form-control" placeholder="Enter payments" required> </div>
+
 							  <br>
 							  <hr class="w3-border-grey">
 							  <br>
-							  <h2 style="color: white;" class="form-group">Input Transaction Details</h2>	
+							  <h2 style="color: white;" class="form-group">Input Transaction Details</h2>
 							  <!--<div class="form-group">
 								<label for="recipient-name" n class="form-control-label">Recipient:</label>
 								<input type="text" class="form-control" id="recipient-name" placeholder="Enter Manager name" required>
@@ -226,13 +226,13 @@ $data_missing = array();
 							  <div class="form-group">
 								<label for="recipient-name" class="form-control-label">Subject:</label>
 								<input type="text" class="form-control" name="subject" placeholder="Enter subject" required>
-							  </div>							  
+							  </div>
 							  <div class="form-group">
 								<label for="message-text" class="form-control-label"> Details:</label>
 								<textarea min="1" step="any" name="message" onkeyup="s()" class="form-control" id="abc" placeholder="Enter transaction details" required></textarea>
 								<center>
 								<br>
-								<input data-toggle="modal" data-target="#invalidFN" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />											 
+								<input data-toggle="modal" data-target="#invalidFN" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />
 								<script type="text/javascript">
 									function s(){
 									var i=document.getElementById("abc");
@@ -249,7 +249,7 @@ $data_missing = array();
 							</center>
 							  </div>
 
-						
+
 						<!-- invalid input for last_name -->
 						<div class="modal fade" id="invalidLN" tabindex="-1" role="dialog" aria-labelledby="invalidLN" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -260,14 +260,14 @@ $data_missing = array();
 							  </div>
 							  <div class="modal-body" style="color: black">
 								<p>
-								  The last name you entered has  
+								  The last name you entered has
 								  <span style="color: #ff0000">numbers in it</span>.
 								</p>
 							  </div>
 							</div>
 						  </div>
-						</div> 	
-						
+						</div>
+
 						<!-- invalid input for contact_number -->
 						<div class="modal fade" id="invalidCN" tabindex="-1" role="dialog" aria-labelledby="invalidCN" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -278,14 +278,14 @@ $data_missing = array();
 							  </div>
 							  <div class="modal-body" style="color: black">
 								<p>
-								  The contact number you entered has  
+								  The contact number you entered has
 								  <span style="color: #ff0000">letters/symbols in it</span>.
 								</p>
 							  </div>
 							</div>
 						  </div>
-						</div> 
-						
+						</div>
+
 						<!-- invalid input for address -->
 						<div class="modal fade" id="invalidAD" tabindex="-1" role="dialog" aria-labelledby="invalidAD" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -302,8 +302,8 @@ $data_missing = array();
 							  </div>
 							</div>
 						  </div>
-						</div> 	
-						
+						</div>
+
 						</form>
 						</div>
 					  </div>
@@ -321,7 +321,7 @@ $data_missing = array();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
   <?php
-  
+
 	if(isset($_POST['submit'])){
 
 		$employee_login = $_SESSION["employeeId"];
@@ -356,6 +356,7 @@ $data_missing = array();
 		}else{
 
 			$house_address = trim($_POST['address1']);
+			
 		}
 
 		#optional
@@ -364,6 +365,7 @@ $data_missing = array();
 			$house_address2 = trim($_POST['address2']);
 		}else if (ctype_space($_POST['address2'])){
 			$data_missing[] = "Address Line 2";
+			$modal1 = true;
 		}
 
 		if(empty($_POST['province']) or preg_match('/[!\'^£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['province'])  or ctype_space($_POST['province'])){
@@ -411,7 +413,7 @@ $data_missing = array();
 			$car_name = trim($_POST['carname']);
 		}
 
-		if(empty($_POST['carmanufacturer']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬]/1234567890', $_POST['carmanufacturer']) or ctype_space($_POST['carmanufacturer'])){
+		if(empty($_POST['carmanufacturer']) or preg_match('/[\'^!£$%&*()}{#~?><>,|=_+¬1234567890]/', $_POST['carmanufacturer']) or ctype_space($_POST['carmanufacturer'])){
 
 			$data_missing[] = "Car Manufacturer";
 			$modal1 = true;
@@ -442,11 +444,12 @@ $data_missing = array();
 		if(!empty($_POST['phonenumber2']) and ctype_digit($_POST['phonenumber2'])  and !ctype_space($_POST['phonenumber2'])){
 
 			$phone_number2 = trim($_POST['phonenumber2']);
-		}else if(!ctype_digit($_POST['phonenumber2'] or !ctype_space($_POST['phonenumber2']))){
+		}else if(ctype_space($_POST['phonenumber2'])){
 			$data_missing[] = "Phone Number 2";
+			$modal1 = true;
 		}
-	
-		
+
+
 		if(empty($_POST['emailaddress']  or ctype_space($_POST['emailaddress']))){
 
 			$data_missing[] = "Client Email Address";
@@ -455,25 +458,25 @@ $data_missing = array();
 
 			$client_email_address = trim($_POST['emailaddress']);
 		}
-		
+
 		if(empty($_POST['subject']) or ctype_space($_POST['subject'])){
-			
+
 			$data_missing[] = "Subject";
 			$modal1 = true;
 		}else{
-			
+
 			$subject = trim($_POST['subject']);
 		}
-		
+
 		if(empty($_POST['message']) or ctype_space($_POST['message'])){
-			
+
 			$data_missing[] = "Message";
 			$modal1 = true;
 		}else{
-			
+
 			$message = trim($_POST['message']);
 		}
-		
+
 		if(!empty($message) and !empty($subject)){
 			$notifmessage = $subject . " " . $message;
 		}
@@ -481,8 +484,8 @@ $data_missing = array();
 		$time_now = date("Y-m-d H:i:s");
 		#if there is no data missing, execute code
 		if(empty($data_missing)){
-			
-			
+
+
       $employee_login = $_SESSION["employeeId"];
 			#connects mysql to php
 			require_once('home_Agent_mysqli_connect.php');
@@ -492,7 +495,7 @@ $data_missing = array();
 			$query2 = "INSERT INTO carinfo(clientId,manufacturer,modelYear,model,value) VALUES(?,?,?,?,?)";
 			#searches for the clientId to put with the carinfo
 			$query3 = "SELECT clientId from client WHERE lastName='$last_name' limit 1";
-			
+
 			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated,isApproved) VALUES('$employee_login','$notifmessage','0','$time_now','0')";
 
 			$stmt1 = mysqli_query($dbc,$query1);
@@ -502,17 +505,17 @@ $data_missing = array();
 			$stmt3 = mysqli_prepare($dbc,$query3);
 
 			$stmt4 = mysqli_query($dbc,$query4);
-		
-			
+
+
 			$result = mysqli_query($dbc,$query3);
 
 			$value = mysqli_fetch_object($result);
 
 			mysqli_stmt_bind_param($stmt2,"issss", $value->clientId, $car_manufacturer, $car_name,$car_model,$car_value);
 			mysqli_stmt_execute($stmt2);
-			
-			
-	
+
+
+
 			$affected_rows2 = mysqli_stmt_affected_rows($stmt2);
 
 			#if both inserts went through
@@ -554,7 +557,7 @@ $data_missing = array();
 ?>
 
 <!-- Modals -->
-						
+
 						<!-- invalid input for first_name -->
 						<div class="modal fade" id="invalidFN" tabindex="-1" role="dialog" aria-labelledby="invalidFN" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -566,18 +569,18 @@ $data_missing = array();
 							  <div class="modal-body" style="color: black">
 								<p>
 								 <?php
-								 
+
 										 echo 'You entered invalid information for the following fields: <br />';
 										 foreach((array)$data_missing as $missing){
 											echo "$missing <br />";
 										 }
-								 ?>							  
+								 ?>
 								</p>
 							  </div>
 							</div>
 						  </div>
-						</div>  
-						
+						</div>
+
 
 <!--Show modals-->
   <?php if($modal1) : ?>
@@ -585,13 +588,13 @@ $data_missing = array();
       $("#invalidFN").modal()
     </script>
   <?php endif; ?>
-  
+
   <?php if($change_page) : ?>
       <script>
        window.location = "addClient_clientadded.php";
       </script>
   <?php endif; ?>
-  
+
   </body>
 
 </html>
