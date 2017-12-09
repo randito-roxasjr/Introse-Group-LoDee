@@ -136,7 +136,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`notifId`),
   KEY `employeeId_idx` (`employeeId`),
   CONSTRAINT `employeeId` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (1,10024,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',1,0),(3,10014,'Confirmed Agent Registration by Manager ',0,'2017-12-08 10:05:30',1,2);
+INSERT INTO `notification` VALUES (1,10024,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0,0),(3,10001,'Confirmed Agent Registration by Manager ',0,'2017-12-08 10:05:30',1,2),(4,10001,'Client Michael Faustino paid 50,000 php for Hyundai Starex 2017',0,'2017-12-08 10:25:30',0,1);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-09 19:14:14
+-- Dump completed on 2017-12-09 21:40:11
