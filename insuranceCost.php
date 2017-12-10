@@ -168,7 +168,7 @@
                 <!-- NOTIFICATION Data -->
                 <?php
 
-                $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] and notifType < 2 and n.isApproved = 0 ORDER BY n.timeCreated";
+                $query1 = "SELECT * FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] and notifType < 2 and n.isApproved = 0 ORDER BY n.timeCreated";
                 $result1 = mysqli_query($dbc, $query1);
 
                     #INCREMENT ID LOOP
@@ -198,14 +198,21 @@
               <h2 style="color: white;" class="mb-4">Input Insurance Cost</h2>
 
 
-            <!-- FORMS -->
+      <?php
+        # QUERY NEW CLIENT DETAILS
+        echo $_SESSION['client_Id'];
+        $client_query = "SELECT email_address, firstName, lastName, postalCode,clientId, province, city, addressLine1, addressLine2, phoneNumber1, phoneNumber2 FROM client WHERE $_SESSION[client_Id] = clientId limit 1";
+        $client_result = mysqli_query($dbc, $client_query);
+        $client_data = mysqli_fetch_assoc($client_result);
+      ?>
+
+      <!-- FORMS -->
       <form action = "inbox_manager.php" method = "post">
 					<div class="form-group">
 						<hr>
-						<h5 for="recipient-name" class="form-control-label">Client: (client_name)</h5>
+						<h5 for="recipient-name" class="form-control-label">Client: <?php echo $client_data['firstName'].' '.$client_data['lastName'];?></h5>
 						<hr>
-						<label for="recipient-name" class="form-control-label">Recipient:</label>
-						<input type="text" class="form-control" id="recipient-name" placeholder="Enter Agent name" required>
+
 					</div>
 
 					<div class="form-group">

@@ -241,8 +241,33 @@
 
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
-                                <input onclick="location.href='insuranceCost.php';" name="accept<?php echo $con_rej; ?>" type="button" class="btn btn-success" value="Confirm"/>
+                                  <form method = "post">
+                                    <button type="submit" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
+                                    <input name="accept<?php echo $con_rej; ?>" type="submit" class="btn btn-success" value="Confirm"/>
+                                  </form>
+                                  <?php
+                                  #-- ACCEPT AND REJECT BUTTONS -->
+                                  if(isset($_POST['accept'.$con_rej])) : ?>
+                                      <?php
+                                        $_SESSION['client_Id'] = $client_data['clientId'];
+                                      ?>
+
+                                      <script>
+                                      // JUMP TO NEXT PAGE
+                                      window.location = 'insuranceCost.php';
+                                      </script>
+
+                                  <?php
+                                  elseif(isset($_POST['reject'.$con_rej])) :?>
+                                    <?php
+                                      #  $reject_query = "UPDATE notification SET isRead=1 WHERE notifId = $v[notifId]";
+                                      #  $reject_result = mysqli_query($dbc, $reject_query);
+
+                                      #  $next_query = "DELETE FROM notifications WHERE notifId = $v[notifId]";
+                                        #$next_result = mysqli_query($dbc, $next_query);
+                                    ?>
+                                  <?php endif; ?>
+
                               </div>
                             </div>
                           </div>

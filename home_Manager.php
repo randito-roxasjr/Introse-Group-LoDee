@@ -159,7 +159,7 @@ session_start();
             	require_once('home_Agent_mysqli_connect.php');
 
               # query
-              $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType < 2";
+              $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType < 2 and isApproved = 0";
               $result = mysqli_query($dbc, $query);
               $data = mysqli_fetch_assoc($result);
 
