@@ -197,12 +197,8 @@ $enable_manager=false
 
   <!--PHP SECTION-->
   <?php
-    $servername = "localhost";
-  	$username = "root";
-  	$password = "1234";
-  	#connect
-  	$dbc = @mysqli_connect($servername, $username, $password, 'upperlimit') OR die("Connection Failed: " . mysqli_connect_error());
-  	#### Checking Data
+    require_once('home_Agent_mysqli_connect.php');
+    #### Checking Data
     $wrong_email = false;
     $wrong_pass = false;
 
