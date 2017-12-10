@@ -162,7 +162,7 @@
                   require_once('home_Agent_mysqli_connect.php');
 
                   # query
-                  $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] and notifType < 2 and n.isApproved = 0 ORDER BY n.timeCreated";
+                  $query1 = "SELECT e.firstName, n.clientId, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved, n.notifId FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy=$_SESSION[employeeId] and notifType<2 and n.isApproved=0 ORDER BY n.timeCreated";
                   $result1 = mysqli_query($dbc, $query1);
 
                   $notifications = array();
@@ -171,9 +171,6 @@
 
                   # LOOP PRINTING OF DATA IN NOTIFICATIONS
                   while($data1 = mysqli_fetch_assoc($result1)){
-                      #echo '<div class="ScrollStyle">';
-                    #  echo '<div class="card-body">';
-                    #  echo '<ul class="notifications">';
                       echo '<li class="notification">';
                       echo '<button class="notifs" data-toggle="modal" data-target="#ModalLong'.$curr.'" style="height: 130px; width: 485px; border-bottom:1px solid #939dad">';
                       echo '<div class="media">';
@@ -193,8 +190,9 @@
                       $curr++;
                   }
 
-                  #REINITIALIZE ID COUNTER TO ZERO
+                  #REINITIALIZE ID COUNTER AND ACCEPT AND REJECT BUTTON COUNTER TO ZERO
                   $curr = 0;
+                  $con_rej = 0;
                   ?>
             </div>
         </div>
@@ -203,48 +201,48 @@
               ?>
 
                         <!-- MODAL ID ASSIGNMENT -->
-                        <div class="modal fade" <?php if($v['notifType'] == 1):?>id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <?php if($v['notifType'] == 1):?>
+                        <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                          <?php
+                            # QUERY NEW CLIENT DETAILS
+
+                            $client_query = "SELECT email_address, firstName, lastName, postalCode,clientId, province, city, addressLine1, addressLine2, phoneNumber1, phoneNumber2 FROM client WHERE $v[clientId] = clientId limit 1";
+                            $client_result = mysqli_query($dbc, $client_query);
+                            $client_data = mysqli_fetch_assoc($client_result);
+                          ?>
 
                           <!-- MODAL ID NEW Clients -->
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
+                                <h3 class="modal-title" id="exampleModalLongTitle">Pending Client Registration</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                               </div>
 
-                              <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Jonathan Wilson</label>
+                              <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: <?php echo $client_data['firstName'] . ' '. $client_data['lastName']; ?></label>
                                 <br>
                                 <hr>
                           					  <h4>Client Info</h4>
                           					  <br>
-                          					  <li>First name:</li>
-                          					  <li>Last name:</li>
-                          					  <li>Address Line 1:</li>
-                          					  <li>Address Line 2:</li>
-                          					  <li>Address Line 2:</li>
-                          					  <li>Province:</li>
-                          					  <li>City:</li>
-                          					  <li>Postal Code:</li>
-                          					  <li>Email:</li>
-                          					  <li>Phone Number 1:</li>
-                          					  <li>Phone Number 2:</li>
-                          					  <li>Payments:</li>
+                          					  <li>First name: <?php echo $client_data['firstName']; ?></li>
+                          					  <li>Last name: <?php echo $client_data['lastName']; ?></li>
+                          					  <li>Address Line 1: <?php echo $client_data['addressLine1']; ?></li>
+                          					  <li>Address Line 2: <?php echo $client_data['addressLine2']; ?></li>
+                          					  <li>Province: <?php echo $client_data['province']; ?></li>
+                          					  <li>City: <?php echo $client_data['city']; ?></li>
+                          					  <li>Postal Code: <?php echo $client_data['postalCode']; ?></li>
+                          					  <li>Email: <?php echo $client_data['email_address']; ?></li>
+                          					  <li>Phone Number 1: <?php echo $client_data['phoneNumber1']; ?></li>
+                          					  <li>Phone Number 2: <?php echo $client_data['phoneNumber2']; ?></li>
                           					  <hr>
-                          					  <h4>Transaction Details</h4>
+                          					  <h4>Transaction Details:</h4>
+                          						<p><?php echo $v['message']; ?></p>
                           					  <br>
-                          					  <h5>Subject:</h5>
-                          						<p>(Sample)</p>
-                          					  <br>
-                          					  <h5>Details:</h5>
-                          					  <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
-                                                  et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-                                                  nulla non metus auctor fringilla.
-          					  </p>
+
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-                                <input onclick="location.href='insuranceCost.php';" type="button" class="btn btn-success" value="Confirm"/>
+                                <button type="button" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
+                                <input onclick="location.href='insuranceCost.php';" name="accept<?php echo $con_rej; ?>" type="button" class="btn btn-success" value="Confirm"/>
                               </div>
                             </div>
                           </div>
@@ -252,13 +250,12 @@
 
 
                         <!-- MODAL FOR NEW AGENT DETAILS -->
-                          <div class="modal fade" <?php elseif($v['notifType'] == 0) : ?>id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <?php elseif($v['notifType'] == 0):?>
+                          <div class="modal fade" id="ModalLong<?php echo $curr;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-
 
                               <?php
                                 # QUERY AGENT DETAILS
-                                require_once('home_Agent_mysqli_connect.php');
 
                                 $agent_query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1 FROM employee WHERE $v[employeeId] = employeeId limit 1";
                                 $agent_result = mysqli_query($dbc, $agent_query);
@@ -283,68 +280,48 @@
                                       <li>Email: <?php echo $agent_data['email_address']; ?></li>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-                                  <input onclick="location.href='insuranceCost.html';" type="button" class="btn btn-success" value="Confirm"/>
+                                    <form action="inbox_manager.php" method="POST">
+                                      <input class="btn btn-danger" name="reject<?php echo $con_rej; ?>" type="submit" value="Reject"/>
+                                      <input name="accept<?php echo $con_rej; ?>" type="submit" class="btn btn-success" value="Confirm"/>
+                                    </form>
+                                </div>
+
+                                <?php
+                                #-- ACCEPT AND REJECT BUTTONS -->
+                              /*  if(isset($_POST['accept'.$con_rej])){
+                                    $accept_query = "UPDATE notification SET isApproved=1, isRead=1 WHERE notifId = $v[notifId]";
+                                    $accept_result = mysqli_query($dbc, $accept_query);
+
+
+                                }
+                                elseif(isset($_POST['reject'.$con_rej])){
+                                    $reject_query = "UPDATE notification SET isRead=1 WHERE notifId = $v[notifId]";
+                                    $reject_result = mysqli_query($dbc, $reject_query);
+
+                                  #  $next_query = "DELETE FROM notifications WHERE notifId = $v[notifId]";
+                                    #$next_result = mysqli_query($dbc, $next_query);
+                                }*/
+                                ?>
+
                                 </div>
                               </div>
-                            </div>
-                          </div>  		   <!-- MODAL FOR NEW AGENT DETAILS -->
-                          <?php endif;?>
+                            </div>  		   <!-- MODAL FOR NEW AGENT DETAILS -->
+                          <?php endif; ?>
 
             <?php
                   #INCREMENT MODAL ID LOOP FOR MODAL TARGET
                   $curr++;
+                  $con_rej++;
                   endforeach;
             ?>
 
-			  <!-- Modal -->
-              <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h3 class="modal-title" id="exampleModalLongTitle">Client #1</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                    </div>
-                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">From: Brian Imanuel</label>
-                      <br>
-                      <hr>
-					  <h4>Client Info</h4>
-					  <br>
-					  <li>First name:</li>
-					  <li>Last name:</li>
-					  <li>Address Line 1:</li>
-					  <li>Address Line 2:</li>
-					  <li>Address Line 2:</li>
-					  <li>Province:</li>
-					  <li>City:</li>
-					  <li>Postal Code:</li>
-					  <li>Email:</li>
-					  <li>Phone Number 1:</li>
-					  <li>Phone Number 2:</li>
-					  <li>Payments:</li>
-					  <hr>
-					  <h4>Transaction Details</h4>
-					  <br>
-					  <h5>Subject:</h5>
-						<p>(Sample)</p>
-					  <br>
-					  <h5>Details:</h5>
-					  <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur
-                        et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper
-                        nulla non metus auctor fringilla.
-					  </p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-                      <input onclick="location.href='insuranceCost.html';" type="button" class="btn btn-success" value="Confirm"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
 		  <br>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+
 </body>
 
 </html>
