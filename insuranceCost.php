@@ -173,7 +173,7 @@
 
                     #INCREMENT ID LOOP
                     while($data1 = mysqli_fetch_assoc($result1)){
-                      echo '<a class="dropdown-item text-center"><center><a href="#">'.$data1["firstName"].' '.$data1["lastName"].'</a>'. ': '. $data1["message"]. '<a href="#"></a></center></a></a>';
+                      echo '<ul><a class="dropdown-item text-center"><center><a href="#">'.$data1["firstName"].' '.$data1["lastName"].'</a>'. ': '. $data1["message"]. '<a href="#"></a></center></a></a>';
                       echo '<div class="dropdown-divider"></div>';
                     }
                 ?>
