@@ -146,6 +146,7 @@
       <a id="brand" class="navbar-brand" href="home_manager.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -189,6 +190,7 @@
 
                   <a style="color: #087830" href="inbox_manager.php" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
                 </div>
+
               </div>
   		  </li>
           </ul>

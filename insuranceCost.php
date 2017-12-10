@@ -1,4 +1,4 @@
-<<?php
+<?php
   session_start();
 ?>
 <!DOCTYPE html>
@@ -146,7 +146,7 @@
           </li>
           <li class="nav-item">
             <div class="btn-group">
-<!----------------------------------------------------------------------------->
+
                               <!-- QUERY Notifications -->
                               <?php
                               # Connect to Database
@@ -178,14 +178,16 @@
                                     echo '<div class="dropdown-divider"></div>';
                                   }
                               ?>
+							  <a style="color: #087830" href="inbox_manager.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+							  </div>
+
 <!----------------------------------------------------------------------------->
 
 
 
 
         </ul>
-		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>
-      </div>
+		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>      
     </div>
 	</nav>
   <div class="py-5" style="background-color: #FFFFFF">
