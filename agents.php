@@ -161,7 +161,7 @@
               require_once('home_Agent_mysqli_connect.php');
 
               # query
-              $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType < 2";
+              $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType < 2 and isApproved = 0";
               $result = mysqli_query($dbc, $query);
               $data = mysqli_fetch_assoc($result);
 
@@ -206,8 +206,6 @@
 		<div class="list-group">
       <!-- LIST OF AGENTS -->
       <?php
-      require_once('home_Agent_mysqli_connect.php');
-
       $query = "SELECT email_address, password, firstName, lastName, employeeId, addressLine1, phoneNumber1, isManager FROM employee WHERE managedBy = $_SESSION[employeeId] ORDER BY firstName";
       $result = mysqli_query($dbc, $query);
       $agents = array();

@@ -146,7 +146,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (1,10024,NULL,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,NULL,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0,0),(3,10001,NULL,'Confirmed Agent Registration by Manager ',0,'2017-12-08 10:05:30',1,2),(4,10003,10,'Client Brettman Rock paid 50,000 php for Hyundai Starex 2017',0,'2017-12-08 10:25:30',0,1),(5,10004,8,'Client Amanda Cerny paid 500,000 php for Hyundai Starex 2017',0,'2017-12-08 10:55:30',0,1),(6,10001,9,'Client Megan Fox paid 100,000 php for Mazda 3 2017',0,'2017-12-08 11:55:30',0,1);
+INSERT INTO `notification` VALUES (1,10024,NULL,'Registration by: <br>Rachel Roxas',0,'2017-12-08 10:05:04',0,0),(2,10001,NULL,'Registration by: <br>Randito Roxas',0,'2017-12-08 10:05:12',0,0),(3,10001,NULL,'Confirmed Agent Registration by Manager ',1,'2017-12-08 10:05:30',1,2),(4,10003,10,'Client Brettman Rock paid 50,000 php for Hyundai Starex 2017',0,'2017-12-08 10:25:30',0,1),(5,10004,8,'Client Amanda Cerny paid 500,000 php for Hyundai Starex 2017',1,'2017-12-08 10:55:30',1,1),(6,10001,9,'Client Megan Fox paid 100,000 php for Mazda 3 2017',1,'2017-12-08 11:55:30',1,1);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -159,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-10 19:54:41
+-- Dump completed on 2017-12-10 21:54:16
