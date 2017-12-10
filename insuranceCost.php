@@ -1,4 +1,4 @@
-<<?php
+<?php
   session_start();
 ?>
 <!DOCTYPE html>
@@ -178,15 +178,16 @@
                                     echo '<div class="dropdown-divider"></div>';
                                   }
                               ?>
->>>>>>> 265622bf0c7279c10bd8ef1db46d214ba720986d
+							  <a style="color: #087830" href="inbox_manager.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+							  </div>
+
 <!----------------------------------------------------------------------------->
 
 
 
 
         </ul>
-		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>
-      </div>
+		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>      
     </div>
 	</nav>
   <div class="py-5" style="background-color: #FFFFFF">

@@ -55,7 +55,7 @@
       /* Hidden by default */
       position: fixed;
       /* Stay in place */
-      z-index: 1;
+      z-index: 5;
       /* Sit on top */
       padding-top: 0px;
       /* Location of the box */
@@ -173,7 +173,7 @@
                           <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red"><?php echo $data['NUM'];?></span>
                                Notifications
                   </button>
-              <div class="dropdown-menu">
+              <div class="dropdown-menu" style="position:absolute; z-index: 100">
               <!-- NOTIFICATION Data -->
               <?php
 
@@ -199,10 +199,10 @@
   </nav>
   <br>
   <div class="bgimg w3-display-container w3-animate-bottom">
-  <div class="container">
+  <div class="container" style="position:relative; z-index: 1">
 	<h2>Your Agents</h2>
-	<div class="ScrollStyle">
-	<div class="card-body">
+	<div class="ScrollStyle" style="position:relative; z-index: 2">
+	<div class="card-body" style="position:relative; z-index: 3">
 		<div class="list-group">
       <!-- LIST OF AGENTS -->
       <?php

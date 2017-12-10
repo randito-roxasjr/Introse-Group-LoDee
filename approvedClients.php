@@ -190,7 +190,7 @@
 
                   <a style="color: #087830" href="inbox_manager.php" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
                 </div>
->>>>>>> 265622bf0c7279c10bd8ef1db46d214ba720986d
+
               </div>
   		  </li>
           </ul>
