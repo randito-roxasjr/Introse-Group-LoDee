@@ -1,3 +1,6 @@
+<?php
+   session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -143,32 +146,57 @@
       <a id="brand" class="navbar-brand" href="home_manager.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent"
         aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a id="home" class="btn navbar-btn ml-2 text-white" href="home_manager.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
-          </li>
-		  <ul class="navbar-nav">
-          <li class="nav-item">
-            <div class="btn-group">
-              <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
-				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
-				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications
-			  </button>
-              <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Jonathan Wilson</a> recently sent <a href="#">Transaction #1</a></center></a></a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Brian Imanuel</a> recently sent <a href="#">Transaction #2</a></center></a></a>
-                <div class="dropdown-divider"></div>
-                <a style="color: #087830" href="inbox_manager.php" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="home" class="btn navbar-btn ml-2 text-white" href="home_manager.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
+            </li>
+  		  <ul class="navbar-nav">
+            <li class="nav-item">
+              <div class="btn-group">
+
+                <!-- QUERY Notifications -->
+                <?php
+                # Connect to Database
+                require_once('home_Agent_mysqli_connect.php');
+
+                # query
+                $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType < 2 and isApproved = 0";
+                $result = mysqli_query($dbc, $query);
+                $data = mysqli_fetch_assoc($result);
+
+                ?>
+
+                <!-- NOTIFICATION BUTTON -->
+                    <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
+                        <i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
+                            <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red"><?php echo $data['NUM'];?></span>
+                                 Notifications
+                    </button>
+                <div class="dropdown-menu">
+                <!-- NOTIFICATION Data -->
+                <?php
+
+                $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.managedBy = $_SESSION[employeeId] and notifType < 2 and n.isApproved = 0 ORDER BY n.timeCreated";
+                $result1 = mysqli_query($dbc, $query1);
+
+                    #INCREMENT ID LOOP
+                    while($data1 = mysqli_fetch_assoc($result1)){
+                      echo '<a class="dropdown-item text-center"><center><a href="#">'.$data1["firstName"].' '.$data1["lastName"].'</a>'. ': '. $data1["message"]. '<a href="#"></a></center></a></a>';
+                      echo '<div class="dropdown-divider"></div>';
+                    }
+                ?>
+
+                  <a style="color: #087830" href="inbox_manager.php" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+                </div>
+>>>>>>> 265622bf0c7279c10bd8ef1db46d214ba720986d
               </div>
-            </div>
-		  </li>
-        </ul>
-        </ul>
-        <a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa"></i> Log out</a>
-      </div>
+  		  </li>
+          </ul>
+          </ul>
+          <a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa"></i> Log out</a>
+        </div>
     </div>
   </nav>
   <br>
@@ -178,40 +206,60 @@
 	<div class="ScrollStyle">
 	<div class="card-body">
 		<div class="list-group">
-			<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalLong1" >Dave Lister</a>
-			<a href="#" class="list-group-item list-group-item-action">Vincent Go</a>
-			<a href="#" class="list-group-item list-group-item-action">Jacob Jacobs</a>
-			<a href="#" class="list-group-item list-group-item-action">Jenny Williams</a>
-			<a href="#" class="list-group-item list-group-item-action">Claire Cotrill</a>
-			<a href="#" class="list-group-item list-group-item-action">Mac Marco</a>
+
+      <!-- LIST OF CLIENTS -->
+      <?php
+
+      $query = "SELECT * FROM client c, notification n WHERE n.isRead = 1 and n.isApproved = 1 and c.clientId = n.clientId ORDER BY firstName, lastName";
+      $result = mysqli_query($dbc, $query);
+      $clients = array();
+
+      $curr = 0;
+          #INCREMENT ID LOOP
+          while($data = mysqli_fetch_assoc($result)){
+            echo '<a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#ModalLong'.$curr.'" >'.$data['firstName'].' '.$data['lastName'] .'</a>';
+            array_push($clients, $data);
+            $curr++;
+          }
+          $curr=0;
+      ?>
+
+
+
 			<!-- Modal -->
-              <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <?php foreach($clients as $c) : ?>
+              <div class="modal fade" id="ModalLong<?php echo $curr; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Client #1</h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Client Details</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                     </div>
-                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">Client Name: Dave Lister</label>
+                    <div class="modal-body"> <label for="recipient-name" class="col-form-label">Client Name: <?php echo $c['firstName'].' '. $c['lastName'];?></label>
                       <hr>
-                      <li>First name:</li>
-					  <li>Last name:</li>
-					  <li>Address Line 1:</li>
-					  <li>Address Line 2:</li>
-					  <li>Province:</li>
-					  <li>City:</li>
-					  <li>Postal Code:</li>
-					  <li>Email:</li>
-					  <li>Phone Number 1:</li>
-					  <li>Phone Number 2:</li>
-					  <li>Payments:</li>
+                            <li>First name: <?php echo $c['firstName'];?></li>
+                					  <li>Last name: <?php echo $c['lastName'];?></li>
+                					  <li>Address Line 1: <?php echo $c['addressLine1'];?></li>
+                					  <li>Address Line 2: <?php echo $c['addressLine2'];?></li>
+                					  <li>Province: <?php echo $c['province'];?></li>
+                					  <li>City: <?php echo $c['city'];?></li>
+                					  <li>Postal Code: <?php echo $c['postalCode'];?></li>
+                					  <li>Email: <?php echo $c['email_address'];?></li>
+                					  <li>Phone Number 1: <?php echo $c['phoneNumber1'];?></li>
+                					  <li>Phone Number 2: <?php echo $c['phoneNumber2'];?></li>
+                					  
                     </div>
 						<hr>
 						<input type="button" class="btn btn-danger" value="Remove" data-dismiss="modal"/>
 						<input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
                     </div>
                   </div>
-                </div>
+                </div> <!-- Modal -->
+
+            <?php $curr++; ?>
+        <?php endforeach; ?>
+
+
               </div>
 		</div>
 	</div>
