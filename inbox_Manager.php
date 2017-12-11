@@ -242,9 +242,9 @@
                               </div>
                               <div class="modal-footer">
                                   <form method = "POST">
-                                    <button type="submit" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
-                                    <!--  Onclick runs php script confirmClientScript.php.php and also reloads this web page. Also passes the clientId in the url-->
-                                    <input onclick="location.href='confirmClientScript.php?clientId=<?php echo $client_data['clientId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
+                                    <input onclick="location.href='rejectScript.php?notifId=<?php echo $v['notifId']; ?>'" type="submit" class="btn btn-danger" value="Reject" data-dismiss="modal"/>
+                                    <!--  Onclick runs php script confirmScript.php.php and also reloads this web page. Also passes the notifId in the url-->
+                                    <input onclick="location.href='confirmScript.php?notifId=<?php echo $v['notifId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                   </form>
                                   <?php
                                   #-- ACCEPT AND REJECT BUTTONS -->
@@ -307,8 +307,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <form method="POST">
-                                      <input onclick="location.href='rejectAgentScript.php?agentId=<?php echo $agent_data['employeeId']; ?>'" type="submit" class="btn btn-danger" value="Reject" data-dismiss="modal"/>
-                                      <input onclick="location.href='confirmAgentScript.php?agentId=<?php echo $agent_data['employeeId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
+                                      <input onclick="location.href='rejectScript.php?notifId=<?php echo $v['notifId']; ?>'" type="submit" class="btn btn-danger" value="Reject" data-dismiss="modal"/>
+                                      <input onclick="location.href='confirmScript.php?notifId=<?php echo $v['notifId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                     </form>
                                 </div>
 
