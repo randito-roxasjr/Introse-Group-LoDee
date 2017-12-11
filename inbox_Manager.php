@@ -241,21 +241,21 @@
 
                               </div>
                               <div class="modal-footer">
-                                  <form method = "post">
+                                  <form method = "POST">
                                     <button type="submit" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
-                                    <input onclick="" name="accept<?php echo $con_rej; ?>" type="submit" class="btn btn-success" value="Confirm"/>
+                                    <input onclick="location.href='confirmScript.php?clientId=<?php echo $client_data['clientId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                   </form>
                                   <?php
                                   #-- ACCEPT AND REJECT BUTTONS -->
                                   if(isset($_POST['accept'.$con_rej])) : ?>
-                                      <?php
+                                      <!-- <?php
                                         $_SESSION['client_Id'] = $client_data['clientId'];
                                       ?>
 
-                                      <script>
+                                      <!-- <script>
                                       // JUMP TO NEXT PAGE
                                       window.location = 'insuranceCost.php';
-                                      </script>
+                                      </script> -->
 
                                   <?php
                                   elseif(isset($_POST['reject'.$con_rej])) :?>
@@ -265,7 +265,7 @@
 
                                       #  $next_query = "DELETE FROM notifications WHERE notifId = $v[notifId]";
                                         #$next_result = mysqli_query($dbc, $next_query);
-                                    ?>
+                                    ?> -->
                                   <?php endif; ?>
 
                               </div>
