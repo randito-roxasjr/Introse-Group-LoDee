@@ -307,27 +307,10 @@
                                 </div>
                                 <div class="modal-footer">
                                     <form method="POST">
-                                      <input class="btn btn-danger" name="reject<?php echo $con_rej; ?>" type="submit" value="Reject"/>
+                                      <input onclick="location.href='rejectAgentScript.php?agentId=<?php echo $agent_data['employeeId']; ?>'" type="submit" class="btn btn-danger" value="Reject" data-dismiss="modal"/>
                                       <input onclick="location.href='confirmAgentScript.php?agentId=<?php echo $agent_data['employeeId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                     </form>
                                 </div>
-
-                                <?php
-                                #-- ACCEPT AND REJECT BUTTONS -->
-                              /*  if(isset($_POST['accept'.$con_rej])){
-                                    $accept_query = "UPDATE notification SET isApproved=1, isRead=1 WHERE notifId = $v[notifId]";
-                                    $accept_result = mysqli_query($dbc, $accept_query);
-
-
-                                }
-                                elseif(isset($_POST['reject'.$con_rej])){
-                                    $reject_query = "UPDATE notification SET isRead=1 WHERE notifId = $v[notifId]";
-                                    $reject_result = mysqli_query($dbc, $reject_query);
-
-                                  #  $next_query = "DELETE FROM notifications WHERE notifId = $v[notifId]";
-                                    #$next_result = mysqli_query($dbc, $next_query);
-                                }*/
-                                ?>
 
                                 </div>
                               </div>
