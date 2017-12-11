@@ -249,6 +249,7 @@
                     </div>
 						<hr>
             <form method = "POST">
+              <!--  Onclick runs php script removeScript.php and also reloads this web page. Also passes the clientId in the url-->
   						<input onclick="location.href='removeScript.php?clientId=<?php echo $c['clientId']; ?>'" type="submit" class="btn btn-danger" value="Remove" data-dismiss="modal"/>
   						<input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
           </form>

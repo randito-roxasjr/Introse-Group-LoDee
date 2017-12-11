@@ -243,7 +243,8 @@
                               <div class="modal-footer">
                                   <form method = "POST">
                                     <button type="submit" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
-                                    <input onclick="location.href='confirmScript.php?clientId=<?php echo $client_data['clientId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
+                                    <!--  Onclick runs php script confirmClientScript.php.php and also reloads this web page. Also passes the clientId in the url-->
+                                    <input onclick="location.href='confirmClientScript.php?clientId=<?php echo $client_data['clientId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                   </form>
                                   <?php
                                   #-- ACCEPT AND REJECT BUTTONS -->
@@ -305,9 +306,9 @@
                                       <li>Email: <?php echo $agent_data['email_address']; ?></li>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="inbox_manager.php" method="POST">
+                                    <form method="POST">
                                       <input class="btn btn-danger" name="reject<?php echo $con_rej; ?>" type="submit" value="Reject"/>
-                                      <input name="accept<?php echo $con_rej; ?>" type="submit" class="btn btn-success" value="Confirm"/>
+                                      <input onclick="location.href='confirmAgentScript.php?agentId=<?php echo $agent_data['employeeId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                     </form>
                                 </div>
 
