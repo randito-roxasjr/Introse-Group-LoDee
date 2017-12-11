@@ -243,7 +243,7 @@
                               <div class="modal-footer">
                                   <form method = "post">
                                     <button type="submit" class="btn btn-danger" name="reject<?php echo $con_rej; ?>" data-dismiss="modal">Reject</button>
-                                    <input name="accept<?php echo $con_rej; ?>" type="submit" class="btn btn-success" value="Confirm"/>
+                                    <input onclick="" name="accept<?php echo $con_rej; ?>" type="submit" class="btn btn-success" value="Confirm"/>
                                   </form>
                                   <?php
                                   #-- ACCEPT AND REJECT BUTTONS -->
