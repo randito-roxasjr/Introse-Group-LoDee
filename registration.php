@@ -309,17 +309,26 @@
 
         if($result){
           #GET RECENT ID
-          $query = "SELECT employeeId FROM employee WHERE email_address='$email_address' limit 1";
-          $result = mysqli_query($dbc, $query);
-          $data = mysqli_fetch_assoc($result);
+          $query2 = "SELECT employeeId, email_address FROM employee WHERE email_address='$email_address' limit 1";
+          $result1 = mysqli_query($dbc, $query2);
+          $data = mysqli_fetch_assoc($result1);
 
-          $message = 'Registration by: <br>' . $first_name . ' ' . $last_name;
+          $message = 'Agent Registration by: <br>' . $first_name . ' ' . $last_name;
           #INSERT INTO NOTIFICATION TABLE
-          $query = "INSERT INTO notification (employeeId, message, isRead, timeCreated, isApproved) VALUES ('$data', '$message', 0, date('h:i:sa'), 0)";
-          $result = mysqli_query($dbc, $query);
+          $time_now = date("Y-m-d H:i:s");
+          $query3 = "INSERT INTO Notification (employeeId, message, isRead, timeCreated, isApproved) VALUES ('$data[employeeId]', '$message', 0, '$time_now', 0)";
+          $result2 = mysqli_query($dbc, $query3);
 
-          $enable_header = true;
-  				mysqli_close($dbc);
+          if($result1 and $result2){
+              $enable_header = true;
+      				mysqli_close($dbc);
+          }
+          else{
+            echo "Error, not registered <br />";
+            echo mysqli_error($dbc);
+            #mysqli_stmt_close($result);
+            mysqli_close($dbc);
+          }
   			}
   			else{
   				echo "Error, not registered <br />";

@@ -12,4 +12,8 @@
 * Delete an agent
 * Delete a client
 
-
+## Notifications
+0 = agent registration notif
+1 = new client notif
+2 = confirmed agent registration
+3 = confirmed new client transaction
