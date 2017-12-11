@@ -245,11 +245,13 @@
                 					  <li>Email: <?php echo $c['email_address'];?></li>
                 					  <li>Phone Number 1: <?php echo $c['phoneNumber1'];?></li>
                 					  <li>Phone Number 2: <?php echo $c['phoneNumber2'];?></li>
-                					  
+
                     </div>
 						<hr>
-						<input type="button" class="btn btn-danger" value="Remove" data-dismiss="modal"/>
-						<input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
+            <form method = "POST">
+  						<input onclick="location.href='removeScript.php?clientId=<?php echo $c['clientId']; ?>'" type="submit" class="btn btn-danger" value="Remove" data-dismiss="modal"/>
+  						<input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
+          </form>
                     </div>
                   </div>
                 </div> <!-- Modal -->
