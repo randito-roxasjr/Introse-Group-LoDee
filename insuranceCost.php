@@ -178,10 +178,6 @@
                                     echo '<div class="dropdown-divider"></div>';
                                   }
                               ?>
-<!----------------------------------------------------------------------------->
-
-
-
 
         </ul>
 		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>
@@ -200,7 +196,9 @@
 
       <?php
         # QUERY NEW CLIENT DETAILS
-        $client_query = "SELECT email_address, firstName, lastName, postalCode,clientId, province, city, addressLine1, addressLine2, phoneNumber1, phoneNumber2 FROM client WHERE $_SESSION[client_Id] = clientId limit 1";
+        $clientId = $_GET['clientId'];
+        $notifId = $_GET['notifId'];
+        $client_query = "SELECT email_address, firstName, lastName, postalCode,clientId, province, city, addressLine1, addressLine2, phoneNumber1, phoneNumber2 FROM client WHERE $clientId = clientId limit 1";
         $client_result = mysqli_query($dbc, $client_query);
         $client_data = mysqli_fetch_assoc($client_result);
       ?>
@@ -223,7 +221,7 @@
 						<textarea min="1" step="any" id="abc" onkeyup="s()" class="form-control" id="message-text" placeholder="Enter insurance cost & additional details" required></textarea>
 							<center>
 							<br>
-							<input type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />
+							<input onclick="location.href='confirmClientScript.php?clientId=<?php echo $clientId; ?>&notifId=<?php echo $notifId; ?>'" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />
 							<script type="text/javascript">
 								function s(){
 								var i=document.getElementById("abc");

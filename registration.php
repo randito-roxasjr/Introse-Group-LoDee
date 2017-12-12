@@ -126,11 +126,12 @@
                 <div class="form-group"> <label>Last Name</label>
                   <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required> </div>
 
+
+                 <div class="form-group"> <label>Email Address</label>
+                  <input type="email" class="form-control" name="user_email" placeholder="Enter Email" required> </div>
+                  
                 <div class="form-group"> <label>Complete Address</label>
                     <input type="text" class="form-control" name="address" size="50" placeholder="Enter Address" required> </div>
-
-                <div class="form-group"> <label>Email Address</label>
-                  <input type="email" class="form-control" name="user_email" placeholder="Enter Email" required> </div>
 
                 <div class="form-group"> <label>Password</label>
 					<div class="input-group">
