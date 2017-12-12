@@ -316,7 +316,7 @@
           $message = 'Agent Registration by: <br>' . $first_name . ' ' . $last_name;
           #INSERT INTO NOTIFICATION TABLE
           $time_now = date("Y-m-d H:i:s");
-          $query3 = "INSERT INTO Notification (employeeId, message, isRead, timeCreated, isApproved) VALUES ('$data[employeeId]', '$message', 0, '$time_now', 0)";
+          $query3 = "INSERT INTO Notification (employeeId, message, isRead, timeCreated, isApproved, notifType) VALUES ('$data[employeeId]', '$message', 0, '$time_now', 0, 0)";
           $result2 = mysqli_query($dbc, $query3);
 
           if($result1 and $result2){
