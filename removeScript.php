@@ -3,7 +3,7 @@
 # Connect to Database
 require_once('home_Agent_mysqli_connect.php');
 
-# query
+# Updates the isApproved value of the notification back to 0
  $clientId = 0;
  $clientId = $_GET['clientId'];
  echo $clientId;
