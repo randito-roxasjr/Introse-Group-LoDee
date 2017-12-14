@@ -496,7 +496,7 @@ $data_missing = array();
 			#searches for the clientId to put with the carinfo
 			$query3 = "SELECT clientId from client WHERE lastName='$last_name' limit 1";
 
-			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated,isApproved, notifType) VALUES('$employee_login','$notifmessage',0,'$time_now',0, 1)";
+			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated,isApproved, notifType) VALUES($employee_login,$notifmessage,0,$time_now,0, 1)";
 
 			$stmt1 = mysqli_query($dbc,$query1);
 

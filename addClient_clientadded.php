@@ -52,16 +52,9 @@ session_start();
         <ul class="navbar-nav">
           <li class="nav-item">
             <div class="btn-group">
-              <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
-				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
-				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications
-			  </button>
-              <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>
-                <div class="dropdown-divider"></div>
+              <?php
+                require_once('getNotifsAgent.php');
+              ?>
                 <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
             </div>
