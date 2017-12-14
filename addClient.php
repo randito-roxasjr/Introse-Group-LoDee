@@ -481,7 +481,7 @@ $data_missing = array();
 			$notifmessage = $subject . " " . $message;
 		}
 
-		$time_now = date("Y-m-d H:i:s");
+
 		#if there is no data missing, execute code
 		if(empty($data_missing)){
 
@@ -495,8 +495,8 @@ $data_missing = array();
 			$query2 = "INSERT INTO carinfo(clientId,manufacturer,modelYear,model,value) VALUES(?,?,?,?,?)";
 			#searches for the clientId to put with the carinfo
 			$query3 = "SELECT clientId from client WHERE lastName='$last_name' limit 1";
+      $time_now = date("Y-m-d H:i:s");
 
-			$query4 = "INSERT INTO notification(employeeID,message,isRead,timeCreated,isApproved, notifType) VALUES($employee_login,$notifmessage,0,$time_now,0, 1)";
 
 			$stmt1 = mysqli_query($dbc,$query1);
 
@@ -504,7 +504,7 @@ $data_missing = array();
 
 			$stmt3 = mysqli_prepare($dbc,$query3);
 
-			$stmt4 = mysqli_query($dbc,$query4);
+
 
 
 			$result = mysqli_query($dbc,$query3);
@@ -522,7 +522,8 @@ $data_missing = array();
 			if($affected_rows2 == 1){
 				echo 'Client Added';
 				$change_page = true;
-
+        $query4 = "INSERT INTO notification(employeeID,clientId,message,isRead,timeCreated,isApproved, notifType) VALUES('$employee_login', '$value->clientId','$notifmessage', 0, '$time_now', 0, 1)";
+        $dbc->query($query4);
 				mysqli_stmt_close($stmt2);
 				mysqli_close($dbc);
 			} else{
