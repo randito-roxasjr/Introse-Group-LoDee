@@ -137,7 +137,7 @@
             <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
           </li>
         </ul>
-        <a id="logout" class="btn navbar-btn ml-2 text-white" href="home.phpw"><i style="font-size:20px" class="fa"></i> Log out</a>
+        <a id="logout" class="btn navbar-btn ml-2 text-white" href="home.php"><i style="font-size:20px" class="fa"></i> Log out</a>
       </div>
     </div>
   </nav>
