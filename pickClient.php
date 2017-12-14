@@ -20,7 +20,7 @@ session_start();
     #logout:hover {
       background-color: rgba(0, 0, 0, 0.3);
     }
-	
+
 	button {
 	  cursor: pointer;
 	}
@@ -107,9 +107,9 @@ session_start();
       border-bottom: 1px solid #444;
       cursor: pointer;
 	  max-width: 100%;
-   
+
     }
-	
+
 	input {
 	  cursor: pointer;
 	}
@@ -121,7 +121,7 @@ session_start();
     body {
       overflow-y: hidden;
     }
-	
+
 	.ScrollStyle {
       max-height: 480px;
       overflow-y: scroll;
@@ -141,7 +141,7 @@ session_start();
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Concert+One|Lobster" rel="stylesheet">
   <link rel="stylesheet" href="bootstrap-notifications.css" type="text/css">
   <link rel="stylesheet" href="bootstrap-notifications.min.css" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
       <a id="brand" class="navbar-brand" href="home_agent.php"><i class="fa d-inline fa-lg fa-cloud"></i><b style="font-family: 'Roboto', sans-serif">  Upper Limit Insurance</b></a>
@@ -155,16 +155,9 @@ session_start();
 		  <ul class="navbar-nav">
           <li class="nav-item">
             <div class="btn-group">
-              <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
-				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
-				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications 
-			  </button>
-              <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Dave Lister</a> confirmed <a href="#">Transaction #1</a></center></a></a>                
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Bob Brown</a> rejected <a href="#">Transaction #2</a></center></a></a>                
-                <div class="dropdown-divider"></div>
+              <?php
+                require_once('getNotifsAgent.php');
+              ?>
                 <a style="color: #087830" href="notifications_agent.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
             </div>
@@ -180,7 +173,7 @@ session_start();
   <div class="container">
 	<h2>Your Clients</h2>
 	<div class="ScrollStyle">
-	<div class="card-body">		
+	<div class="card-body">
 		<div class="list-group">
       <?php
 
@@ -214,7 +207,7 @@ session_start();
               echo        "<h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Client #".$row[0]."</h5>";
               echo        "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"> <span aria-hidden=\"true\">×</span> </button>";
               echo      "</div>";
-              echo      "<div class=\"modal-body\"> <label for=\"recipient-name\" class=\"col-form-label\">Client Name: ".$row[2]." ".$row[3]."</label>";               
+              echo      "<div class=\"modal-body\"> <label for=\"recipient-name\" class=\"col-form-label\">Client Name: ".$row[2]." ".$row[3]."</label>";
               echo        "<hr>";
               echo        "<li>First name: ". $row[2] ."</li>";
             echo "<li>Last name: ". $row[3] ."</li>";
@@ -227,12 +220,12 @@ session_start();
             echo "<li>Phone Number 1: ". $row[11].  " </li>";
            // echo "<li>Phone Number 2: ". $row[12]. "</li>";
             //<li>Payments:</li>
-            echo        "</div>";          
-            echo " <center> ";             
+            echo        "</div>";
+            echo " <center> ";
             echo "<hr>";
-        //   echo  "<input onclick=\"location.href='editClient.php';\" type=\"button\" class=\"btn btn-success\" value=\"Edit Info\"/>" ;      
-            echo  "<input onclick=\"location.href='carList.php?id=". $row[0]."';\" type=\"button\" class=\"btn btn-warning\" value=\"View/Edit Client's Cars\"/>";       
-          //  echo  "<input type=\"button\" class=\"btn btn-danger\" value=\"Delete Client\" data-dismiss=\"modal\"/>"     ;   
+        //   echo  "<input onclick=\"location.href='editClient.php';\" type=\"button\" class=\"btn btn-success\" value=\"Edit Info\"/>" ;
+            echo  "<input onclick=\"location.href='carList.php?id=". $row[0]."';\" type=\"button\" class=\"btn btn-warning\" value=\"View/Edit Client's Cars\"/>";
+          //  echo  "<input type=\"button\" class=\"btn btn-danger\" value=\"Delete Client\" data-dismiss=\"modal\"/>"     ;
             echo "</center>";
             echo "        </div>";
             echo "      </div>";
@@ -242,7 +235,7 @@ session_start();
   echo "</div>";
   echo "</div>";
   echo "</div>";
-  echo "</div>";  
+  echo "</div>";
           }
         // Free result set
         mysqli_free_result($result);
