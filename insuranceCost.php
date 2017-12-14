@@ -198,47 +198,51 @@
         # QUERY NEW CLIENT DETAILS
         $clientId = $_GET['clientId'];
         $notifId = $_GET['notifId'];
-        $client_query = "SELECT email_address, firstName, lastName, postalCode,clientId, province, city, addressLine1, addressLine2, phoneNumber1, phoneNumber2 FROM client WHERE $clientId = clientId limit 1";
+        $employeeId = $_GET['employeeId'];
+        $_SESSION['clientId'] = $clientId;
+        $_SESSION['notifId'] = $notifId;
+        $_SESSION['tempEmployeeId'] = $employeeId;
+        $client_query = "SELECT email_address, firstName, lastName, postalCode,clientId, province, city, addressLine1, addressLine2, phoneNumber1, phoneNumber2 FROM client WHERE clientId = '".$clientId."' LIMIT 1";
         $client_result = mysqli_query($dbc, $client_query);
         $client_data = mysqli_fetch_assoc($client_result);
       ?>
 
       <!-- FORMS -->
-      <form action = "inbox_manager.php" method = "post">
-					<div class="form-group">
-						<hr>
-						<h5 for="recipient-name" class="form-control-label">Client: <?php echo $client_data['firstName'].' '.$client_data['lastName'];?></h5>
-						<hr>
+      <form action = "script.php" method = "POST">
+				<div class="form-group">
+					<hr>
+					<h5 for="recipient-name" class="form-control-label">Client: <?php echo $client_data['firstName'].' '.$client_data['lastName'];?></h5>
+					<hr>
 
-					</div>
+				</div>
 
-					<div class="form-group">
-						<label for="recipient-name" class="form-control-label">Subject:</label>
-						<input type="text" class="form-control" id="subject" placeholder="Enter subject" required>
-					</div>
-					<div class="form-group">
-						<label for="message-text" class="form-control-label">Cost & Details:</label>
-						<textarea min="1" step="any" id="abc" onkeyup="s()" class="form-control" id="message-text" placeholder="Enter insurance cost & additional details" required></textarea>
-							<center>
-							<br>
-							<input onclick="location.href='confirmClientScript.php?clientId=<?php echo $clientId; ?>&notifId=<?php echo $notifId; ?>'" type="submit" id="abc2" name="submit" value="Send" class="btn btn-primary" style="width: 40%" disabled />
-							<script type="text/javascript">
-								function s(){
-								var i=document.getElementById("abc");
-									if(i.value==""){
-										document.getElementById("abc2").disabled=true;
-										document.getElementById("abc2").style="cursor: ; width: 40%";
-									}
-									else{
-										document.getElementById("abc2").disabled=false;
-										document.getElementById("abc2").style="cursor: pointer; width: 40%";
-									}
+				<div class="form-group">
+					<label for="recipient-name" class="form-control-label">Subject:</label>
+					<input type="text" class="form-control" id="subject" placeholder="Enter subject" name="subject" required>
+				</div>
+				<div class="form-group">
+					<label for="message-text" class="form-control-label">Cost & Details:</label>
+					<textarea min="1" step="any" id="abc" onkeyup="s()" name="details" class="form-control" id="message-text" placeholder="Enter insurance cost & additional details" required></textarea>
+						<center>
+						<br>
+						<input type="submit" id="abc2" value="Send" class="btn btn-primary" name="submit" style="width: 40%" disabled />
+						<script type="text/javascript">
+							function s(){
+							var i=document.getElementById("abc");
+								if(i.value==""){
+									document.getElementById("abc2").disabled=true;
+									document.getElementById("abc2").style="cursor: ; width: 40%";
 								}
-							</script>
-							</center>
-					</div>
-			  </form>   <!-- FORMS -->
-
+								else{
+									document.getElementById("abc2").disabled=false;
+									document.getElementById("abc2").style="cursor: pointer; width: 40%";
+								}
+							}
+						</script>
+						</center>
+				</div>
+      </form>
+		     <!-- FORMS -->
 			</div>
 		  </div>
 		</div>
@@ -250,6 +254,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>
