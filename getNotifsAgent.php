@@ -2,12 +2,11 @@
 <?php
 # Connect to Database
         	require_once('home_Agent_mysqli_connect.php');
-
+          $tempEmpId = $_SESSION['employeeId'];
           # query
-          $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType >= 2 and isApproved = 0";
+          $query = "SELECT COUNT(*) as 'NUM' FROM notification WHERE notifType >= 2 and isApproved = 0 and employeeId = $tempEmpId";
           $result = mysqli_query($dbc, $query);
           $data = mysqli_fetch_assoc($result);
-
 ?>
           <!-- NOTIFICATION BUTTON -->
               <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
@@ -20,7 +19,7 @@
 <?php
 
 
-  $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and notifType >= 2 and n.isApproved = 0 ORDER BY n.timeCreated LIMIT 3";
+  $query1 = "SELECT e.firstName, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved FROM employee e, notification n WHERE e.employeeId = n.employeeId and e.employeeId = $tempEmpId and notifType >= 2 and n.isApproved = 0 ORDER BY n.timeCreated LIMIT 3";
   $result1 = mysqli_query($dbc, $query1);
 
   #INCREMENT ID LOOP
