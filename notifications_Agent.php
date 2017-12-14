@@ -137,7 +137,7 @@
             <a id="logout" class="btn navbar-btn ml-2 text-white" href="home_agent.php"><i class="fa fa-home" aria-hidden="true" style="font-size:20px"></i> Home</a>
           </li>
         </ul>
-        <a id="logout" class="btn navbar-btn ml-2 text-white" href="home.phpw"><i style="font-size:20px" class="fa"></i> Log out</a>
+        <a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa"></i> Log out</a>
       </div>
     </div>
   </nav>
@@ -156,9 +156,9 @@
             <?php
             # Connect to Database
             require_once('home_Agent_mysqli_connect.php');
-
+            $tempEmpId = $_SESSION['employeeId'];
             # query
-            $query1 = "SELECT e.firstName, n.clientId, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved, n.notifId FROM employee e, notification n WHERE e.employeeId = n.employeeId and notifType>=2 and n.isApproved=0 ORDER BY n.timeCreated";
+            $query1 = "SELECT e.firstName, n.clientId, e.lastName, n.message, e.employeeId, n.employeeId, n.timeCreated, e.managedBy, e.isManager, n.notifType, n.isApproved, n.notifId FROM employee e, notification n WHERE e.employeeId = n.employeeId and n.employeeId = $tempEmpId and notifType>=2 and n.isApproved=0 ORDER BY n.timeCreated";
             $result1 = mysqli_query($dbc, $query1);
 
             $notifications = array();
