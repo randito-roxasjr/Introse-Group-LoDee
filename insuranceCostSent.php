@@ -8,13 +8,13 @@
     }
 
     #brand:hover {
-      text-shadow: 2px 2px #000000;	  
+      text-shadow: 2px 2px #000000;
     }
 
     #notifications:hover, #inbox:hover, #logout:hover, #home:hover, #myBtn:hover {
       background-color: rgba(0, 0, 0, 0.3);
-    }	
-  </style> 
+    }
+  </style>
 </head>
 
 <body>
@@ -36,19 +36,19 @@
           </li>
           <li class="nav-item">
             <div class="btn-group">
-              <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
+              <!-- <button id="notifications" class="btn dropdown-toggle text-white" data-toggle="dropdown" style="cursor:pointer">
 				<i style="color: #f42929"class="fa d-inline fa-lg fa-exclamation -o"></i>
 				  <span style="font-size: 18px; font-family: 'Roboto', sans-serif" class="w3-badge w3-red">2</span>
-					Notifications 
+					Notifications
 			  </button>
               <div class="dropdown-menu">
-				<a class="dropdown-item text-center"><center><a href="#">Jonathan Wilson</a> recently sent <a href="#">Transaction #1</a></center></a></a>                
+				<a class="dropdown-item text-center"><center><a href="#">Jonathan Wilson</a> recently sent <a href="#">Transaction #1</a></center></a></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-center"><center><a href="#">Brian Imanuel</a> recently sent <a href="#">Transaction #2</a></center></a></a>              
+                <a class="dropdown-item text-center"><center><a href="#">Brian Imanuel</a> recently sent <a href="#">Transaction #2</a></center></a></a>
                 <div class="dropdown-divider"></div>
-                <a style="color: #087830" href="inbox_Manager.html" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
+                <a style="color: #087830" href="inbox_Manager.php" class="dropdown-item text-center"><i class="glyphicon glyphicon-search"></i>View All</a>
               </div>
-            </div>
+            </div> -->
         </ul>
 		<a id="logout" class="btn navbar-btn ml-2 text-white" href="home.html"><i style="font-size:20px" class="fa">&#xf08b;</i> Log out</a>
       </div>
@@ -61,13 +61,13 @@
         <div class="col-md-3"> </div>
         <div class="col-md-6">
           <div class="card text-white p-5" style="background-color: #087830">
-            <div class="card-body">			
+            <div class="card-body">
               <h2 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif">Good Work!</h2>
-              <div class="form-group"> 
+              <div class="form-group">
 				<p class="text-center">Insurance Cost & Details successfully sent</p>
 				<br>
 					<center>
-						<a id="inbox" class="btn text-white" href="inbox_Manager.html" style="font-size: 20px"><i class="fa fa-inbox"></i> Back to notifications</a>
+						<a id="inbox" class="btn text-white" href="inbox_Manager.php" style="font-size: 20px"><i class="fa fa-inbox"></i> Back to notifications</a>
 					</center>
 			  </div>
             </div>
@@ -76,10 +76,10 @@
       </div>
     </div>
   </div>
-  </div>  
+  </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
 
 </html>

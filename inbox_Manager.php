@@ -244,8 +244,9 @@
                                   <form method = "POST">
                                     <input onclick="location.href='rejectScript.php?notifId=<?php echo $v['notifId']; ?>'" type="submit" class="btn btn-danger" value="Reject" data-dismiss="modal"/>
                                     <!--  Onclick runs php script confirmScript.php.php and also reloads this web page. Also passes the notifId in the url-->
-                                    <input onclick="location.href='confirmScript.php?notifId=<?php echo $v['notifId']; ?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
+                                    <input onclick="location.href='insuranceCost.php?clientId=<?php echo $client_data['clientId']; ?>&notifId=<?php echo $v['notifId'];?>&employeeId=<?php echo $v['employeeId'];?>'" type="submit" class="btn btn-success" value="Confirm" data-dismiss="modal"/>
                                   </form>
+
                                   <?php
                                   #-- ACCEPT AND REJECT BUTTONS -->
                                   if(isset($_POST['accept'.$con_rej])) : ?>
